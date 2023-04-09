@@ -19,6 +19,7 @@ sudo apt install -y apt-transport-https \
 sudo apt install -y neofetch \
 sudo apt install -y ca-certificates \
 sudo apt install -y openjdk-8-jdk \
+sudo apt install -y acpitool \
 sudo apt update
 
 # drivers setup
