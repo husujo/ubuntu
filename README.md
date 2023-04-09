@@ -27,7 +27,6 @@ sudo ubuntu-drivers install
 # snaps:
 sudo snap install deja-dup --classic \
 sudo snap install discord \
-sudo snap install slack \
 sudo snap install dbeaver-ce \
 sudo snap install code --classic \
 sudo snap install 1password \
@@ -38,6 +37,8 @@ sudo snap install postman
 sudo apt install -y flatpak \
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo \
 flatpak install flathub com.google.Chrome
+flatpak install flathub com.slack.Slack
+flatpak install flathub nz.mega.MEGAsync
 
 # dev
 sudo apt install -y nodejs npm \
