@@ -20,6 +20,7 @@ sudo apt install -y neofetch \
 sudo apt install -y ca-certificates \
 sudo apt install -y openjdk-8-jdk \
 sudo apt install -y acpitool \
+sudo apt install -y python-is-python3 \
 sudo apt update
 
 # drivers setup
