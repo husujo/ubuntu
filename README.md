@@ -33,7 +33,8 @@ sudo snap install dbeaver-ce \
 sudo snap install code --classic \
 sudo snap install 1password \
 sudo snap install steam --beta \
-sudo snap install postman
+sudo snap install postman \
+sudo snap install yt-dlp
 
 # flatpak (restart after)
 sudo apt install -y flatpak \
