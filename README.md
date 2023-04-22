@@ -39,9 +39,10 @@ sudo snap install yt-dlp
 # flatpak (restart after)
 sudo apt install -y flatpak \
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo \
-flatpak install flathub com.google.Chrome \
-flatpak install flathub com.slack.Slack \
-flatpak install flathub nz.mega.MEGAsync
+flatpak install flathub com.google.Chrome -y \
+flatpak install flathub com.slack.Slack -y \
+flatpak install flathub nz.mega.MEGAsync -y \
+flatpak install flathub org.desmume.DeSmuME -y
 
 # dev
 sudo apt install -y nodejs npm \
