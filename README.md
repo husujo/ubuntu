@@ -51,10 +51,8 @@ sudo npm install --global yarn
 
 # MSI keyboard backlight
 sudo apt install -y git build-essential libudev-dev \
-git clone https://github.com/Koromix/rygel.git \
-cd rygel \
-./bootstrap.sh \
-./felix -pFast meestic \
+git clone https://github.com/Koromix/rygel.git && cd rygel \
+./bootstrap.sh && ./felix -pFast meestic \
 sudo ./bin/Fast/meestic -m Disabled \
 cd ..
 
