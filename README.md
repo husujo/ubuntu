@@ -2,12 +2,14 @@
 scripts for setting up a new ubuntu installation with apps and packages
 
 # swapfile
-sudo swapoff -a \
-sudo dd if=/dev/zero of=/swapfile bs=1G count=8 # 8GB \
-sudo chmod 0600 /swapfile \
-sudo mkswap /swapfile  # Set up a Linux swap area \
-sudo swapon /swapfile  # Turn the swap on \
+```
+sudo swapoff -a
+sudo dd if=/dev/zero of=/swapfile bs=1G count=16 # 16GB
+sudo chmod 0600 /swapfile
+sudo mkswap /swapfile  # Set up a Linux swap area
+sudo swapon /swapfile  # Turn the swap on
 echo 'vm.swappiness = 10' | sudo tee -a /etc/sysctl.conf # https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
+```
 
 # essentials
 ```
