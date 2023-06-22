@@ -10,18 +10,12 @@ sudo swapon /swapfile  # Turn the swap on \
 echo 'vm.swappiness = 10' | sudo tee -a /etc/sysctl.conf # https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
 
 # essentials
-sudo apt install -y timeshift \
-sudo apt install -y gnome-tweaks \
-sudo apt install -y vim \
-sudo apt install -y curl \
-sudo apt install -y git \
-sudo apt install -y apt-transport-https \
-sudo apt install -y neofetch \
-sudo apt install -y ca-certificates \
-sudo apt install -y openjdk-8-jdk \
-sudo apt install -y acpitool \
-sudo apt install -y python-is-python3 \
+
+```
+sudo apt install -y timeshift gnome-tweaks vim curl git apt-transport-https neofetch ca-certificates openjdk-8-jdk acpitool python-is-python3 \
 sudo apt update
+```
+
 
 # drivers setup
 sudo ubuntu-drivers install
@@ -76,7 +70,8 @@ curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share
 sudo apt-get install apt-transport-https --yes \
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list \
 sudo apt-get update \
-sudo apt-get install helm
+sudo apt-get install helm \
+sudo helm completion bash | sudo tee /etc/bash_completion.d/helm >/dev/null
 
 # kubectx
 echo 'deb [trusted=yes] http://ftp.de.debian.org/debian buster main' | sudo tee -a /etc/apt/sources.list \
