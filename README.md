@@ -10,12 +10,10 @@ sudo swapon /swapfile  # Turn the swap on \
 echo 'vm.swappiness = 10' | sudo tee -a /etc/sysctl.conf # https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
 
 # essentials
-
 ```
-sudo apt install -y timeshift gnome-tweaks vim curl git apt-transport-https neofetch ca-certificates openjdk-8-jdk acpitool python-is-python3 \
+sudo apt install -y timeshift gnome-tweaks vim curl git apt-transport-https neofetch ca-certificates openjdk-8-jdk acpitool python-is-python3
 sudo apt update
 ```
-
 
 # drivers setup
 sudo ubuntu-drivers install
