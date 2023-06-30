@@ -31,8 +31,10 @@ sudo snap install postman \
 sudo snap install yt-dlp
 
 # flatpak (restart after)
-sudo apt install -y flatpak \
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo \
+```
+sudo apt install -y flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```
 flatpak install flathub com.google.Chrome -y \
 flatpak install flathub com.slack.Slack -y \
 flatpak install flathub nz.mega.MEGAsync -y \
