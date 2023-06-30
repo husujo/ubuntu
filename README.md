@@ -36,7 +36,8 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 flatpak install flathub com.google.Chrome -y \
 flatpak install flathub com.slack.Slack -y \
 flatpak install flathub nz.mega.MEGAsync -y \
-flatpak install flathub org.desmume.DeSmuME -y
+flatpak install flathub org.desmume.DeSmuME -y \
+flatpak install flathub com.mattjakeman.ExtensionManager -y
 
 # dev
 sudo apt install -y nodejs npm \
