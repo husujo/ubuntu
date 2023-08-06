@@ -57,7 +57,7 @@ curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sud
 sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
 # Install 1Password:
-sudo apt update && sudo apt install 1password 1password-cli
+sudo apt update && sudo apt install -y 1password 1password-cli
 ```
 
 # dev
@@ -80,32 +80,36 @@ cd ..
 ```
 
 # docker
-sudo apt-get install gnupg lsb-release \
-sudo mkdir -p /etc/apt/keyrings \
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg \
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null \
-sudo apt-get update \
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+sudo apt-get install gnupg lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
 
 # kubectl
-sudo apt-get update \
-sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg \
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list \
-sudo apt-get update \
-sudo apt-get install -y kubectl
+```
+sudo apt-get update
+sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update && sudo apt-get install -y kubectl
+```
 
 # helm
-curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null \
-sudo apt-get install apt-transport-https --yes \
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list \
-sudo apt-get update \
-sudo apt-get install helm \
+```
+curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+sudo apt-get install apt-transport-https --yes
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update && sudo apt-get install -y helm
 sudo helm completion bash | sudo tee /etc/bash_completion.d/helm >/dev/null
+```
 
 # kubectx
-echo 'deb [trusted=yes] http://ftp.de.debian.org/debian buster main' | sudo tee -a /etc/apt/sources.list \
-sudo apt update \
-sudo apt install kubectx
+```
+echo 'deb [trusted=yes] http://ftp.de.debian.org/debian buster main' | sudo tee -a /etc/apt/sources.list
+sudo apt update && sudo apt install kubectx
+```
 
 # table plus
 wget -qO - https://deb.tableplus.com/apt.tableplus.com.gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/tableplus-archive.gpg \
