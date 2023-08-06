@@ -90,10 +90,17 @@ sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli container
 
 # kubectl
 ```
+# https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
 sudo apt-get update
 sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update && sudo apt-get install -y kubectl
+```
+```
+# extras: (TODO test)
+kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
+sudo chmod a+r /etc/bash_completion.d/kubectl
+echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
 ```
 
 # helm
