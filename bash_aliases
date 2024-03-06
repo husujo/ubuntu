@@ -24,3 +24,10 @@ alias kd='kubectl describe'
 alias ka='kubectl apply -f'
 alias ke='kubectl exec -it'
 alias kgistio='kubectl get gateway,virtualservice,destinationrule'
+
+alias switchjava="sudo update-alternatives --config java"
+
+FIREFOX_HOME=$HOME/snap/firefox/common/.mozilla/firefox
+FIREFOX_PROFILE=$FIREFOX_HOME/$(cat $FIREFOX_HOME/profiles.ini | sed -n -e 's/^.*Path=//p' | head -n 1)
+FIREFOX_CSS=$FIREFOX_PROFILE/chrome/userChrome.css
+alias firefox-css="mkdir -p $FIREFOX_PROFILE/chrome && touch $FIREFOX_CSS && vim $FIREFOX_CSS"
