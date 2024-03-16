@@ -43,6 +43,11 @@ flatpak install flathub com.mattjakeman.ExtensionManager
 flatpak install flathub nz.mega.MEGAsync -y
 ```
 
+## gnome extensions
+```
+EXT_LIST=(Vitals@CoreCoding.com clipboard-indicator@tudmotu.com scroll-workspaces@gfxmonk.net user-theme@gnome-shell-extensions.gcampax.github.com); for i in "${EXT_LIST[@]}"; do busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${i}; done
+```
+
 ## snaps:
 ```
 sudo snap install chromium
