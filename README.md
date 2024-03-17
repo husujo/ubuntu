@@ -18,7 +18,12 @@ echo 'vm.swappiness = 10' | sudo tee -a /etc/sysctl.conf
 sudo ubuntu-drivers install
 ```
 
-## 1password setup
+## apt
+```
+sudo apt update && sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk flatpak
+```
+
+## 1password
 ```
 # Add the key for the 1Password apt repository:
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
@@ -29,30 +34,29 @@ sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
 curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
 sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+sudo apt update && sudo apt instal -y 1password 1password-cli
 ```
 
-## apt
-```
-sudo apt update && sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk flatpak 1password 1password-cli
-```
-
-## flatpak (restart after)
+## flatpak
 ```
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub com.mattjakeman.ExtensionManager
 flatpak install flathub nz.mega.MEGAsync -y
 ```
 
+## <restart>
+
 ## gnome extensions
 ```
 EXT_LIST=(Vitals@CoreCoding.com clipboard-indicator@tudmotu.com scroll-workspaces@gfxmonk.net user-theme@gnome-shell-extensions.gcampax.github.com); for i in "${EXT_LIST[@]}"; do busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${i}; done
 ```
 
-## snaps:
+## snaps
 ```
 sudo snap install chromium
 sudo snap install slack
 sudo snap install code --classic
+sudo snap install dbeaver-ce
 sudo snap install simplescreenrecorder
 
 sudo snap install discord
@@ -70,6 +74,31 @@ sudo snap install 0ad
 sudo snap install mumble
 ```
 
+# Dev
+
+## docker
+```
+# nix?
+sudo apt-get install gnupg lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+
+## postgres
+```
+# TODO remove, use nix
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+sudo apt update && sudo apt install -y postgresql postgresql-contrib
+```
+
+## Bun
+```
+curl -fsSL https://bun.sh/install | bash
+```
+
 ## Nix package manager
 ```
 # install nix package manager
@@ -81,40 +110,7 @@ nix-shell '<home-manager>' -A install
 # TODO test
 echo '. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"' >> ~/.bashrc
 # TODO test if this adds direnv or nix-direnv
-```
-
-## docker
-```
-# TODO remove, use nix
-sudo apt-get install gnupg lsb-release
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-```
-
-## kubectl
-```
-# TODO remove, use nix
-# extras: (TODO test)
-kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
-sudo chmod a+r /etc/bash_completion.d/kubectl
-echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
-```
-
-## helm
-```
-# TODO remove, use nix
-sudo helm completion bash | sudo tee /etc/bash_completion.d/helm >/dev/null
-```
-
-## postgres
-```
-# TODO remove, use nix
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
-sudo apt update
-sudo apt install -y postgresql postgresql-contrib
+# Copy home.nix into ~/.config/home-manager/home.nix
 ```
 
 # Optional
