@@ -50,9 +50,6 @@ git-backup-branch() (
     git push origin "refs/remotes/origin/${current_branch}:refs/heads/${new_branch}"
 )
 
-# java
-alias switchjava="sudo update-alternatives --config java"
-
 # firefox
 FIREFOX_HOME=$HOME/snap/firefox/common/.mozilla/firefox
 FIREFOX_PROFILE=$FIREFOX_HOME/$(cat $FIREFOX_HOME/profiles.ini | sed -n -e 's/^.*Path=//p' | head -n 1)
@@ -108,8 +105,10 @@ alias ke='kubectl exec -it'
 alias kl='kubectl logs'
 alias klf='kubectl logs --follow'
 alias kgistio='kubectl get gateway,virtualservice,destinationrule'
-alias krrd='k rollout restart deployment'
+alias krrd='kubectl rollout restart deployment'
 alias kwp='watch -n 3 kubectl get pods'
+alias ktp="kubectl top pods"
+alias ktn="kubectl top nodes"
 alias pima="kubectl describe pod $1 | grep Image:"
 alias knc="kubens -c"
 
