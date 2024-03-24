@@ -34,7 +34,7 @@ sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
 curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
 sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
 curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
-sudo apt update && sudo apt instal -y 1password 1password-cli
+sudo apt update && sudo apt instal -y 1password
 ```
 
 ## flatpak
@@ -42,6 +42,12 @@ sudo apt update && sudo apt instal -y 1password 1password-cli
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub com.mattjakeman.ExtensionManager
 flatpak install flathub nz.mega.MEGAsync -y
+```
+
+## nordvpn
+```
+sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+sudo usermod -aG nordvpn $USER
 ```
 
 ## <restart>
@@ -72,23 +78,26 @@ sudo snap install desmume-emulator
 # try out for fun
 sudo snap install 0ad
 sudo snap install mumble
+
+# sudo snap install 1password
+# sudo snap install docker # instructions - https://snapcraft.io/docker
+
 ```
 
 # Dev
 
 ## docker
 ```
-# nix?
 sudo apt-get install gnupg lsb-release
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+# sudo usermod -aG docker ${USER}
 ```
 
 ## postgres
 ```
-# TODO remove, use nix
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 sudo apt update && sudo apt install -y postgresql postgresql-contrib
@@ -134,4 +143,23 @@ curl https://ollama.ai/install.sh | sh
 ## rust
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+## flatpak options if snap fails
+```
+flatpak install flathub com.google.Chrome
+flatpak install flathub com.discordapp.Discord
+flatpak install flathub com.visualstudio.code
+flatpak install flathub com.slack.Slack
+flatpak install flathub io.dbeaver.DBeaverCommunity
+
+flatpak install https://downloads.1password.com/linux/flatpak/1Password.flatpakref
+flatpak install flathub com.valvesoftware.Steam
+flatpak install flathub net.ankiweb.Anki
+flatpak install flathub org.DolphinEmu.dolphin-emu
+flatpak install flathub org.gimp.GIMP
+flatpak install flathub org.blender.Blender
+flatpak install flathub org.godotengine.Godot
+flatpak install flathub com.vba_m.visualboyadvance-m
+flatpak install flathub org.desmume.DeSmuME
 ```
