@@ -20,7 +20,6 @@ sudo ubuntu-drivers install
 
 ## apt
 ```
-sudo mkdir -p /etc/apt/keyrings
 sudo apt update && sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk flatpak
 ```
 
@@ -89,6 +88,7 @@ sudo snap install mumble
 
 ## docker
 ```
+sudo mkdir -p /etc/apt/keyrings
 sudo apt-get install gnupg lsb-release
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
