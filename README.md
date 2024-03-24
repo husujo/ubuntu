@@ -73,15 +73,15 @@ sudo snap install yt-dlp
 sudo snap install gimp
 sudo snap install godot-4
 sudo snap install blender --classic
+sudo snap install rustup --classic
 sudo snap install visualboyadvance-m
 sudo snap install desmume-emulator
 # try out for fun
 sudo snap install 0ad
 sudo snap install mumble
 
-# sudo snap install 1password
 # sudo snap install docker # instructions - https://snapcraft.io/docker
-
+# sudo snap install 1password
 ```
 
 # Dev
@@ -138,11 +138,6 @@ cd ..
 ## ollama
 ```
 curl https://ollama.ai/install.sh | sh
-```
-
-## rust
-```
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 ## flatpak options if snap fails
