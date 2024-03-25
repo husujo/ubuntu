@@ -120,6 +120,8 @@ curl -fsSL https://bun.sh/install | bash
 ```
 # install nix package manager
 sh <(curl -L https://nixos.org/nix/install) --daemon
+```
+```
 # install nix home-manager https://nix-community.github.io/home-manager/index.xhtml
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
