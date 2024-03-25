@@ -5,7 +5,7 @@ scripts for setting up a new ubuntu installation with apps and packages
 
 ## home directory setup
 ```
-mkdir ~/bin
+mkdir ~/.local/bin
 mkdir ~/code
 mkdir ~/themes
 chmod a+r ~/Public
@@ -135,11 +135,11 @@ echo '. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"' >> ~/.bashrc
 ```
 sudo apt install -y git build-essential libudev-dev acpitool
 git clone https://github.com/Koromix/rygel.git && cd rygel
-./bootstrap.sh && ./felix -pFast meestic
+./bootstrap.sh && ./felix -pFast meestic && cd
 sudo cp ~/rygel/bin/Fast/meestic /bin/
+rm -r ~/rygel
 # sudo meestic -m Disabled
 # sudo meestic -m Static MsiBlue
-cd ..
 ```
 
 ## ollama
