@@ -9,6 +9,7 @@ mkdir ~/.local/bin
 mkdir ~/code
 mkdir ~/themes
 chmod a+r ~/Public
+rmdir ~/Templates
 ```
 
 ## swapfile
