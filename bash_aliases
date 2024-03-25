@@ -1,4 +1,8 @@
-alias battery='acpitool'
+# laptop
+alias kboff="sudo meestic -m Disabled"
+alias kbon="sudo meestic -m Static MsiBlue"
+alias battery="acpitool"
+alias gputop="radeontop -b 03:00.0"
 
 # apt
 alias sa='sudo apt'
