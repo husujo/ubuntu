@@ -154,6 +154,7 @@ flatpak install flathub com.discordapp.Discord
 flatpak install flathub com.visualstudio.code
 flatpak install flathub com.slack.Slack
 flatpak install flathub io.dbeaver.DBeaverCommunity
+flatpak install flathub us.zoom.Zoom
 
 flatpak install https://downloads.1password.com/linux/flatpak/1Password.flatpakref
 flatpak install flathub com.valvesoftware.Steam
