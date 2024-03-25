@@ -3,6 +3,14 @@ scripts for setting up a new ubuntu installation with apps and packages
 
 # Essentials
 
+## home directory setup
+```
+mkdir ~/bin
+mkdir ~/code
+mkdir ~/themes
+chmod a+r ~/Public
+```
+
 ## swapfile
 ```
 sudo swapoff -a
@@ -41,7 +49,6 @@ sudo apt update && sudo apt install -y 1password
 ```
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub com.mattjakeman.ExtensionManager
-flatpak install flathub nz.mega.MEGAsync -y
 ```
 
 ## nordvpn
@@ -157,4 +164,5 @@ flatpak install flathub org.blender.Blender
 flatpak install flathub org.godotengine.Godot
 flatpak install flathub com.vba_m.visualboyadvance-m
 flatpak install flathub org.desmume.DeSmuME
+flatpak install flathub nz.mega.MEGAsync -y
 ```
