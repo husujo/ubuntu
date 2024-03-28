@@ -6,10 +6,10 @@ scripts for setting up a new ubuntu installation with apps and packages
 ## home directory setup
 ```
 mkdir ~/.local/bin
+mkdir ~/.local/share/themes
 mkdir ~/code
-mkdir ~/themes
-chmod a+r ~/Public
 rmdir ~/Templates
+chmod a+r ~/Public
 ```
 
 ## swapfile
