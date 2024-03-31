@@ -71,11 +71,12 @@ sudo snap install chromium
 sudo snap install slack
 sudo snap install code --classic
 sudo snap install dbeaver-ce
+sudo snap install vlc
 sudo snap install simplescreenrecorder
-
 sudo snap install discord
 sudo snap install steam
 
+sudo snap install libreoffice
 sudo snap install anki-woodrow
 sudo snap install yt-dlp
 sudo snap install gimp
@@ -168,5 +169,7 @@ flatpak install flathub org.blender.Blender
 flatpak install flathub org.godotengine.Godot
 flatpak install flathub com.vba_m.visualboyadvance-m
 flatpak install flathub org.desmume.DeSmuME
-flatpak install flathub nz.mega.MEGAsync -y
+flatpak install flathub nz.mega.MEGAsync
+flatpak install flathub io.github.yairm210.unciv
+flatpak install flathub org.freeciv.gtk322
 ```
