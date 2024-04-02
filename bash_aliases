@@ -119,8 +119,13 @@ alias knc="kubens -c"
 # docker
 alias dockeri='sudo chmod 666 /var/run/docker.sock'
 
+# nordvpn
+alias usa="nordvpn c United_States"
+
 base64d () { 
     echo $1 | base64 -d
 }
 
 alias myip='curl ifconfig.io -4 >> ~/ips && echo "" >> ~/ips && cat ~/ips'
+
+# qpdf --password="$password" --decrypt "$input_pdf" --replace-input
