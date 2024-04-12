@@ -25,6 +25,7 @@
     kubectl
     kubectx
     kubernetes-helm
+    terraform
     doctl
     s3cmd
     jq
