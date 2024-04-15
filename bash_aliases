@@ -11,6 +11,7 @@ alias saupg='sudo apt upgrade'
 
 # bash
 alias sp='source ~/.profile'
+alias bashrc='vim ~/.bashrc'
 alias rebash='source ~/.bashrc'
 alias ba='vim ~/.bash_aliases'
 alias babackup='sudo cp ~/.bash_aliases /'
@@ -22,11 +23,11 @@ alias cddoc='cd ~/Documents'
 alias cdc='cd ~/code'
 
 # ls
-alias ls='ls -G'
-alias l='ls -G'
-alias la='ls -a -G'
-alias ll='ls -l -G'
-alias lal='ls -la -G'
+alias ls='ls --color=auto'
+alias l='ls'
+alias la='ls -a'
+alias ll='ls -lF'
+alias lal='ls -la'
 
 # git
 alias gs='git status'
