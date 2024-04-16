@@ -130,3 +130,5 @@ base64d () {
 alias myip='curl ifconfig.io -4 >> ~/ips && echo "" >> ~/ips && cat ~/ips'
 
 # qpdf --password="$password" --decrypt "$input_pdf" --replace-input
+
+# PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w$(__git_ps1 "\[\033[00m\]:\[\033[01;33m\]%s")\[\033[00m\]\$ '
