@@ -75,6 +75,7 @@ sudo snap install vlc
 sudo snap install simplescreenrecorder
 sudo snap install discord
 sudo snap install steam
+sudo snap install todoist
 
 sudo snap install libreoffice
 sudo snap install anki-woodrow
