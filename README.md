@@ -50,6 +50,7 @@ sudo apt update && sudo apt install -y 1password
 ```
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub com.mattjakeman.ExtensionManager
+flatpak install flathub net.nokyan.Resources
 ```
 
 ## nordvpn
