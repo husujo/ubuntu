@@ -3,6 +3,11 @@ scripts for setting up a new ubuntu installation with apps and packages
 
 # Essentials
 
+## gnome settings
+```
+gsettings set org.gnome.desktop.wm.keybindings close "['<Shift><Super>c']"
+```
+
 ## home directory setup
 ```
 mkdir ~/.local/bin
