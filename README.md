@@ -6,6 +6,12 @@ scripts for setting up a new ubuntu installation with apps and packages
 ## gnome settings
 ```
 gsettings set org.gnome.desktop.wm.keybindings close "['<Shift><Super>c']"
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-position "BOTTOM"
+gsettings set org.gnome.shell.extensions.dash-to-dock show-trash false
+gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
+gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 34
+gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode "FIXED"
+gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.5
 ```
 
 ## home directory setup
