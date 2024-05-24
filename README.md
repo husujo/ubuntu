@@ -19,6 +19,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.5
 mkdir ~/.local/bin
 mkdir ~/.local/share/themes
 mkdir ~/code
+mkdir ~/games
 rmdir ~/Templates
 chmod a+r ~/Public
 ```
