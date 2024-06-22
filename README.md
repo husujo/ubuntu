@@ -41,7 +41,7 @@ sudo ubuntu-drivers install
 
 ## apt
 ```
-sudo apt update && sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk synaptic flatpak
+sudo apt update && sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk dconf-editor synaptic flatpak
 ```
 
 ## 1password
