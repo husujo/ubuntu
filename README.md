@@ -97,6 +97,7 @@ sudo snap install discord
 sudo snap install steam
 sudo snap install todoist
 
+sudo snap install codium --classic
 sudo snap install libreoffice
 sudo snap install anki-woodrow
 sudo snap install yt-dlp
