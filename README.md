@@ -61,9 +61,14 @@ sudo apt update && sudo apt install -y 1password
 ## flatpak
 ```
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub com.github.tchx84.Flatseal
 flatpak install flathub com.mattjakeman.ExtensionManager
 flatpak install flathub net.nokyan.Resources
 flatpak install flathub com.system76.Popsicle
+flatpak install flathub net.lutris.Lutris
+flatpak install flathub com.jeffser.Alpaca
+flatpak install flathub org.torproject.torbrowser-launcher
+flatpak install flathub org.freedesktop.Piper
 ```
 
 ## nordvpn
