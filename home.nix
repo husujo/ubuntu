@@ -33,6 +33,9 @@
     ngrok
     nodejs_20 # & npm
     yarn
+    python312Packages.pip
+    pipx
+
     postgresql_16 # TODO try it with local dbs
     # docker # didn't work
 
