@@ -43,6 +43,7 @@ sudo ubuntu-drivers install
 
 ## apt
 ```
+sudo mkdir --parents --mode=0755 /etc/apt/keyrings
 sudo apt update && sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk dconf-editor synaptic flatpak
 ```
 
@@ -120,7 +121,6 @@ sudo snap install mumble
 
 ## docker
 ```
-sudo mkdir -p /etc/apt/keyrings
 sudo apt-get install gnupg lsb-release
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -195,4 +195,22 @@ flatpak install flathub org.desmume.DeSmuME
 flatpak install flathub nz.mega.MEGAsync
 flatpak install flathub io.github.yairm210.unciv
 flatpak install flathub org.freeciv.gtk322
+```
+
+## AMD ROC
+https://rocm.docs.amd.com/projects/install-on-linux/en/latest/how-to/native-install/ubuntu.html
+```
+sudo wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | gpg --dearmor | sudo tee /etc/apt/keyrings/rocm.gpg > /dev/null
+sudo echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/6.1.2/ubuntu jammy main" | sudo tee /etc/apt/sources.list.d/amdgpu.list
+sudo apt update
+
+sudo echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/6.1.2 jammy main" | sudo tee --append /etc/apt/sources.list.d/rocm.list
+sudo echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
+sudo apt update
+
+sudo apt install amdgpu-dkms
+```
+(reboot)
+```
+sudo apt install rocm
 ```
