@@ -210,7 +210,16 @@ sudo apt update
 
 sudo apt install amdgpu-dkms
 ```
-(reboot)
+(reboot and configure MOK)
 ```
 sudo apt install rocm
+sudo tee --append /etc/ld.so.conf.d/rocm.conf <<EOF
+/opt/rocm/lib
+/opt/rocm/lib64
+EOF
+sudo ldconfig
+```
+add to bashrc
+```
+export PATH=$PATH:/opt/rocm-6.1.2/bin
 ```
