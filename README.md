@@ -112,6 +112,7 @@ sudo snap install desmume-emulator
 # try out for fun
 sudo snap install 0ad
 sudo snap install mumble
+sudo snap install foliate
 
 # sudo snap install docker # instructions - https://snapcraft.io/docker
 # sudo snap install 1password
