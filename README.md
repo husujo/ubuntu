@@ -13,7 +13,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 34
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode "FIXED"
 gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.5
 gsettings set org.gnome.desktop.wm.preferences resize-with-right-button "true"
-gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape_shifted_capslock', 'caps:super']"
+gsettings set org.gnome.desktop.input-sources xkb-options "['shift:both_capslock', 'caps:backspace']"
 ```
 
 ## home directory setup
