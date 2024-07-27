@@ -33,6 +33,7 @@
     ngrok
     nodejs_20 # & npm
     yarn
+    deno
     python312Packages.pip
     pipx
 
