@@ -159,6 +159,12 @@ echo '. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"' >> ~/.bashrc
 
 # Optional
 
+## Yubico
+```
+sudo snap install yubioath-desktop
+sudo add-apt-repository ppa:yubico/stable && sudo apt update
+```
+
 ## MSI keyboard backlight
 ```
 sudo apt install -y git build-essential libudev-dev acpitool
