@@ -164,6 +164,7 @@ echo '. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"' >> ~/.bashrc
 sudo snap install yubioath-desktop
 sudo add-apt-repository ppa:yubico/stable && sudo apt update
 ```
+https://support.yubico.com/hc/en-us/articles/360016649039-Installing-Yubico-Software-on-Linux
 
 ## MSI keyboard backlight
 ```
