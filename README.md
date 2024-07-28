@@ -26,6 +26,12 @@ rmdir ~/Templates
 chmod a+r ~/Public
 ```
 
+## dotfiles
+```
+echo '"\C-H":"\C-W"' >> ~/.inputrc # ctrl+backspace will delete word
+echo 'set number' >> ~/.vimrc
+```
+
 ## swapfile
 ```
 sudo swapoff -a
