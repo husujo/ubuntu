@@ -87,6 +87,7 @@ flatpak install flathub net.lutris.Lutris
 flatpak install flathub com.jeffser.Alpaca
 flatpak install flathub org.torproject.torbrowser-launcher
 flatpak install flathub org.freedesktop.Piper
+flatpak install flathub net.ankiweb.Anki
 ```
 
 ## snaps
@@ -103,7 +104,7 @@ sudo snap install todoist # maybe replace later with thunderbird
 sudo snap install nordvpn # new, try it
 
 sudo snap install codium --classic
-sudo snap install anki-woodrow
+# sudo snap install anki-woodrow # old version
 sudo snap install yt-dlp
 sudo snap install gimp
 sudo snap install godot-4
