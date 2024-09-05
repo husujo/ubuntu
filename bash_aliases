@@ -41,6 +41,8 @@ alias gcma='git commit --amend'
 alias gc='git checkout'
 alias gfa='git fetch --all'
 alias gspp='git stash && git pull && git stash pop'
+alias gpush='git push'
+alias gpull='git pull'
 alias gbb='git-backup-branch'
 git-backup-branch() (
     set -eux
