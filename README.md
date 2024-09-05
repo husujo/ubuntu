@@ -237,3 +237,14 @@ add to bashrc
 ```
 export PATH=$PATH:/opt/rocm-6.1.2/bin
 ```
+
+## Godot
+```
+GODOT_VERSION=4.3
+wget https://github.com/godotengine/godot/releases/download/$GODOT_VERSION-stable/Godot_v$GODOT_VERSION-stable_linux.x86_64.zip
+unzip Godot_v$GODOT_VERSION-stable_linux.x86_64.zip
+mv Godot_v$GODOT_VERSION-stable_linux.x86_64 .local/bin/godot
+rm Godot_v$GODOT_VERSION-stable_linux.x86_64.zip
+```
+
+
