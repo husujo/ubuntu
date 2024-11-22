@@ -35,7 +35,7 @@
     yarn
     deno
     python312Packages.pip
-    pipx
+    # pipx
 
     postgresql_16 # TODO try it with local dbs
     # docker # didn't work
