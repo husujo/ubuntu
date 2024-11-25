@@ -75,7 +75,7 @@ alias firefox-css="mkdir -p $FIREFOX_PROFILE/chrome && touch $FIREFOX_CSS && vim
 NIX_HOME=$HOME/.config/home-manager/home.nix
 alias nixhome="code $NIX_HOME"
 alias nixbackup="sudo cp $NIX_HOME /"
-alias renix="home-manager switch"
+alias renix="nix-channel --update && home-manager switch"
 
 ## how to update nix package manager
 # sudo su
