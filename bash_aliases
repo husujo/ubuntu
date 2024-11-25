@@ -9,6 +9,9 @@ alias sa='sudo apt'
 alias saup='sudo apt update'
 alias saupg='sudo apt upgrade'
 
+# du
+alias dusort='du -sch .[!.]* * | sort -h'
+
 # bash
 alias sp='source ~/.profile'
 alias bashrc='vim ~/.bashrc'
@@ -17,7 +20,7 @@ alias ba='vim ~/.bash_aliases'
 alias babackup='sudo cp ~/.bash_aliases /'
 
 # cd
-alias cdd='cd ~/Desktop'
+alias cddt='cd ~/Desktop'
 alias cddl='cd ~/Downloads'
 alias cddoc='cd ~/Documents'
 alias cdc='cd ~/code'
