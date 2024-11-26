@@ -86,12 +86,15 @@ alias renix="nix-channel --update && home-manager switch"
 # audio (broken)
 alias audio="pactl list short sinks"
 alias speaker_sink_id="pactl list short sinks | grep EDIFIER | awk '{print \$2}'"
+alias bluetooth_sink_id="pactl list short sinks | grep blue | awk '{print \$2}'"
 alias speaker_card_id="pactl list short cards | grep EDIFIER | awk '{print \$2}'"
 alias speaker_analog="pactl set-card-profile '$(speaker_card_id)' 'output:analog-stereo'"
 alias speaker_digital="pactl set-card-profile '$(speaker_card_id)' 'output:iec958-stereo'"
 alias speakers="speaker_analog && pactl set-default-sink '$(speaker_sink_id)'"
 alias headphones="pactl set-default-sink 'alsa_output.pci-0000_00_1f.3.analog-stereo'"
-alias h="headphones"
+# alias btheadphones="pactl set-default-sink 'bluez_sink.F8_4E_17_7C_E3_30.a2dp_sink'"
+alias btheadphones="pactl set-default-sink '$(bluetooth_sink_id)'"
+alias h="btheadphones"
 alias s="speakers"
 
 # kubectl
