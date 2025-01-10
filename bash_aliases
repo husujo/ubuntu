@@ -129,6 +129,10 @@ alias knc="kubens -c"
 # docker
 alias dockeri='sudo chmod 666 /var/run/docker.sock'
 
+# doctl
+alias docean='doctl' # do not use 'do'
+alias doswitch='doctl auth switch --context'
+
 # nordvpn
 alias usa="nordvpn c United_States"
 
