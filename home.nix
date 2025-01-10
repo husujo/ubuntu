@@ -18,7 +18,6 @@
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
   nixpkgs.config.allowUnfree = true;
-  # virtualisation.docker.enable = true;
 
   # The home.packages option allows you to install Nix packages into your environment.
   home.packages = with pkgs; [
@@ -26,6 +25,7 @@
     kubectx
     kubernetes-helm
     terraform
+    argocd
     doctl
     s3cmd
     jq
@@ -37,8 +37,9 @@
     python312Packages.pip
     # pipx
 
-    postgresql_16 # TODO try it with local dbs
-    # docker # didn't work
+    # didn't work:
+    # postgresql_16
+    # docker 
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -93,9 +94,3 @@
     # };
   };
 }
-
-# services.postgresql = {
-#   enable = true;
-#   port = 54320; # 5432 once tested and old one removed
-#   package = pkgs.postgresql_16;
-# };
