@@ -8,9 +8,9 @@ commands for setting up a new ubuntu installation with settings, apps and packag
 mkdir ~/.local/bin
 mkdir ~/.local/share/themes
 mkdir ~/code
-mkdir ~/games
+mkdir ~/Games
 rmdir ~/Templates
-chmod a+r ~/Public
+rmdir ~/Public
 ```
 
 ## user gnome settings
