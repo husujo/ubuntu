@@ -103,6 +103,7 @@ sudo snap install steam # issues
 sudo snap install todoist # maybe replace later with thunderbird
 sudo snap install nordvpn # new, try it
 
+sudo snap install rclone
 sudo snap install codium --classic
 # sudo snap install anki-woodrow # old version
 sudo snap install yt-dlp
