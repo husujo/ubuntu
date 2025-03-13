@@ -20,6 +20,7 @@ alias ba='vim ~/.bash_aliases'
 alias babackup='sudo cp ~/.bash_aliases /'
 
 # cd
+alias ".." = "cd ..";
 alias cddt='cd ~/Desktop'
 alias cddl='cd ~/Downloads'
 alias cddoc='cd ~/Documents'
