@@ -29,7 +29,7 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['shift:both_capslock
 ## gnome extensions
 ```
 # extension list found in ~/.local/share/gnome-shell/extensions
-EXT_LIST=(Vitals@CoreCoding.com clipboard-indicator@tudmotu.com scroll-workspaces@gfxmonk.net user-theme@gnome-shell-extensions.gcampax.github.com another-window-session-manager@gmail.com); for i in "${EXT_LIST[@]}"; do busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${i}; done
+EXT_LIST=(auto-move-windows@gnome-shell-extensions.gcampax.github.com Vitals@CoreCoding.com clipboard-indicator@tudmotu.com scroll-workspaces@gfxmonk.net user-theme@gnome-shell-extensions.gcampax.github.com); for i in "${EXT_LIST[@]}"; do busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${i}; done
 ```
 
 # System Essentials
