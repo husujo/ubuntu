@@ -183,7 +183,7 @@ rm -r ~/rygel
 # sudo meestic -m Static MsiBlue
 ```
 
-## ollama
+## ollama (use flatpak)
 ```
 curl https://ollama.ai/install.sh | sh
 ```
@@ -238,7 +238,7 @@ add to bashrc
 export PATH=$PATH:/opt/rocm-6.1.2/bin
 ```
 
-## Godot
+## Godot (use snap or flatpak)
 ```
 GODOT_VERSION=4.3
 wget https://github.com/godotengine/godot/releases/download/$GODOT_VERSION-stable/Godot_v$GODOT_VERSION-stable_linux.x86_64.zip
