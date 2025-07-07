@@ -24,6 +24,9 @@ gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode "FIXED"
 gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.5
 gsettings set org.gnome.desktop.wm.preferences resize-with-right-button "true"
 gsettings set org.gnome.desktop.input-sources xkb-options "['shift:both_capslock', 'caps:backspace']"
+
+gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab '<Control>w'
+gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab '<Control>t'
 ```
 
 ## gnome extensions
@@ -61,6 +64,14 @@ echo '"\C-H":"\C-W"' | sudo tee -a /etc/inputrc # ctrl+backspace will delete wor
 echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc # case insensitive tab completion
 echo 'set number' | sudo tee -a /etc/vim/vimrc.local
 ```
+
+## local dotfiles
+```
+echo "inoremap <C-H> <C-W>" >> ~/.vimrc
+echo "inoremap <C-BS> <C-W>" >> ~/.vimrc
+```
+
+# Apps
 
 ## 1password
 ```
