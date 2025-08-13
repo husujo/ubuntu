@@ -31,8 +31,8 @@
     jq
     yq
     ngrok
-    nodejs_20 # & npm
-    # yarn
+    nodejs_24 # & npm
+    bun
     deno
     python312Packages.pip
     # pipx
