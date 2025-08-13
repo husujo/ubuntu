@@ -42,7 +42,7 @@ EXT_LIST=(auto-move-windows@gnome-shell-extensions.gcampax.github.com Vitals@Cor
 sudo swapoff -a
 sudo dd if=/dev/zero of=/swapfile bs=1G count=16 # 16GB
 # Set up a Linux swap area and turn it on
-sudo chmod 0600 /swapfile && mkswap /swapfile && swapon /swapfile
+sudo chmod 0600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
 echo 'vm.swappiness = 10' | sudo tee -a /etc/sysctl.conf
 # https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
 ```
@@ -90,15 +90,15 @@ sudo apt update && sudo apt install -y 1password
 ## flatpak
 ```
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub com.github.tchx84.Flatseal
-flatpak install flathub com.mattjakeman.ExtensionManager
-flatpak install flathub net.nokyan.Resources
-flatpak install flathub com.system76.Popsicle
-flatpak install flathub net.lutris.Lutris
-flatpak install flathub com.jeffser.Alpaca
-flatpak install flathub org.torproject.torbrowser-launcher
-flatpak install flathub org.freedesktop.Piper
-flatpak install flathub net.ankiweb.Anki
+flatpak install -y flathub com.github.tchx84.Flatseal
+flatpak install -y flathub com.mattjakeman.ExtensionManager
+flatpak install -y flathub net.nokyan.Resources
+flatpak install -y flathub com.system76.Popsicle
+flatpak install -y flathub net.lutris.Lutris
+flatpak install -y flathub com.jeffser.Alpaca
+flatpak install -y flathub org.torproject.torbrowser-launcher
+flatpak install -y flathub org.freedesktop.Piper
+flatpak install -y flathub net.ankiweb.Anki
 ```
 
 ## snaps
@@ -108,7 +108,7 @@ sudo snap install slack
 sudo snap install code --classic
 sudo snap install dbeaver-ce
 sudo snap install vlc
-sudo snap install simplescreenrecorder
+# sudo snap install simplescreenrecorder
 sudo snap install discord
 sudo snap install steam # issues
 sudo snap install todoist # maybe replace later with thunderbird
@@ -129,6 +129,9 @@ sudo snap install desmume-emulator
 
 # try it again
 sudo snap install docker # instructions - https://snapcraft.io/docker
+# sudo addgroup --system docker
+# sudo adduser $USER docker
+# newgrp docker
 
 # sudo snap install 0ad
 # sudo snap install 1password
@@ -158,12 +161,6 @@ sudo usermod -aG nordvpn $USER
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 sudo apt update && sudo apt install -y postgresql postgresql-contrib
-```
-
-## Bun
-```
-# can use nix once I don't need bleeding edge
-curl -fsSL https://bun.sh/install | bash
 ```
 
 ## Nix package manager
