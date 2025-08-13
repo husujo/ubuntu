@@ -16,7 +16,7 @@ alias dusort='du -sch .[!.]* * | sort -h'
 alias sp='source ~/.profile'
 alias bashrc='vim ~/.bashrc'
 alias rebash='source ~/.bashrc'
-alias ba='vim ~/.bash_aliases'
+alias ba='sudo vim ~/.bash_aliases'
 
 # cd
 alias ..='cd ..'
