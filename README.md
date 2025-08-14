@@ -7,6 +7,7 @@ commands for setting up a new ubuntu installation with settings, apps and packag
 ```
 mkdir ~/.local/bin
 mkdir ~/.local/share/themes
+mkdir ~/.theme
 mkdir ~/code
 mkdir ~/Games
 rmdir ~/Templates
@@ -21,7 +22,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-trash false
 gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 34
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode "FIXED"
-gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.5
+gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.1
 gsettings set org.gnome.desktop.wm.preferences resize-with-right-button "true"
 gsettings set org.gnome.desktop.input-sources xkb-options "['shift:both_capslock', 'caps:backspace']"
 
@@ -35,6 +36,8 @@ gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org
 ```
 # extension list found in ~/.local/share/gnome-shell/extensions
 EXT_LIST=(auto-move-windows@gnome-shell-extensions.gcampax.github.com Vitals@CoreCoding.com clipboard-indicator@tudmotu.com scroll-workspaces@gfxmonk.net user-theme@gnome-shell-extensions.gcampax.github.com); for i in "${EXT_LIST[@]}"; do busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${i}; done
+
+# https://www.gnome-look.org/p/1316887
 ```
 
 # System Essentials
