@@ -60,15 +60,14 @@ sudo mkdir --parents --mode=0755 /etc/apt/keyrings
 sudo apt update && sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk dconf-editor synaptic flatpak fzf
 ```
 
-## global dotfiles
+## dotfiles
 ```
+# global dotfiles
 echo '"\C-H":"\C-W"' | sudo tee -a /etc/inputrc # ctrl+backspace will delete word
 echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc # case insensitive tab completion
 echo 'set number' | sudo tee -a /etc/vim/vimrc.local
-```
 
-## local dotfiles
-```
+# local dotfiles
 echo "inoremap <C-H> <C-W>" >> ~/.vimrc
 echo "inoremap <C-BS> <C-W>" >> ~/.vimrc
 ```
@@ -96,6 +95,7 @@ flatpak install -y flathub com.github.tchx84.Flatseal
 flatpak install -y flathub com.mattjakeman.ExtensionManager
 flatpak install -y flathub net.nokyan.Resources
 flatpak install -y flathub com.system76.Popsicle
+#
 flatpak install -y flathub net.lutris.Lutris
 flatpak install -y flathub com.jeffser.Alpaca
 flatpak install -y flathub org.torproject.torbrowser-launcher
@@ -110,15 +110,13 @@ sudo snap install slack
 sudo snap install code --classic
 sudo snap install dbeaver-ce
 sudo snap install vlc
-# sudo snap install simplescreenrecorder
+#
 sudo snap install discord
 sudo snap install steam # issues
 sudo snap install todoist # maybe replace later with thunderbird
 sudo snap install nordvpn # new, try it
 
 sudo snap install rclone
-sudo snap install codium --classic
-# sudo snap install anki-woodrow # old version
 sudo snap install yt-dlp
 sudo snap install gimp
 sudo snap install godot-4
@@ -128,6 +126,9 @@ sudo snap install yubioath-desktop
 sudo snap install libreoffice
 sudo snap install visualboyadvance-m
 sudo snap install desmume-emulator
+sudo snap install codium --classic
+# sudo snap install simplescreenrecorder
+# sudo snap install anki-woodrow # old version
 
 # try it again
 sudo snap install docker # instructions - https://snapcraft.io/docker
@@ -246,15 +247,6 @@ sudo ldconfig
 add to bashrc
 ```
 export PATH=$PATH:/opt/rocm-6.1.2/bin
-```
-
-## Godot (use snap or flatpak)
-```
-GODOT_VERSION=4.3
-wget https://github.com/godotengine/godot/releases/download/$GODOT_VERSION-stable/Godot_v$GODOT_VERSION-stable_linux.x86_64.zip
-unzip Godot_v$GODOT_VERSION-stable_linux.x86_64.zip
-mv Godot_v$GODOT_VERSION-stable_linux.x86_64 .local/bin/godot
-rm Godot_v$GODOT_VERSION-stable_linux.x86_64.zip
 ```
 
 
