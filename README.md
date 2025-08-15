@@ -61,7 +61,7 @@ sudo ubuntu-drivers install
 ## apt
 ```
 sudo mkdir --parents --mode=0755 /etc/apt/keyrings
-sudo apt update && sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk dconf-editor synaptic flatpak fzf direnv
+sudo apt update && sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk dconf-editor synaptic flatpak fzf direnv libfuse2
 ```
 
 ## dotfiles
