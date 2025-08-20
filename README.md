@@ -258,7 +258,7 @@ export PATH=$PATH:/opt/rocm-6.1.2/bin
 # https://community.openvpn.net/Pages/OpenVPN3Linux
 curl -sSfL https://packages.openvpn.net/packages-repo.gpg | sudo tee /etc/apt/keyrings/openvpn.asc
 echo "deb [signed-by=/etc/apt/keyrings/openvpn.asc] https://packages.openvpn.net/openvpn3/debian $(lsb_release -cs 2>/dev/null) main" | sudo tee -a /etc/apt/sources.list.d/openvpn3.list
-sudo apt update && sudo apt install openvpn3
+sudo apt update && sudo apt install -y openvpn3
 ```
 
 
