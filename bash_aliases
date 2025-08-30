@@ -17,6 +17,7 @@ alias sp='source ~/.profile'
 alias bashrc='vim ~/.bashrc'
 alias rebash='source ~/.bashrc'
 alias ba='vim ~/.bash_aliases'
+alias mine='sudo chown $USER:$USER'
 
 # cd
 alias ..='cd ..'
