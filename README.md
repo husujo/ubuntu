@@ -28,8 +28,13 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['shift:both_capslock
 
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab '<Control>w'
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab '<Control>t'
+gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-window '<Control>n'
 
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.TextEditor.desktop', 'firefox_firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Settings.desktop', 'snap-store_snap-store.desktop']"
+
+# put settings at the top of the search list
+search_order=$(echo "$(gsettings get org.gnome.desktop.search-providers sort-order)" | sed "s/'org\.gnome\.Settings\.desktop',*//g" | sed "s/\[/['org.gnome.Settings.desktop', /")
+gsettings set org.gnome.desktop.search-providers sort-order "$search_order"
 ```
 
 ## gnome extensions
@@ -105,6 +110,7 @@ flatpak install -y flathub com.jeffser.Alpaca
 flatpak install -y flathub org.torproject.torbrowser-launcher
 flatpak install -y flathub org.freedesktop.Piper
 flatpak install -y flathub net.ankiweb.Anki
+flatpak install flathub org.gnome.baobab # disk usage analyzer
 ```
 
 ## snaps
