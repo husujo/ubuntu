@@ -123,7 +123,7 @@ sudo snap install vlc
 #
 sudo snap install discord
 sudo snap install steam # issues
-sudo snap install todoist # maybe replace later with thunderbird
+sudo snap install todoist
 sudo snap install nordvpn # new, try it
 
 sudo snap install rclone
