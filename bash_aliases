@@ -134,6 +134,13 @@ klog () {
     echo "showing logs for $pod"
     kubectl logs --follow $pod
 }
+kcsec () {
+    kubectl get csec $1 -o json | jq -r ".data | to_entries[] | \"\(.key)=\(.value | @base64d)\""
+}
+ksec () {
+    kubectl get secret $1 -o json | jq -r ".data | to_entries[] | \"\(.key)=\(.value | @base64d)\""
+}
+
 
 # helm
 alias hru="helm repo update"
