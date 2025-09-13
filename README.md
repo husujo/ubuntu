@@ -75,6 +75,13 @@ sudo apt update && sudo apt install -y vim curl git neofetch gnome-tweaks gnome-
 echo '"\C-H":"\C-W"' | sudo tee -a /etc/inputrc # ctrl+backspace will delete word
 echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc # case insensitive tab completion
 echo 'set number' | sudo tee -a /etc/vim/vimrc.local
+sudo tee -a /etc/vim/vimrc.local << 'EOF'
+
+" Jump to last cursor position when opening files
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
+EOF
 
 # local dotfiles
 echo "inoremap <C-H> <C-W>" >> ~/.vimrc
