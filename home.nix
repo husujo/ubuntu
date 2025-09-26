@@ -28,8 +28,10 @@
         plugins = [ kubernetes-helmPlugins.helm-cm-push ];
     })
     terraform
+    terragrunt
     argocd
     doctl
+    google-cloud-sdk
     s3cmd
     jq
     yq
