@@ -88,18 +88,25 @@ alias renix="nix-channel --update && home-manager switch"
 # systemctl daemon-reload
 # systemctl restart nix-daemon
 
-# audio (broken)
-: <<'EOF'
-alias audio="pactl list short sinks"
-alias speaker_sink_id="pactl list short sinks | grep EDIFIER | awk '{print \$2}'"
-alias bluetooth_sink_id="pactl list short sinks | grep blue | awk '{print \$2}'"
-alias speaker_card_id="pactl list short cards | grep EDIFIER | awk '{print \$2}'"
-alias speaker_analog="pactl set-card-profile '$(speaker_card_id)' 'output:analog-stereo'"
-alias speakers="speaker_analog && pactl set-default-sink '$(speaker_sink_id)'"
-headphones () { pactl set-default-sink "$(bluetooth_sink_id)"; }
-alias h="headphones"
+# audio/sound/bluetooth
+alias sound="gnome-control-center sound"
+alias audio="wpctl status | grep -A 100 'Sinks:' | sed '/^[^A-Za-z]*$/q' | grep -E "[0-9]" | sed 's/^....//' | sed 's/\[.*$//'"
+alias bt="gnome-control-center bluetooth"
+alias airplane_mode_off="nmcli radio all on"
+alias unblock_bluetooth="rfkill unblock bluetooth"
+alias btoff="bluetoothctl power off"
+alias bton="airplane_mode_off && unblock_bluetooth && sleep 0.2 && bluetoothctl power on"
+
+bt_id () { bluetoothctl devices | grep -i $1 | awk '{print $2}'; }
+bt_connect () { bton && bluetoothctl connect "$(bt_id $1)" && sleep 0.5; }
+sink_id () { audio | grep -i $1 | sed -E 's/.*\s([0-9]+)\..*/\1/'; }
+set_sink () { wpctl set-default "$(sink_id $1)" && audio | grep -i $1; }
+speakers () { set_sink EDIFIER; }
+headphones () { bt_connect xm4 && set_sink xm4; }
+
 alias s="speakers"
-EOF
+alias h="headphones"
+
 
 # kubectl
 alias k='kubectl'
