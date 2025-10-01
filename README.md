@@ -40,7 +40,7 @@ gsettings set org.gnome.desktop.search-providers sort-order "$search_order"
 ## gnome extensions
 ```
 # extension list found in ~/.local/share/gnome-shell/extensions
-EXT_LIST=(rounded-window-corners@fxgn blur-my-shell@aunetx auto-move-windows@gnome-shell-extensions.gcampax.github.com Vitals@CoreCoding.com clipboard-indicator@tudmotu.com scroll-workspaces@gfxmonk.net user-theme@gnome-shell-extensions.gcampax.github.com); for i in "${EXT_LIST[@]}"; do busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${i}; done
+EXT_LIST=(extension-list@tu.berry rounded-window-corners@fxgn blur-my-shell@aunetx auto-move-windows@gnome-shell-extensions.gcampax.github.com Vitals@CoreCoding.com clipboard-indicator@tudmotu.com scroll-workspaces@gfxmonk.net user-theme@gnome-shell-extensions.gcampax.github.com); for i in "${EXT_LIST[@]}"; do busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${i}; done
 
 # https://www.gnome-look.org/p/1316887
 # download theme, unzip, move to .theme/, open tweaks
