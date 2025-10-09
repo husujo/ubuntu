@@ -12,6 +12,8 @@ alias saupg='sudo apt upgrade'
 # du
 alias dusort='du -sch .[!.]* * | sort -h'
 
+alias psa="ps aux"
+
 # bash
 alias sp='source ~/.profile'
 alias bashrc='vim ~/.bashrc'
