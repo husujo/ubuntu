@@ -29,6 +29,7 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['shift:both_capslock
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab '<Control>w'
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab '<Control>t'
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-window '<Control>n'
+gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste '<Primary>v'
 
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.TextEditor.desktop', 'firefox_firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Settings.desktop', 'snap-store_snap-store.desktop']"
 
