@@ -210,3 +210,7 @@ alias fzf='fzf --preview="cat {}"'
 # ALTER EXTENSION timescaledb UPDATE;
 
 # CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+
+# TODO maybe echo to bashrc instead 
+xset r 66 # enables capslock keypress repeat for additional backspace
+xset r 66 # enables capslock keypress repeat for additional backspace
