@@ -117,6 +117,7 @@ flatpak install -y flathub com.mattjakeman.ExtensionManager
 flatpak install -y flathub net.nokyan.Resources
 flatpak install -y flathub com.system76.Popsicle
 #
+flatpak install -y flathub com.usebottles.bottles
 flatpak install -y com.freerdp.FreeRDP # for winboat
 flatpak install -y flathub net.lutris.Lutris
 flatpak install -y flathub com.jeffser.Alpaca
