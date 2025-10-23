@@ -124,8 +124,9 @@ flatpak install -y flathub com.jeffser.Alpaca
 flatpak install -y flathub org.torproject.torbrowser-launcher
 flatpak install -y flathub org.freedesktop.Piper
 flatpak install -y flathub net.ankiweb.Anki
-flatpak install flathub org.gnome.baobab # disk usage analyzer
-flatpak install flathub io.github.swordpuffin.rewaita # gnome color customizer
+flatpak install -y flathub org.gnome.baobab # disk usage analyzer
+flatpak install -y flathub io.github.swordpuffin.rewaita # gnome color customizer
+flatpak install -y flathub org.qbittorrent.qBittorrent
 ```
 
 ## snaps
