@@ -137,6 +137,7 @@ alias kwp='watch -n 3 kubectl get pods'
 alias ktp="kubectl top pods"
 alias ktn="kubectl top nodes"
 alias pima="kubectl describe pod $1 | grep Image:"
+alias kpf="kubectl port-forward"
 alias knc="kubens -c"
 klog () {
     local pod=$(kgp | grep $(knc) | head -n 1 | awk '{print $1}')
