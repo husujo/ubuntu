@@ -33,11 +33,18 @@ gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/k
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy '<Primary>c'
 # for interrupt, use ctrl+alt+c
 
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.TextEditor.desktop', 'firefox_firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Settings.desktop', 'snap-store_snap-store.desktop']"
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'firefox_firefox.desktop', 'org.gnome.Settings.desktop', 'snap-store_snap-store.desktop']"
 
 # put settings at the top of the search list
-search_order=$(echo "$(gsettings get org.gnome.desktop.search-providers sort-order)" | sed "s/'org\.gnome\.Settings\.desktop',*//g" | sed "s/\[/['org.gnome.Settings.desktop', /")
+search_order=$(gsettings get org.gnome.desktop.search-providers sort-order)
+search_order=$(echo $search_order | sed "s/'org\.gnome\.Nautilus\.desktop',*//g" | sed "s/\[/['org.gnome.Nautilus.desktop', /")
+search_order=$(echo $search_order | sed "s/'org\.gnome\.Settings\.desktop',*//g" | sed "s/\[/['org.gnome.Settings.desktop', /")
 gsettings set org.gnome.desktop.search-providers sort-order "$search_order"
+```
+
+## remove imagemagick from search results
+```
+echo "NoDisplay=true" | sudo tee -a /usr/share/applications/display-im6.q16.desktop
 ```
 
 ## gnome extensions
