@@ -139,6 +139,7 @@ alias ktn="kubectl top nodes"
 alias pima="kubectl describe pod $1 | grep Image:"
 alias kpf="kubectl port-forward"
 alias knc="kubens -c"
+ksh () { kubectl exec -it $1 -- sh; }
 klog () {
     local pod=$(kgp | grep $(knc) | head -n 1 | awk '{print $1}')
     echo "showing logs for $pod"
