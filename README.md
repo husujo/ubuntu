@@ -12,6 +12,7 @@ mkdir ~/code
 mkdir ~/Games
 rmdir ~/Templates
 rmdir ~/Public
+touch ~/.ssh/config
 ```
 
 ## user gnome settings
