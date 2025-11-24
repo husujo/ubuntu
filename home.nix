@@ -27,19 +27,19 @@
     (wrapHelm kubernetes-helm {
         plugins = [ kubernetes-helmPlugins.helm-cm-push ];
     })
-    terraform
-    terragrunt
+    # terraform
+    # terragrunt
     argocd
     doctl
-    google-cloud-sdk
-    s3cmd
-    jq
-    yq
+    # google-cloud-sdk
+    # s3cmd
+    # jq
+    # yq
     ngrok
     nodejs_24 # & npm
     bun
     deno
-    python3
+    python3 # & pip
 
     # didn't work:
     # postgresql_16
