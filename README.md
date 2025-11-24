@@ -12,7 +12,6 @@ mkdir ~/code
 mkdir ~/Games
 rmdir ~/Templates
 rmdir ~/Public
-touch ~/.ssh/config
 ```
 
 ## user gnome settings
@@ -67,6 +66,14 @@ sudo dd if=/dev/zero of=/swapfile bs=1G count=16 # 16GB
 sudo chmod 0600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
 echo 'vm.swappiness = 10' | sudo tee -a /etc/sysctl.conf
 # https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
+```
+
+## ssh
+```
+touch ~/.ssh/config
+touch ~/.ssh/id_ed25519
+chmod 600 ~/.ssh/id_ed25519
+# copy private key from 1password to ^
 ```
 
 ## drivers setup
