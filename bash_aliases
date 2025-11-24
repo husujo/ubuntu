@@ -92,17 +92,21 @@ alias renix="nix-channel --update && home-manager switch"
 
 # audio/sound/bluetooth
 alias sound="gnome-control-center sound"
-alias audio="wpctl status | grep -A 100 'Sinks:' | sed '/^[^A-Za-z]*$/q' | grep -E "[0-9]" | sed 's/^....//' | sed 's/\[.*$//'"
 alias bt="gnome-control-center bluetooth"
 alias airplane_mode_off="nmcli radio all on"
 alias unblock_bluetooth="rfkill unblock bluetooth"
 alias btoff="bluetoothctl power off"
 alias bton="airplane_mode_off && unblock_bluetooth && sleep 0.2 && bluetoothctl power on"
 
+wpctl_ls () { wpctl status | grep -A 100 "$1:" | sed '/^[^A-Za-z]*$/q' | grep -E "[0-9]" | sed 's/^....//' | sed 's/\[.*$//'; }
+sinks () { wpctl_ls Sinks; }
+devices () { wpctl_ls Devices; }
 bt_id () { bluetoothctl devices | grep -i $1 | awk '{print $2}'; }
 bt_connect () { bton && bluetoothctl connect "$(bt_id $1)" && sleep 0.5; }
-sink_id () { audio | grep -i $1 | sed -E 's/.*\s([0-9]+)\..*/\1/'; }
-set_sink () { wpctl set-default "$(sink_id $1)" && audio | grep -i $1; }
+device_id () { devices | grep -i $1 | sed -E 's/.*\s([0-9]+)\..*/\1/'; }
+sink_id () { sinks | grep -i $1 | sed -E 's/.*\s([0-9]+)\..*/\1/'; }
+set_sink () { wpctl set-default "$(sink_id $1)" && sinks | grep -i $1; }
+set_profile () { wpctl set-profile "$(device_id $1)" $2; } # wip
 speakers () { set_sink EDIFIER; }
 headphones () { bt_connect xm4 && set_sink xm4; }
 
@@ -140,10 +144,23 @@ alias pima="kubectl describe pod $1 | grep Image:"
 alias kpf="kubectl port-forward"
 alias knc="kubens -c"
 ksh () { kubectl exec -it $1 -- sh; }
-klog () {
-    local pod=$(kgp | grep $(knc) | head -n 1 | awk '{print $1}')
-    echo "showing logs for $pod"
-    kubectl logs --follow $pod
+klog() {
+    local pod="$1"
+    
+    if [ -z "$pod" ]; then
+        readarray -t pod_lines < <(kubectl get pods --no-headers)
+        pod_line="${pod_lines[0]}"
+        
+        if [ ${#pod_lines[@]} -gt 1 ]; then
+            select pod_line in "${pod_lines[@]}"; do
+                break
+            done
+        fi
+        pod=$(echo "$pod_line" | awk '{print $1}')
+    fi
+    
+    echo "$pod"
+    kubectl logs --follow "$pod"
 }
 kcsec () {
     kubectl get csec $1 -o json | jq -r ".data | to_entries[] | \"\(.key)=\(.value | @base64d)\""
@@ -175,8 +192,8 @@ alias denva="direnv allow ."
 # nordvpn
 alias usa="nordvpn c United_States"
 
-base64d () { echo $1 | base64 -d; }
-base64e () { printf $1 | base64 -w 0; }
+64d () { echo $1 | base64 -d && echo ""; }
+64e () { printf $1 | base64 -w 0 && echo ""; }
 
 
 alias myip='curl ifconfig.io -4 >> ~/ips && echo "" >> ~/ips && cat ~/ips'
