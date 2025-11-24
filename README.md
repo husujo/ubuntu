@@ -213,6 +213,8 @@ nix-channel --update
 nix-shell '<home-manager>' -A install && echo '. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"' >> ~/.bashrc
 # TODO does this add direnv or nix-direnv?
 # Copy home.nix into ~/.config/home-manager/home.nix
+# then run:
+# sed -i "s/<\$USER>/$USER/g" ~/.config/home-manager/home.nix
 ```
 
 # Optional
