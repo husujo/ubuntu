@@ -200,6 +200,24 @@ sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io doc
 sudo usermod -aG docker $USER
 ```
 
+### stop docker from requiring network at boot
+```
+CURRENT_WANTS=$(systemctl show docker.service -p Wants --value)
+CURRENT_AFTER=$(systemctl show docker.service -p After --value)
+NEW_WANTS=$(echo "$CURRENT_WANTS" | tr ' ' '\n' | grep -v '^network-online\.target$' | tr '\n' ' ' | sed 's/ $//')
+NEW_AFTER=$(echo "$CURRENT_AFTER" | tr ' ' '\n' | grep -v '^network-online\.target$' | tr '\n' ' ' | sed 's/ $//')
+
+
+sudo mkdir -p /etc/systemd/system/docker.service.d
+echo "[Unit]
+Wants=$NEW_WANTS
+After=$NEW_AFTER" | sudo tee /etc/systemd/system/docker.service.d/no-network-wait.conf
+
+sudo systemctl daemon-reload
+
+systemctl show docker.service -p Wants -p After
+```
+
 ## postgres
 ```
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
