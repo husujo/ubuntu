@@ -212,6 +212,33 @@ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs
 sudo apt update && sudo apt install -y postgresql postgresql-contrib postgresql-17-pgvector postgresql-17-timescaledb
 ```
 
+### configure psql auto-start on the current user only
+```
+echo "$(whoami) ALL=(ALL) NOPASSWD: /usr/bin/systemctl start postgresql, /usr/bin/systemctl stop postgresql" | sudo tee /etc/sudoers.d/postgresql-work-user
+sudo chmod 0440 /etc/sudoers.d/postgresql-work-user
+
+mkdir -p ~/.config/systemd/user
+cat << 'EOF' | tee ~/.config/systemd/user/postgresql.service > /dev/null
+[Unit]
+Description=PostgreSQL Database Server (User)
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/sudo /usr/bin/systemctl start postgresql
+ExecStop=/usr/bin/sudo /usr/bin/systemctl stop postgresql
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+EOF
+
+sudo systemctl disable postgresql
+sudo systemctl stop postgresql
+systemctl --user enable postgresql.service
+systemctl --user start postgresql.service
+```
+
 ## Nix package manager
 ```
 # install nix package manager
