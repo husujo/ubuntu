@@ -269,7 +269,7 @@ rm -r ~/rygel
 # sudo meestic -m Static MsiBlue
 ```
 
-## ollama (use flatpak)
+## ollama
 ```
 curl https://ollama.ai/install.sh | sh
 ```
@@ -297,7 +297,7 @@ flatpak install flathub io.github.yairm210.unciv
 flatpak install flathub org.freeciv.gtk322
 ```
 
-## AMD ROC
+## AMD ROC (didn't work)
 https://rocm.docs.amd.com/projects/install-on-linux/en/latest/how-to/native-install/ubuntu.html
 ```
 sudo wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | gpg --dearmor | sudo tee /etc/apt/keyrings/rocm.gpg > /dev/null
