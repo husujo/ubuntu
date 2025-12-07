@@ -89,7 +89,7 @@ sudo apt upgrade -y
 sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk dconf-editor synaptic flatpak fzf direnv libfuse2
 ```
 
-## dotfiles
+## dotfiles and misc settings
 ```
 # global dotfiles
 echo '"\C-H":"\C-W"' | sudo tee -a /etc/inputrc # ctrl+backspace will delete word
@@ -106,6 +106,8 @@ EOF
 # local dotfiles
 echo "inoremap <C-H> <C-W>" >> ~/.vimrc
 echo "inoremap <C-BS> <C-W>" >> ~/.vimrc
+
+# git editor vim?
 ```
 
 # Apps
