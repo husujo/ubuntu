@@ -8,6 +8,7 @@ alias gputop="radeontop -b 03:00.0"
 alias sa='sudo apt'
 alias saup='sudo apt update'
 alias saupg='sudo apt upgrade'
+alias sauu='sudo apt update && sudo apt upgrade'
 
 # du
 alias dusort='du -sch .[!.]* * | sort -h'
