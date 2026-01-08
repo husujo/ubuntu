@@ -10,10 +10,10 @@ alias saup='sudo apt update'
 alias saupg='sudo apt upgrade'
 alias sauu='sudo apt update && sudo apt upgrade'
 
-# du
+# misc
 alias dusort='du -sch .[!.]* * | sort -h'
-
 alias psa="ps aux"
+port () { lsof -i :"$1"; }
 
 # bash
 alias sp='source ~/.profile'
