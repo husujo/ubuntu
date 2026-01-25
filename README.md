@@ -292,6 +292,11 @@ sudo apt update && sudo apt install -y cursor
 
 # Optional
 
+## ollama
+```
+curl https://ollama.ai/install.sh | sh
+```
+
 ## MSI keyboard backlight
 ```
 sudo apt install -y git build-essential libudev-dev acpitool
