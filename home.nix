@@ -1,7 +1,5 @@
 { config, pkgs, ... }:
 
-# MUST CHANGE <$USER> TO YOUR USER BEFORE RUNNING
-
 let
   username = builtins.getEnv "USER";
   homeDir = builtins.getEnv "HOME";
