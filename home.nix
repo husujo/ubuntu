@@ -2,11 +2,13 @@
 
 # MUST CHANGE <$USER> TO YOUR USER BEFORE RUNNING
 
+let
+  username = builtins.getEnv "USER";
+  homeDir = builtins.getEnv "HOME";
+in
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "<$USER>";
-  home.homeDirectory = "/home/<$USER>";
+  home.username = username;
+  home.homeDirectory = homeDir;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -23,72 +25,98 @@
   home.packages = with pkgs; [
     kubectl
     kubectx
-    # kubernetes-helm
     (wrapHelm kubernetes-helm {
         plugins = [ kubernetes-helmPlugins.helm-cm-push ];
     })
     # terraform
     # terragrunt
-    argocd
+    # argocd
     doctl
+    flyctl
     # google-cloud-sdk
     # s3cmd
-    # jq
-    # yq
     ngrok
     nodejs_24 # & npm
     bun
-    deno
+    # deno
     python3 # & pip
 
-    # didn't work:
+    # things with daemons don't seem to work, like:
     # postgresql_16
     # docker
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
+    # this adds a command 'my-hello' to your environment:
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
+  # Managing dotfiles through home.file:
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+    ".config/bash/nix-bashrc.sh".text = ''
+      # kubectl completions
+      source <(kubectl completion bash)
+      complete -o default -F __start_kubectl k
+      
+      # flyctl completions
+      source <(flyctl completion bash)
+      complete -o default -F __start_flyctl fly
+      
+      # Add any other Nix-managed bash config here
+    '';
   };
 
   # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. If you don't want to manage your shell through Home
-  # Manager then you have to manually source 'hm-session-vars.sh' located at
-  # either
-  #
+  # 'home.sessionVariables'. These will be explicitly sourced when using a
+  # shell provided by Home Manager. If you don't want to manage your shell
+  # through Home Manager then you have to manually source 'hm-session-vars.sh'
+  # located at either
   #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
   # or
-  #
   #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
+  # or
+  #  /etc/profiles/per-user/chainstarters/etc/profile.d/hm-session-vars.sh
+
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    NIX_HOME = "$HOME/.config/home-manager/home.nix";
+    EDITOR = "vim";
+    KUBE_EDITOR = "cursor --wait";
+    # CURSOR_FLAGS = "--no-sandbox";
+
+    # sensitive
   };
+
+  # can't do this - existing .bashrc would be clobbered
+  # programs.bash = {};
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   programs = {
     # direnv = {
-    #   enable = true;
+    #   enable = true; # TODO what is this? does it work?
     # };
   };
 }
+
+
+# in ~/.bashrc:
+# nix home-manager session variables
+# if [ -d "/nix" ]; then
+#     unset __HM_SESS_VARS_SOURCED
+#     . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+#     . "$HOME/.config/bash/nix-bashrc.sh"
+# fi
+
+
+## how to update nix package manager
+# sudo su
+# nix-env --install --file '<nixpkgs>' --attr nix cacert -I nixpkgs=channel:nixpkgs-unstable
+# systemctl daemon-reload
+# systemctl restart nix-daemon
+
