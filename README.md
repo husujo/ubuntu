@@ -107,7 +107,7 @@ EOF
 # local dotfiles
 echo "inoremap <C-H> <C-W>" >> ~/.vimrc
 echo "inoremap <C-BS> <C-W>" >> ~/.vimrc
-echo 'export PATH="$HOME/.local/bin:$HOME/bin:$PATH"' >> ~/.bashrc
+echo 'xset r 66' >> ~/.bashrc # enables capslock keypress repeat for additional backspace
 
 git config --global push.autoSetupRemote true
 git config --global core.editor "vim"
