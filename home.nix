@@ -38,6 +38,8 @@ in
     bun
     # deno
     python3 # & pip
+    # rclone
+    # ollama (doesn't work)
 
     # things with daemons don't seem to work, like:
     # postgresql_16
