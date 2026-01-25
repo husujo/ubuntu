@@ -283,6 +283,13 @@ EOF
 curl -fsSL https://claude.ai/install.sh | bash
 ```
 
+## cursor
+```
+curl -fsSL https://downloads.cursor.com/keys/anysphere.asc | gpg --dearmor | sudo tee /etc/apt/keyrings/cursor.gpg > /dev/null
+echo "deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/cursor.gpg] https://downloads.cursor.com/aptrepo stable main" | sudo tee /etc/apt/sources.list.d/cursor.list > /dev/null
+sudo apt update && sudo apt install -y cursor
+```
+
 # Optional
 
 ## MSI keyboard backlight
@@ -294,11 +301,6 @@ sudo cp ~/rygel/bin/Fast/meestic /bin/
 rm -r ~/rygel
 # sudo meestic -m Disabled
 # sudo meestic -m Static MsiBlue
-```
-
-## ollama (TODO try nix)
-```
-curl https://ollama.ai/install.sh | sh
 ```
 
 ## flatpak options if snap fails
