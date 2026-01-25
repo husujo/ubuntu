@@ -107,8 +107,10 @@ EOF
 # local dotfiles
 echo "inoremap <C-H> <C-W>" >> ~/.vimrc
 echo "inoremap <C-BS> <C-W>" >> ~/.vimrc
+echo 'export PATH="$HOME/.local/bin:$HOME/bin:$PATH"' >> ~/.bashrc
 
-# git editor vim?
+git config --global push.autoSetupRemote true
+git config --global core.editor "vim"
 ```
 
 # Apps
@@ -211,11 +213,9 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo usermod -aG docker $USER
-```
 
-### stop docker from requiring network at boot
-```
-sudo systemctl disable NetworkManager-wait-online.service
+# to stop docker from requiring network at boot
+# sudo systemctl disable NetworkManager-wait-online.service
 ```
 
 ## postgres
@@ -262,11 +262,25 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
 nix-channel --update
-nix-shell '<home-manager>' -A install && echo '. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"' >> ~/.bashrc
-# TODO does this add direnv or nix-direnv?
+nix-shell '<home-manager>' -A install
+
+cat >> ~/.bashrc << 'EOF'
+
+# nix home-manager session variables
+if [ -d "/nix" ]; then
+    unset __HM_SESS_VARS_SOURCED
+    . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    . "$HOME/.config/bash/nix-bashrc.sh"
+fi
+EOF
+
 # Copy home.nix into ~/.config/home-manager/home.nix
-# then run:
-# sed -i "s/<\$USER>/$USER/g" ~/.config/home-manager/home.nix
+# TODO check that the direnv hook is at the end of the bashrc
+```
+
+## claude code
+```
+curl -fsSL https://claude.ai/install.sh | bash
 ```
 
 # Optional
@@ -282,7 +296,7 @@ rm -r ~/rygel
 # sudo meestic -m Static MsiBlue
 ```
 
-## ollama
+## ollama (TODO try nix)
 ```
 curl https://ollama.ai/install.sh | sh
 ```
