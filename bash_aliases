@@ -16,9 +16,8 @@ alias psa="ps aux"
 port () { lsof -i :"$1"; }
 
 # bash
-alias sp='source ~/.profile'
+alias rebash='source ~/.profile'
 alias bashrc='vim ~/.bashrc'
-alias rebash='source ~/.bashrc'
 alias ba='vim ~/.bash_aliases'
 alias mine='sudo chown $USER:$USER'
 
@@ -50,6 +49,8 @@ alias gch='git checkout'
 alias gfa='git fetch --all'
 alias gspp='git stash && git pull && git stash pop'
 alias gpush='git push'
+alias gpsh='git push'
+alias gpus='git push'
 alias gpull='git pull'
 alias gpul='git pull'
 alias gbb='git-backup-branch'
@@ -80,16 +81,9 @@ alias firefox-css="mkdir -p $FIREFOX_PROFILE/chrome && touch $FIREFOX_CSS && vim
 '
 
 # nix
-NIX_HOME=$HOME/.config/home-manager/home.nix
-alias nixhome="code $NIX_HOME"
-alias nixbackup="sudo cp $NIX_HOME /"
+alias nixhome="vim $NIX_HOME"
 alias renix="nix-channel --update && home-manager switch"
 
-## how to update nix package manager
-# sudo su
-# nix-env --install --file '<nixpkgs>' --attr nix cacert -I nixpkgs=channel:nixpkgs-unstable
-# systemctl daemon-reload
-# systemctl restart nix-daemon
 
 # audio/sound/bluetooth
 alias sound="gnome-control-center sound"
@@ -175,6 +169,7 @@ ksec () {
 # helm
 alias hru="helm repo update"
 alias hgv="helm get values"
+alias helmcmpush='helm cm-push -u $CM_USERNAME -p $CM_PASSWORD . chainstarters && helm repo update'
 
 # docker
 alias dockeri='sudo chmod 666 /var/run/docker.sock'
@@ -191,12 +186,8 @@ alias argo='argocd'
 
 alias denva="direnv allow ."
 
-# nordvpn
-alias usa="nordvpn c United_States"
-
 64d () { echo $1 | base64 -d && echo ""; }
 64e () { printf $1 | base64 -w 0 && echo ""; }
-
 
 alias myip='curl ifconfig.io -4 >> ~/ips && echo "" >> ~/ips && cat ~/ips'
 
@@ -205,9 +196,6 @@ alias myip='curl ifconfig.io -4 >> ~/ips && echo "" >> ~/ips && cat ~/ips'
 # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w$(__git_ps1 "\[\033[00m\]:\[\033[01;33m\]%s")\[\033[00m\]\$ '
 
 alias fzf='fzf --preview="cat {}"'
-
-
-
 
 
 
@@ -228,10 +216,13 @@ alias fzf='fzf --preview="cat {}"'
 # echo "shared_preload_libraries = 'timescaledb'" | sudo tee -a /etc/postgresql/17/main/postgresql.conf
 # sudo systemctl restart postgresql
 
+# sudo -u postgres psql
+# \c <database>
 # ALTER EXTENSION timescaledb UPDATE;
 
 # CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
 
-# TODO maybe echo to bashrc instead 
-xset r 66 # enables capslock keypress repeat for additional backspace
-xset r 66 # enables capslock keypress repeat for additional backspace
+
+
+
+
