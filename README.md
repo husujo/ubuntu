@@ -1,6 +1,31 @@
 # ubuntu-setup
 commands for setting up a new ubuntu installation with settings, apps and packages
 
+# System Essentials
+
+## swapfile
+```
+sudo swapoff -a
+sudo dd if=/dev/zero of=/swapfile bs=1G count=16 # 16GB
+# Set up a Linux swap area and turn it on
+sudo chmod 0600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
+echo 'vm.swappiness = 10' | sudo tee -a /etc/sysctl.conf
+# https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
+```
+
+## drivers setup
+```
+sudo ubuntu-drivers install
+```
+
+## apt
+```
+sudo mkdir --parents --mode=0755 /etc/apt/keyrings
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk dconf-editor synaptic flatpak fzf direnv libfuse2 nemo
+```
+
 # User configuration
 
 ## home directory setup
@@ -40,6 +65,9 @@ search_order=$(gsettings get org.gnome.desktop.search-providers sort-order)
 search_order=$(echo $search_order | sed "s/'org\.gnome\.Nautilus\.desktop',*//g" | sed "s/\[/['org.gnome.Nautilus.desktop', /")
 search_order=$(echo $search_order | sed "s/'org\.gnome\.Settings\.desktop',*//g" | sed "s/\[/['org.gnome.Settings.desktop', /")
 gsettings set org.gnome.desktop.search-providers sort-order "$search_order"
+
+# make nemo default file manager
+xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 ```
 
 ## remove imagemagick from search results
@@ -55,39 +83,6 @@ EXT_LIST=(just-perfection-desktop@just-perfection extension-list@tu.berry blur-m
 
 # https://www.gnome-look.org/p/1316887
 # download theme, unzip, move to .theme/, open tweaks
-```
-
-# System Essentials
-
-## swapfile
-```
-sudo swapoff -a
-sudo dd if=/dev/zero of=/swapfile bs=1G count=16 # 16GB
-# Set up a Linux swap area and turn it on
-sudo chmod 0600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
-echo 'vm.swappiness = 10' | sudo tee -a /etc/sysctl.conf
-# https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
-```
-
-## ssh
-```
-touch ~/.ssh/config
-touch ~/.ssh/id_ed25519
-chmod 600 ~/.ssh/id_ed25519
-# copy private key from 1password to ^
-```
-
-## drivers setup
-```
-sudo ubuntu-drivers install
-```
-
-## apt
-```
-sudo mkdir --parents --mode=0755 /etc/apt/keyrings
-sudo apt update
-sudo apt upgrade -y
-sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk dconf-editor synaptic flatpak fzf direnv libfuse2 nemo
 ```
 
 ## dotfiles and misc settings
@@ -111,6 +106,14 @@ echo 'xset r 66' >> ~/.bashrc # enables capslock keypress repeat for additional 
 
 git config --global push.autoSetupRemote true
 git config --global core.editor "vim"
+```
+
+## ssh
+```
+touch ~/.ssh/config
+touch ~/.ssh/id_ed25519
+chmod 600 ~/.ssh/id_ed25519
+# copy private key from 1password to ^
 ```
 
 # Apps
