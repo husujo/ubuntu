@@ -21,9 +21,9 @@ sudo ubuntu-drivers install
 ## apt
 ```
 sudo mkdir --parents --mode=0755 /etc/apt/keyrings
-sudo apt update
-sudo apt upgrade -y
-sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk dconf-editor synaptic flatpak fzf direnv libfuse2 nemo
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk dconf-editor synaptic flatpak fzf direnv libfuse2
+# sudo apt install nemo (lacking nemo-preview package)
 ```
 
 # User configuration
@@ -37,11 +37,17 @@ mkdir ~/code
 mkdir ~/Games
 rmdir ~/Templates
 rmdir ~/Public
+
+touch ~/.ssh/config
+touch ~/.ssh/id_ed25519
+chmod 600 ~/.ssh/id_ed25519
+# copy private key from 1password to ^
 ```
 
 ## user gnome settings
 ```
-gsettings set org.gnome.desktop.wm.keybindings close "['<Shift><Super>c']"
+# might get super+q confused with ctrl+tab, ctrl+`, super+tab
+gsettings set org.gnome.desktop.wm.keybindings close "['<Shift><Super>C', '<Shift><Super>Q']"
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position "BOTTOM"
 gsettings set org.gnome.shell.extensions.dash-to-dock show-trash false
 gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
@@ -56,9 +62,14 @@ gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/k
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-window '<Control>n'
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste '<Primary>v'
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy '<Primary>c'
-# for interrupt, use ctrl+alt+c
+# (!!) for INTERRUPT signal, use ctrl+alt+c 
 
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.TextEditor.desktop', 'nemo.desktop', 'firefox_firefox.desktop', 'org.gnome.Settings.desktop', 'snap-store_snap-store.desktop']"
+# org.gnome.Nautilus.desktop or nemo.desktop
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'firefox_firefox.desktop', 'org.gnome.Settings.desktop', 'snap-store_snap-store.desktop']"
+
+# set default file manager
+# xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+# xdg-mime default org.gnome.Nautilus.desktop inode/directory application/x-gnome-saved-search
 
 # put settings at the top of the search list
 search_order=$(gsettings get org.gnome.desktop.search-providers sort-order)
@@ -66,12 +77,7 @@ search_order=$(echo $search_order | sed "s/'org\.gnome\.Nautilus\.desktop',*//g"
 search_order=$(echo $search_order | sed "s/'org\.gnome\.Settings\.desktop',*//g" | sed "s/\[/['org.gnome.Settings.desktop', /")
 gsettings set org.gnome.desktop.search-providers sort-order "$search_order"
 
-# make nemo default file manager
-xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
-```
-
-## remove imagemagick from search results
-```
+# remove imagemagick from search results
 echo "NoDisplay=true" | sudo tee -a /usr/share/applications/display-im6.q16.desktop
 ```
 
@@ -108,13 +114,6 @@ git config --global push.autoSetupRemote true
 git config --global core.editor "vim"
 ```
 
-## ssh
-```
-touch ~/.ssh/config
-touch ~/.ssh/id_ed25519
-chmod 600 ~/.ssh/id_ed25519
-# copy private key from 1password to ^
-```
 
 # Apps
 
@@ -228,7 +227,7 @@ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs
 sudo apt update && sudo apt install -y postgresql postgresql-contrib postgresql-17-pgvector postgresql-17-timescaledb
 ```
 
-### configure psql auto-start on the current user only
+### configure psql auto-start on the current user only (wip)
 ```
 echo "$(whoami) ALL=(ALL) NOPASSWD: /usr/bin/systemctl start postgresql, /usr/bin/systemctl stop postgresql" | sudo tee /etc/sudoers.d/postgresql-work-user
 sudo chmod 0440 /etc/sudoers.d/postgresql-work-user
