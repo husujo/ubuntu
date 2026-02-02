@@ -22,8 +22,8 @@ sudo ubuntu-drivers install
 ```
 sudo mkdir --parents --mode=0755 /etc/apt/keyrings
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk dconf-editor synaptic flatpak fzf direnv libfuse2
-# sudo apt install nemo (lacking nemo-preview package)
+sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk dconf-editor synaptic flatpak fzf direnv libfuse2 flameshot
+# sudo apt install -y nemo # apt lacking nemo-preview package
 ```
 
 # User configuration
