@@ -41,7 +41,7 @@ alias gb='git branch -a'
 alias gl='git log'
 alias gll='git log --oneline'
 alias glog='git log --oneline --decorate --graph'
-alias glhash='git rev-parse --short HEAD'
+alias ghash='git rev-parse --short HEAD'
 alias gaa='git add -A'
 alias gcm='git commit -m'
 alias gcma='git commit --amend'
@@ -83,7 +83,7 @@ alias firefox-css="mkdir -p $FIREFOX_PROFILE/chrome && touch $FIREFOX_CSS && vim
 # nix
 alias nixhome="vim $NIX_HOME"
 alias renix="nix-channel --update && home-manager switch"
-
+alias unnix="home-manager switch --rollback"
 
 # audio/sound/bluetooth
 alias sound="gnome-control-center sound"
@@ -182,7 +182,6 @@ alias dssh='doctl compute ssh'
 alias doks='doctl k cluster'
 # doctl kubernetes cluster kubeconfig save <cluster-name> --set-current-context --alias <alias>
 
-alias argo='argocd'
 
 alias denva="direnv allow ."
 
@@ -197,6 +196,9 @@ alias myip='curl ifconfig.io -4 >> ~/ips && echo "" >> ~/ips && cat ~/ips'
 
 alias fzf='fzf --preview="cat {}"'
 
+
+alias st="bun start"
+alias t='bun test'
 
 
 # sudo -u postgres psql -p 54327
