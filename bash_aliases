@@ -13,6 +13,7 @@ alias sauu='sudo apt update && sudo apt upgrade'
 # misc
 alias dusort='du -sch .[!.]* * | sort -h'
 alias psa="ps aux"
+alias disk="df -h"
 port () { lsof -i :"$1"; }
 
 # bash
@@ -84,6 +85,7 @@ alias firefox-css="mkdir -p $FIREFOX_PROFILE/chrome && touch $FIREFOX_CSS && vim
 alias nixhome="vim $NIX_HOME"
 alias renix="nix-channel --update && home-manager switch"
 alias unnix="home-manager switch --rollback"
+alias denix="nix-collect-garbage --delete-old"
 
 # audio/sound/bluetooth
 alias sound="gnome-control-center sound"
