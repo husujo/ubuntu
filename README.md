@@ -37,6 +37,7 @@ mkdir ~/code
 mkdir ~/Games
 rmdir ~/Templates
 rmdir ~/Public
+echo "snap" > .hidden
 
 touch ~/.ssh/config
 touch ~/.ssh/id_ed25519
