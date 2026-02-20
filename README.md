@@ -38,6 +38,8 @@ mkdir ~/Games
 rmdir ~/Templates
 rmdir ~/Public
 echo "snap" > .hidden
+mkdir -p ~/.claude
+mkdir -p ~/.cursor/rules
 
 touch ~/.ssh/config
 touch ~/.ssh/id_ed25519
@@ -114,6 +116,21 @@ echo 'xset r 66' >> ~/.bashrc # enables capslock keypress repeat for additional 
 
 git config --global push.autoSetupRemote true
 git config --global core.editor "vim"
+```
+
+## AI
+```
+cat > ~/.claude/CLAUDE.md << 'EOF'
+This PC is Ubuntu 24
+EOF
+
+cat > ~/.cursor/rules/global-context.mdc << 'EOF'
+---
+alwaysApply: true
+---
+
+This PC is Ubuntu 24
+EOF
 ```
 
 
@@ -282,8 +299,12 @@ EOF
 # TODO check that the direnv hook is at the end of the bashrc
 ```
 
-## claude code
+## app install scripts
 ```
+curl -fsSL https://bun.com/install | bash
+curl -fsSL https://fly.io/install.sh | sh
+curl -fsSL https://tailscale.com/install.sh | sh
+curl -fsSL https://ollama.com/install.sh | sh
 curl -fsSL https://claude.ai/install.sh | bash
 ```
 
@@ -295,11 +316,6 @@ sudo apt update && sudo apt install -y cursor
 ```
 
 # Optional
-
-## ollama
-```
-curl https://ollama.ai/install.sh | sh
-```
 
 ## MSI keyboard backlight
 ```
