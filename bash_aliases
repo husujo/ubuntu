@@ -16,6 +16,10 @@ alias psa="ps aux"
 alias disk="df -h"
 port () { lsof -i :"$1"; }
 
+# ip
+alias myip='curl ifconfig.io -4 >> ~/ips && echo "" >> ~/ips && cat ~/ips'
+alias localip="hostname -I | awk '{print \$1}'"
+
 # bash
 alias rebash='source ~/.profile'
 alias bashrc='vim ~/.bashrc'
@@ -189,8 +193,6 @@ alias denva="direnv allow ."
 
 64d () { echo $1 | base64 -d && echo ""; }
 64e () { printf $1 | base64 -w 0 && echo ""; }
-
-alias myip='curl ifconfig.io -4 >> ~/ips && echo "" >> ~/ips && cat ~/ips'
 
 # qpdf --password="$password" --decrypt "$input_pdf" --replace-input
 
