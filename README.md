@@ -293,6 +293,8 @@ if [ -d "/nix" ]; then
     . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
     . "$HOME/.config/bash/nix-bashrc.sh"
 fi
+
+eval "$(direnv hook bash)"
 EOF
 
 # Copy home.nix into ~/.config/home-manager/home.nix
