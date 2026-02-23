@@ -86,7 +86,7 @@ alias firefox-css="mkdir -p $FIREFOX_PROFILE/chrome && touch $FIREFOX_CSS && vim
 '
 
 # nix
-alias nixhome="vim $NIX_HOME"
+alias nixhome='vim $NIX_HOME'
 alias renix="nix-channel --update && home-manager switch"
 alias unnix="home-manager switch --rollback"
 alias denix="nix-collect-garbage --delete-old"
