@@ -29,15 +29,15 @@ in
     # terraform
     # terragrunt
     # argocd
-    doctl
+    # doctl
     flyctl
     # google-cloud-sdk
     # s3cmd
     ngrok
     nodejs_24 # & npm
     bun
-    # deno
-    python3 # & pip
+    # deno # doesn't work
+    # python3 # & pip
     # rclone
     # ollama (doesn't work)
 
