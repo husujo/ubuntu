@@ -36,6 +36,7 @@ in
     ngrok
     nodejs_24 # & npm
     bun
+    rustup
     # deno # doesn't work
     # python3 # & pip
     # rclone
