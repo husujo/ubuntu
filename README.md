@@ -303,11 +303,12 @@ EOF
 
 ## app install scripts
 ```
-curl -fsSL https://bun.com/install | bash
-curl -fsSL https://fly.io/install.sh | sh
-curl -fsSL https://tailscale.com/install.sh | sh
-curl -fsSL https://ollama.com/install.sh | sh
-curl -fsSL https://claude.ai/install.sh | bash
+curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -fsSL https://bun.com/install | bash
+curl --proto '=https' --tlsv1.2 -fsSL https://fly.io/install.sh | sh
+curl --proto '=https' --tlsv1.2 -fsSL https://tailscale.com/install.sh | sh
+curl --proto '=https' --tlsv1.2 -fsSL https://ollama.com/install.sh | sh
+curl --proto '=https' --tlsv1.2 -fsSL https://claude.ai/install.sh | bash
 ```
 
 ## cursor
