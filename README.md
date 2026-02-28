@@ -51,15 +51,17 @@ chmod 600 ~/.ssh/id_ed25519
 ```
 # might get super+q confused with ctrl+tab, ctrl+`, super+tab
 gsettings set org.gnome.desktop.wm.keybindings close "['<Shift><Super>C', '<Shift><Super>Q']"
+gsettings set org.gnome.desktop.wm.preferences resize-with-right-button "true"
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position "BOTTOM"
 gsettings set org.gnome.shell.extensions.dash-to-dock show-trash false
 gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 34
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode "FIXED"
 gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.1
-gsettings set org.gnome.desktop.wm.preferences resize-with-right-button "true"
-gsettings set org.gnome.desktop.input-sources xkb-options "['shift:both_capslock', 'caps:backspace']"
+gsettings set org.gnome.shell.extensions.tiling-assistant enable-tiling-popup false
 gsettings set org.gnome.desktop.interface clock-show-weekday true
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.desktop.input-sources xkb-options "['shift:both_capslock', 'caps:backspace']"
 
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab '<Control>w'
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab '<Control>t'
@@ -276,9 +278,15 @@ systemctl --user start postgresql.service
 ## Nix package manager
 ```
 # install nix package manager
+mkdir -p ~/.config/nix
 sh <(curl -L https://nixos.org/nix/install) --daemon
+# Copy flake.nix into ~/.config/nix/flake.nix
+# check that the direnv hook is at the end of the bashrc
+cat ~/.bashrc
 ```
 ```
+# OLD HOME MANAGER STUFF. NO NEED TO INSTALL UNLESS YOU REALLY WANT
+
 # install nix home-manager https://nix-community.github.io/home-manager/index.xhtml
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
