@@ -28,8 +28,8 @@ port () { lsof -i :"$1"; }
 
 # bash
 alias rebash='source ~/.profile'
-alias bashrc='$EDITOR ~/.bashrc'
-alias ba='$EDITOR ~/.bash_aliases'
+alias bashrc='vim ~/.bashrc'
+alias ba='vim ~/.bash_aliases'
 alias mine='sudo chown $USER:$USER'
 
 # cd
@@ -82,7 +82,7 @@ git-backup-branch() (
 FIREFOX_HOME=$HOME/snap/firefox/common/.mozilla/firefox
 FIREFOX_PROFILE=$FIREFOX_HOME/$(cat $FIREFOX_HOME/profiles.ini | sed -n -e 's/^.*Path=//p' | head -n 1)
 FIREFOX_CSS=$FIREFOX_PROFILE/chrome/userChrome.css
-alias firefox-css="mkdir -p $FIREFOX_PROFILE/chrome && touch $FIREFOX_CSS && $EDITOR $FIREFOX_CSS"
+alias firefox-css="mkdir -p $FIREFOX_PROFILE/chrome && touch $FIREFOX_CSS && vim $FIREFOX_CSS"
 : '
 /* about:config => toolkit.legacyUserProfileCustomizations.stylesheets */
 /* hides the native tabs */
@@ -94,11 +94,12 @@ alias firefox-css="mkdir -p $FIREFOX_PROFILE/chrome && touch $FIREFOX_CSS && $ED
 
 # nix
 export NIX_HOME="$HOME/.config/nix";
-alias nixhome='$EDITOR $NIX_HOME/flake.nix'
+alias nixhome='vim $NIX_HOME/flake.nix'
 alias renix='nix profile add $NIX_HOME && nix flake update --flake $NIX_HOME && nix profile upgrade --all'
 alias unnix="nix profile rollback"
 alias denix="nix profile wipe-history --older-than 7d && nix store gc"
 # export NIX_HOME="$HOME/.config/home-manager/home.nix";
+# alias nixhome='vim $NIX_HOME'
 # alias renix="nix-channel --update && home-manager switch"
 # alias unnix="home-manager switch --rollback"
 # alias denix="nix-collect-garbage --delete-old"
