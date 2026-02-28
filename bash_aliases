@@ -1,3 +1,9 @@
+xset r 66 # enables capslock keypress repeat for additional backspace
+export EDITOR="vim";
+export KUBE_EDITOR="cursor --wait";
+export CURSOR_FLAGS="--no-sandbox";
+export CURSOR_DISABLE_UPDATES=1;
+
 # laptop
 alias kboff="sudo meestic -m Disabled"
 alias kbon="sudo meestic -m Static MsiBlue"
@@ -14,16 +20,16 @@ alias sauu='sudo apt update && sudo apt upgrade'
 alias dusort='du -sch .[!.]* * | sort -h'
 alias psa="ps aux"
 alias disk="df -h"
-port () { lsof -i :"$1"; }
 
 # ip
 alias myip='curl ifconfig.io -4 >> ~/ips && echo "" >> ~/ips && cat ~/ips'
 alias localip="hostname -I | awk '{print \$1}'"
+port () { lsof -i :"$1"; }
 
 # bash
 alias rebash='source ~/.profile'
-alias bashrc='vim ~/.bashrc'
-alias ba='vim ~/.bash_aliases'
+alias bashrc='$EDITOR ~/.bashrc'
+alias ba='$EDITOR ~/.bash_aliases'
 alias mine='sudo chown $USER:$USER'
 
 # cd
@@ -76,7 +82,7 @@ git-backup-branch() (
 FIREFOX_HOME=$HOME/snap/firefox/common/.mozilla/firefox
 FIREFOX_PROFILE=$FIREFOX_HOME/$(cat $FIREFOX_HOME/profiles.ini | sed -n -e 's/^.*Path=//p' | head -n 1)
 FIREFOX_CSS=$FIREFOX_PROFILE/chrome/userChrome.css
-alias firefox-css="mkdir -p $FIREFOX_PROFILE/chrome && touch $FIREFOX_CSS && vim $FIREFOX_CSS"
+alias firefox-css="mkdir -p $FIREFOX_PROFILE/chrome && touch $FIREFOX_CSS && $EDITOR $FIREFOX_CSS"
 : '
 /* about:config => toolkit.legacyUserProfileCustomizations.stylesheets */
 /* hides the native tabs */
@@ -85,11 +91,17 @@ alias firefox-css="mkdir -p $FIREFOX_PROFILE/chrome && touch $FIREFOX_CSS && vim
 }
 '
 
+
 # nix
-alias nixhome='vim $NIX_HOME'
-alias renix="nix-channel --update && home-manager switch"
-alias unnix="home-manager switch --rollback"
-alias denix="nix-collect-garbage --delete-old"
+export NIX_HOME="$HOME/.config/nix";
+alias nixhome='$EDITOR $NIX_HOME/flake.nix'
+alias renix='nix profile add $NIX_HOME && nix flake update --flake $NIX_HOME && nix profile upgrade --all'
+alias unnix="nix profile rollback"
+alias denix="nix profile wipe-history --older-than 7d && nix store gc"
+# export NIX_HOME="$HOME/.config/home-manager/home.nix";
+# alias renix="nix-channel --update && home-manager switch"
+# alias unnix="home-manager switch --rollback"
+# alias denix="nix-collect-garbage --delete-old"
 
 # audio/sound/bluetooth
 alias sound="gnome-control-center sound"
@@ -175,10 +187,19 @@ ksec () {
 # helm
 alias hru="helm repo update"
 alias hgv="helm get values"
-alias helmcmpush='helm cm-push -u $CM_USERNAME -p $CM_PASSWORD . chainstarters && helm repo update'
 
 # docker
 alias dockeri='sudo chmod 666 /var/run/docker.sock'
+alias d='docker'
+docker() {
+  if [[ "$1" == "img" || "$1" == "i" ]]; then
+    shift
+    command docker image "$@"
+  else
+    command docker "$@"
+  fi
+}
+
 
 # doctl
 alias docean='doctl' # do not use 'do'
@@ -189,7 +210,32 @@ alias doks='doctl k cluster'
 # doctl kubernetes cluster kubeconfig save <cluster-name> --set-current-context --alias <alias>
 
 
+# docker completions
+if command -v docker >/dev/null 2>&1; then
+  source <(docker completion bash)
+  complete -o default -F __start_docker d
+fi
+
+# kubectl completions
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion bash)
+  complete -o default -F __start_kubectl k
+fi
+
+# flyctl completions
+if command -v flyctl >/dev/null 2>&1; then
+  source <(flyctl completion bash)
+  complete -o default -F __start_flyctl fly
+fi
+
+
+
+# dev
 alias denva="direnv allow ."
+alias st="bun start"
+alias t='bun test'
+alias nodemodules='find . -name "node_modules" -type d -prune'
+alias fzf='fzf --preview="cat {}"'
 
 64d () { echo $1 | base64 -d && echo ""; }
 64e () { printf $1 | base64 -w 0 && echo ""; }
@@ -198,11 +244,6 @@ alias denva="direnv allow ."
 
 # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w$(__git_ps1 "\[\033[00m\]:\[\033[01;33m\]%s")\[\033[00m\]\$ '
 
-alias fzf='fzf --preview="cat {}"'
-
-
-alias st="bun start"
-alias t='bun test'
 
 
 # sudo -u postgres psql -p 54327
