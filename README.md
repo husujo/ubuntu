@@ -277,10 +277,15 @@ systemctl --user start postgresql.service
 
 ## Nix package manager
 ```
-# install nix package manager
+# prep nix config
 mkdir -p ~/.config/nix
-sh <(curl -L https://nixos.org/nix/install) --daemon
+echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+touch ~/.config/nix/flake.nix
 # Copy flake.nix into ~/.config/nix/flake.nix
+```
+```
+# install nix package manager
+sh <(curl -L https://nixos.org/nix/install) --daemon
 # check that the direnv hook is at the end of the bashrc
 cat ~/.bashrc
 ```
