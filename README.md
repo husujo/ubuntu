@@ -5,6 +5,8 @@ commands for setting up a new ubuntu installation with settings, apps and packag
 
 ## swapfile
 ```
+# check if there is swap already
+# if not:
 sudo swapoff -a
 sudo dd if=/dev/zero of=/swapfile bs=1G count=16 # 16GB
 # Set up a Linux swap area and turn it on
@@ -22,7 +24,7 @@ sudo ubuntu-drivers install
 ```
 sudo mkdir --parents --mode=0755 /etc/apt/keyrings
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y vim curl git neofetch gnome-tweaks gnome-sushi alacarte timeshift openjdk-8-jdk dconf-editor synaptic flatpak fzf direnv libfuse2 flameshot
+sudo apt install -y vim curl git neofetch direnv xclip libfuse2 fzf timeshift openjdk-8-jdk gnome-tweaks gnome-sushi alacarte dconf-editor synaptic flatpak flameshot
 # sudo apt install -y nemo # apt lacking nemo-preview package
 ```
 
@@ -114,7 +116,6 @@ EOF
 # local dotfiles
 echo "inoremap <C-H> <C-W>" >> ~/.vimrc
 echo "inoremap <C-BS> <C-W>" >> ~/.vimrc
-echo 'xset r 66' >> ~/.bashrc # enables capslock keypress repeat for additional backspace
 
 git config --global push.autoSetupRemote true
 git config --global core.editor "vim"
@@ -248,31 +249,21 @@ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs
 sudo apt update && sudo apt install -y postgresql postgresql-contrib postgresql-17-pgvector postgresql-17-timescaledb
 ```
 
-### configure psql auto-start on the current user only (wip)
+## app install scripts
 ```
-echo "$(whoami) ALL=(ALL) NOPASSWD: /usr/bin/systemctl start postgresql, /usr/bin/systemctl stop postgresql" | sudo tee /etc/sudoers.d/postgresql-work-user
-sudo chmod 0440 /etc/sudoers.d/postgresql-work-user
+curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -fsSL https://bun.com/install | bash
+curl --proto '=https' --tlsv1.2 -fsSL https://fly.io/install.sh | sh
+curl --proto '=https' --tlsv1.2 -fsSL https://tailscale.com/install.sh | sh
+curl --proto '=https' --tlsv1.2 -fsSL https://ollama.com/install.sh | sh
+curl --proto '=https' --tlsv1.2 -fsSL https://claude.ai/install.sh | bash
+```
 
-mkdir -p ~/.config/systemd/user
-cat << 'EOF' | tee ~/.config/systemd/user/postgresql.service > /dev/null
-[Unit]
-Description=PostgreSQL Database Server (User)
-After=network.target
-
-[Service]
-Type=forking
-ExecStart=/usr/bin/sudo /usr/bin/systemctl start postgresql
-ExecStop=/usr/bin/sudo /usr/bin/systemctl stop postgresql
-Restart=on-failure
-
-[Install]
-WantedBy=default.target
-EOF
-
-sudo systemctl disable postgresql
-sudo systemctl stop postgresql
-systemctl --user enable postgresql.service
-systemctl --user start postgresql.service
+## cursor
+```
+curl -fsSL https://downloads.cursor.com/keys/anysphere.asc | gpg --dearmor | sudo tee /etc/apt/keyrings/cursor.gpg > /dev/null
+echo "deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/cursor.gpg] https://downloads.cursor.com/aptrepo stable main" | sudo tee /etc/apt/sources.list.d/cursor.list > /dev/null
+sudo apt update && sudo apt install -y cursor
 ```
 
 ## Nix package manager
@@ -314,21 +305,11 @@ EOF
 # TODO check that the direnv hook is at the end of the bashrc
 ```
 
-## app install scripts
+## QEMU KVM
 ```
-curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | sh
-curl --proto '=https' --tlsv1.2 -fsSL https://bun.com/install | bash
-curl --proto '=https' --tlsv1.2 -fsSL https://fly.io/install.sh | sh
-curl --proto '=https' --tlsv1.2 -fsSL https://tailscale.com/install.sh | sh
-curl --proto '=https' --tlsv1.2 -fsSL https://ollama.com/install.sh | sh
-curl --proto '=https' --tlsv1.2 -fsSL https://claude.ai/install.sh | bash
-```
-
-## cursor
-```
-curl -fsSL https://downloads.cursor.com/keys/anysphere.asc | gpg --dearmor | sudo tee /etc/apt/keyrings/cursor.gpg > /dev/null
-echo "deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/cursor.gpg] https://downloads.cursor.com/aptrepo stable main" | sudo tee /etc/apt/sources.list.d/cursor.list > /dev/null
-sudo apt update && sudo apt install -y cursor
+sudo apt install -y qemu-kvm libvirt-daemon-system virtinst virt-manager bridge-utils
+sudo usermod -aG libvirt,kvm $USER
+newgrp libvirt
 ```
 
 # Optional
