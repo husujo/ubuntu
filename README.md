@@ -5,12 +5,11 @@ commands for setting up a new ubuntu installation with settings, apps and packag
 
 ## swapfile
 ```
-# check if there is swap already
-# if not:
+ls /swap.img
 sudo swapoff -a
-sudo dd if=/dev/zero of=/swapfile bs=1G count=16 # 16GB
+sudo dd if=/dev/zero of=/swap.img bs=1G count=16 # 16GB
 # Set up a Linux swap area and turn it on
-sudo chmod 0600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
+sudo chmod 0600 /swap.img && sudo mkswap /swap.img && sudo swapon /swap.img
 echo 'vm.swappiness = 10' | sudo tee -a /etc/sysctl.conf
 # https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
 ```
