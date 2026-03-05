@@ -190,16 +190,35 @@ alias hru="helm repo update"
 alias hgv="helm get values"
 
 # docker
-alias dockeri='sudo chmod 666 /var/run/docker.sock'
-alias d='docker'
-docker() {
-  if [[ "$1" == "img" || "$1" == "i" ]]; then
-    shift
-    command docker image "$@"
-  else
-    command docker "$@"
-  fi
-}
+if command -v docker >/dev/null 2>&1; then
+    alias dockeri='sudo chmod 666 /var/run/docker.sock'
+    alias d='docker'
+    docker() {
+        if [[ "$1" == "img" || "$1" == "i" ]]; then
+            shift
+            command docker image "$@"
+        else
+            command docker "$@"
+        fi
+    }
+    source <(docker completion bash)
+    complete -o default -F __start_docker d
+fi
+
+# virsh
+if command -v virsh >/dev/null 2>&1; then
+    alias vm='virsh'
+    virsh() {
+        if [[ "$1" == "ls" ]]; then
+            shift
+            command virsh list --all "$@"
+        else
+            command virsh "$@"
+        fi
+    }
+    # complete -o default -F _virsh vm
+    # complete -o default -o bashdefault vm
+fi
 
 
 # doctl
@@ -210,12 +229,6 @@ alias dssh='doctl compute ssh'
 alias doks='doctl k cluster'
 # doctl kubernetes cluster kubeconfig save <cluster-name> --set-current-context --alias <alias>
 
-
-# docker completions
-if command -v docker >/dev/null 2>&1; then
-  source <(docker completion bash)
-  complete -o default -F __start_docker d
-fi
 
 # kubectl completions
 if command -v kubectl >/dev/null 2>&1; then
