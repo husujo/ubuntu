@@ -23,7 +23,10 @@ sudo ubuntu-drivers install
 ```
 sudo mkdir --parents --mode=0755 /etc/apt/keyrings
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y vim curl git neofetch direnv xclip libfuse2 fzf timeshift openjdk-8-jdk gnome-tweaks gnome-sushi alacarte dconf-editor synaptic flatpak flameshot
+sudo apt install -y vim curl git neofetch direnv xclip
+```
+```
+sudo apt install -y libfuse2 fzf timeshift openjdk-8-jdk gnome-tweaks gnome-sushi alacarte dconf-editor synaptic flatpak flameshot
 # sudo apt install -y nemo # apt lacking nemo-preview package
 ```
 
@@ -32,17 +35,19 @@ sudo apt install -y vim curl git neofetch direnv xclip libfuse2 fzf timeshift op
 ## home directory setup
 ```
 mkdir ~/.local/bin
-mkdir ~/.local/share/themes
-mkdir ~/.theme
 mkdir ~/code
+mkdir -p ~/.claude
+mkdir -p ~/.cursor/rules
+touch ~/.ssh/config
+```
+```
+# mkdir ~/.local/share/themes
+# mkdir ~/.theme
 mkdir ~/Games
 rmdir ~/Templates
 rmdir ~/Public
-echo "snap" > .hidden
-mkdir -p ~/.claude
-mkdir -p ~/.cursor/rules
+echo "snap" > .hidden\
 
-touch ~/.ssh/config
 touch ~/.ssh/id_ed25519
 chmod 600 ~/.ssh/id_ed25519
 # copy private key from 1password to ^
@@ -103,7 +108,9 @@ EXT_LIST=(just-perfection-desktop@just-perfection extension-list@tu.berry blur-m
 # global dotfiles
 echo '"\C-H":"\C-W"' | sudo tee -a /etc/inputrc # ctrl+backspace will delete word
 echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc # case insensitive tab completion
+
 echo 'set number' | sudo tee -a /etc/vim/vimrc.local
+echo 'command! NN set nonumber' | sudo tee -a /etc/vim/vimrc.local
 sudo tee -a /etc/vim/vimrc.local << 'EOF'
 
 " Jump to last cursor position when opening files
@@ -256,6 +263,7 @@ curl --proto '=https' --tlsv1.2 -fsSL https://fly.io/install.sh | sh
 curl --proto '=https' --tlsv1.2 -fsSL https://tailscale.com/install.sh | sh
 curl --proto '=https' --tlsv1.2 -fsSL https://ollama.com/install.sh | sh
 curl --proto '=https' --tlsv1.2 -fsSL https://claude.ai/install.sh | bash
+curl --proto '=https' --tlsv1.2 -fsSL https://microclaw.ai/install.sh | bash
 ```
 
 ## cursor
