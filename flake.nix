@@ -12,21 +12,20 @@
       pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
 
       cliTools = with pkgs; [
-        #doctl
-        #google-cloud-sdk
+        # doctl
+        # google-cloud-sdk
         flyctl
-        #s3cmd
+        # s3cmd
         bun
-	      #deno
+	    # deno
         nodejs_24
         gh
         ngrok
-        #expect
+        # expect
         rustup
-        #<other>.packages.${system}.<name>
+        # <other>.packages.${system}.<name>
         opencode
         rclone
-        rustup
         # ollama-cuda (doesn't work)
       ];
     in {
