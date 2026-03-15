@@ -12,21 +12,31 @@
       pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
 
       cliTools = with pkgs; [
-        # doctl
+        # kubectl
+        # kubectx
+        # (wrapHelm kubernetes-helm {
+        #   plugins = [ kubernetes-helmPlugins.helm-cm-push ];
+        # })
+        # argocd
         # google-cloud-sdk
-        flyctl
+        # doctl
+        # flyctl
         # s3cmd
-        bun
-	    # deno
-        nodejs_24
+        # opencode
+        # gemini-cli
+        rclone
         gh
         ngrok
-        # expect
         rustup
-        # <other>.packages.${system}.<name>
-        opencode
-        rclone
+        bun
+	    # deno
+        # nodejs_24
+        # expect
+        # yamllint
+        # yq
+        # ripgrep
         # ollama-cuda (doesn't work)
+        # <other>.packages.${system}.<name>
       ];
     in {
       packages.${system}.default = pkgs.buildEnv {
