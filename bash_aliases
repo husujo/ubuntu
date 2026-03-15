@@ -12,11 +12,14 @@ alias gputop="radeontop -b 03:00.0"
 
 # apt
 alias sa='sudo apt'
+alias sai='sudo apt install'
 alias saup='sudo apt update'
 alias saupg='sudo apt upgrade'
 alias sauu='sudo apt update && sudo apt upgrade'
+alias reapt='sudo apt update && sudo apt upgrade'
 
 # misc
+alias regrub='sudo update-grub'
 alias dusort='du -sch .[!.]* * | sort -h'
 alias psa="ps aux"
 alias disk="df -h"
