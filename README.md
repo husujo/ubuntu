@@ -112,6 +112,8 @@ echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc # case insensiti
 echo 'set number' | sudo tee -a /etc/vim/vimrc.local
 echo 'set mouse=a' | sudo tee -a /etc/vim/vimrc.local
 echo 'command! NN set nonumber' | sudo tee -a /etc/vim/vimrc.local
+echo 'command! MM set mouse=a' | sudo tee -a /etc/vim/vimrc.local
+
 sudo tee -a /etc/vim/vimrc.local << 'EOF'
 
 " Jump to last cursor position when opening files
