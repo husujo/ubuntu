@@ -200,10 +200,13 @@ if command -v docker >/dev/null 2>&1; then
         if [[ "$1" == "img" || "$1" == "i" ]]; then
             shift
             command docker image "$@"
+        elif [[ "$1" == "c" ]]; then
+            shift
+            command docker container "$@"
         else
             command docker "$@"
         fi
-    }
+    }   
     source <(docker completion bash)
     complete -o default -F __start_docker d
 fi
