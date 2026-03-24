@@ -22,7 +22,7 @@ alias reapt='sudo apt update && sudo apt upgrade'
 alias regrub='sudo update-grub'
 alias dusort='du -sch .[!.]* * | sort -h'
 alias psa="ps aux"
-alias disk="df -h"
+alias disk='df -h | grep -v "snap"'
 
 # ip
 alias myip='curl ifconfig.io -4 >> ~/ips && echo "" >> ~/ips && cat ~/ips'
@@ -192,7 +192,7 @@ ksec () {
 alias hru="helm repo update"
 alias hgv="helm get values"
 
-# docker
+# docker shim
 if command -v docker >/dev/null 2>&1; then
     alias dockeri='sudo chmod 666 /var/run/docker.sock'
     alias d='docker'
@@ -211,7 +211,7 @@ if command -v docker >/dev/null 2>&1; then
     complete -o default -F __start_docker d
 fi
 
-# virsh
+# virsh shim
 if command -v virsh >/dev/null 2>&1; then
     alias vm='virsh'
     virsh() {
