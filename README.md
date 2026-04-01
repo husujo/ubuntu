@@ -34,10 +34,9 @@ sudo apt install -y libfuse2 fzf timeshift openjdk-8-jdk gnome-tweaks gnome-sush
 
 ## home directory setup
 ```
-mkdir ~/.local/bin
-mkdir ~/code
-mkdir -p ~/.claude
-mkdir -p ~/.cursor/rules
+mkdir -p ~/.local/bin
+mkdir -p ~/code
+mkdir -p ~/.claude ~/.codex ~/.cursor/rules
 touch ~/.ssh/config
 ```
 ```
@@ -134,7 +133,7 @@ grep -qF 'eval "$(direnv hook bash)"' ~/.bashrc || echo 'eval "$(direnv hook bas
 
 ## AI
 ```
-cat > ~/.claude/CLAUDE.md << 'EOF'
+tee ~/.claude/CLAUDE.md ~/.codex/AGENTS.md << 'EOF'
 This PC is Ubuntu 24
 EOF
 
