@@ -21,9 +21,13 @@ alias reapt='sudo apt update && sudo apt upgrade'
 # misc
 alias regrub='sudo update-grub'
 alias dusort='du -sch .[!.]* * | sort -h'
-alias psa="ps aux"
 alias disk='df -h | grep -v "snap"'
-alias wayland="echo $XDG_SESSION_TYPE"
+alias psa='ps aux'
+alias ram='sudo dmidecode --type memory'
+alias wayland='echo "system is running $XDG_SESSION_TYPE"'
+alias ai='ollama run qwen3:14b'
+alias grepi='grep -i'
+port () { lsof -i :"$1"; }
 
 # ip
 alias myip='curl ifconfig.io -4 >> ~/ips && echo "" >> ~/ips && cat ~/ips'
