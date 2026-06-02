@@ -128,6 +128,7 @@ echo "inoremap <C-BS> <C-W>" >> ~/.vimrc
 
 git config --global push.autoSetupRemote true
 git config --global core.editor "vim"
+git config --global pretty.custom '%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
 
 grep -qF 'eval "$(direnv hook bash)"' ~/.bashrc || echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 ```
@@ -208,6 +209,9 @@ sudo snap install libreoffice
 sudo snap install visualboyadvance-m
 sudo snap install desmume-emulator
 sudo snap install codium --classic
+sudo snap install google-cloud-cli --classic
+# echo "source /snap/google-cloud-cli/current/completion.bash.inc" >> ~/.bashrc
+
 # sudo snap install simplescreenrecorder
 # sudo snap install anki-woodrow # old version
 
@@ -269,6 +273,7 @@ curl --proto '=https' --tlsv1.2 -fsSL https://tailscale.com/install.sh | sh
 curl --proto '=https' --tlsv1.2 -fsSL https://ollama.com/install.sh | sh
 curl --proto '=https' --tlsv1.2 -fsSL https://claude.ai/install.sh | bash
 curl --proto '=https' --tlsv1.2 -fsSL https://microclaw.ai/install.sh | bash
+curl --proto '=https' --tlsv1.2 -fsSL https://chatgpt.com/codex/install.sh | sh
 ```
 
 ## cursor
