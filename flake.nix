@@ -12,6 +12,8 @@
       pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
 
       cliTools = with pkgs; [
+        # nixfmt
+        # nixd
         # kubectl
         # kubectx
         # (wrapHelm kubernetes-helm {
