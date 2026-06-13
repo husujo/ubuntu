@@ -10,7 +10,7 @@ sudo swapoff -a
 sudo dd if=/dev/zero of=/swap.img bs=1G count=16 # 16GB
 # Set up a Linux swap area and turn it on
 sudo chmod 0600 /swap.img && sudo mkswap /swap.img && sudo swapon /swap.img
-echo 'vm.swappiness = 10' | sudo tee -a /etc/sysctl.conf
+echo 'vm.swappiness = 20' | sudo tee -a /etc/sysctl.conf
 # https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
 ```
 
@@ -40,12 +40,12 @@ mkdir -p ~/.claude ~/.codex ~/.cursor/rules
 touch ~/.ssh/config
 ```
 ```
-# mkdir ~/.local/share/themes
-# mkdir ~/.theme
-mkdir ~/Games
+# mkdir -p ~/.local/share/themes
+# mkdir -p ~/.theme
+mkdir -p ~/Games
 rmdir ~/Templates
 rmdir ~/Public
-echo "snap" > .hidden\
+echo "snap" > .hidden
 
 touch ~/.ssh/id_ed25519
 chmod 600 ~/.ssh/id_ed25519
@@ -128,7 +128,7 @@ echo "inoremap <C-BS> <C-W>" >> ~/.vimrc
 
 git config --global push.autoSetupRemote true
 git config --global core.editor "vim"
-git config --global pretty.custom '%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
+git config --global pretty.custom '%C(auto)%h%d %s %Cgreen%ar %Cblue%an'
 
 grep -qF 'eval "$(direnv hook bash)"' ~/.bashrc || echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 ```
@@ -174,7 +174,7 @@ flatpak install -y flathub net.nokyan.Resources
 flatpak install -y flathub com.system76.Popsicle
 #
 flatpak install -y flathub com.usebottles.bottles
-flatpak install -y com.freerdp.FreeRDP # for winboat
+flatpak install -y flathub com.freerdp.FreeRDP # for winboat
 flatpak install -y flathub net.lutris.Lutris
 flatpak install -y flathub com.jeffser.Alpaca
 flatpak install -y flathub org.torproject.torbrowser-launcher
@@ -242,6 +242,14 @@ echo "0b14e71586b22e498eb20926c48c7b434b751149b1f2af9902ef1cfe6b03e180 protonvpn
 sudo apt install -y proton-vpn-gnome-desktop proton-vpn-cli
 ```
 
+## openvpn3
+```
+# https://community.openvpn.net/Pages/OpenVPN3Linux
+curl -sSfL https://packages.openvpn.net/packages-repo.gpg | sudo tee /etc/apt/keyrings/openvpn.asc
+echo "deb [signed-by=/etc/apt/keyrings/openvpn.asc] https://packages.openvpn.net/openvpn3/debian $(lsb_release -cs 2>/dev/null) main" | sudo tee -a /etc/apt/sources.list.d/openvpn3.list
+sudo apt update && sudo apt install -y openvpn3
+```
+
 # Dev
 
 ## docker
@@ -258,6 +266,7 @@ sudo usermod -aG docker $USER
 ```
 
 ## postgres
+(local db dev should be spun up with a nix flake and sidecar process, not system-installed constantly running psq cluster.)
 ```
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
@@ -296,30 +305,6 @@ touch ~/.config/nix/flake.nix
 sh <(curl -L https://nixos.org/nix/install) --daemon
 # check that the direnv hook is at the end of the bashrc
 cat ~/.bashrc
-```
-```
-# OLD HOME MANAGER STUFF. NO NEED TO INSTALL UNLESS YOU REALLY WANT
-
-# install nix home-manager https://nix-community.github.io/home-manager/index.xhtml
-nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
-nix-channel --update
-nix-shell '<home-manager>' -A install
-
-cat >> ~/.bashrc << 'EOF'
-
-# nix home-manager session variables
-if [ -d "/nix" ]; then
-    unset __HM_SESS_VARS_SOURCED
-    . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-    . "$HOME/.config/bash/nix-bashrc.sh"
-fi
-
-eval "$(direnv hook bash)"
-EOF
-
-# Copy home.nix into ~/.config/home-manager/home.nix
-# TODO check that the direnv hook is at the end of the bashrc
 ```
 
 ## QEMU KVM
@@ -364,41 +349,4 @@ flatpak install flathub nz.mega.MEGAsync
 flatpak install flathub io.github.yairm210.unciv
 flatpak install flathub org.freeciv.gtk322
 ```
-
-## AMD ROC (didn't work)
-https://rocm.docs.amd.com/projects/install-on-linux/en/latest/how-to/native-install/ubuntu.html
-```
-sudo wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | gpg --dearmor | sudo tee /etc/apt/keyrings/rocm.gpg > /dev/null
-sudo echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/6.1.2/ubuntu jammy main" | sudo tee /etc/apt/sources.list.d/amdgpu.list
-sudo apt update
-
-sudo echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/6.1.2 jammy main" | sudo tee --append /etc/apt/sources.list.d/rocm.list
-sudo echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
-sudo apt update
-
-sudo apt install amdgpu-dkms
-```
-(reboot and configure MOK)
-```
-sudo apt install rocm
-sudo tee --append /etc/ld.so.conf.d/rocm.conf <<EOF
-/opt/rocm/lib
-/opt/rocm/lib64
-EOF
-sudo ldconfig
-```
-add to bashrc
-```
-export PATH=$PATH:/opt/rocm-6.1.2/bin
-```
-
-# openvpn3
-```
-# https://community.openvpn.net/Pages/OpenVPN3Linux
-curl -sSfL https://packages.openvpn.net/packages-repo.gpg | sudo tee /etc/apt/keyrings/openvpn.asc
-echo "deb [signed-by=/etc/apt/keyrings/openvpn.asc] https://packages.openvpn.net/openvpn3/debian $(lsb_release -cs 2>/dev/null) main" | sudo tee -a /etc/apt/sources.list.d/openvpn3.list
-sudo apt update && sudo apt install -y openvpn3
-```
-
-
 
