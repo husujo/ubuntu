@@ -1,4 +1,6 @@
-xset r 66 # enables capslock keypress repeat for additional backspace
+# enables capslock keypress repeat for additional backspace
+[[ "$XDG_SESSION_TYPE" == "x11" ]] && xset r 66
+
 export EDITOR="vim";
 export KUBE_EDITOR="cursor --wait";
 export CURSOR_FLAGS="--no-sandbox";
@@ -70,6 +72,7 @@ alias gspp='git stash && git pull && git stash pop'
 alias gpush='git push'
 alias gpsh='git push'
 alias gpus='git push'
+alias gpwl='git push --force-with-lease'
 alias gpull='git pull'
 alias gpul='git pull'
 alias gbb='git-backup-branch'
@@ -163,7 +166,7 @@ alias krrd='kubectl rollout restart deployment'
 alias kwp='watch -n 3 kubectl get pods'
 alias ktp="kubectl top pods"
 alias ktn="kubectl top nodes"
-alias pima="kubectl describe pod $1 | grep Image:"
+pima() { kubectl describe pod "$1" | grep Image: }
 alias kpf="kubectl port-forward"
 alias knc="kubens -c"
 ksh () { kubectl exec -it $1 -- sh; }
@@ -240,6 +243,11 @@ alias dssh='doctl compute ssh'
 alias doks='doctl k cluster'
 # doctl kubernetes cluster kubeconfig save <cluster-name> --set-current-context --alias <alias>
 
+# gcloud
+alias gcs='gcloud storage'
+alias gcp='gcloud'
+alias gssh='gcloud compute ssh'
+
 
 # kubectl completions
 if command -v kubectl >/dev/null 2>&1; then
@@ -259,6 +267,7 @@ fi
 alias denva="direnv allow ."
 alias st="bun start"
 alias t='bun test'
+alias tf='terraform'
 alias nodemodules='find . -name "node_modules" -type d -prune'
 alias fzf='fzf --preview="cat {}"'
 
