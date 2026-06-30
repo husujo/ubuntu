@@ -23,16 +23,33 @@ alias reapt='sudo apt update && sudo apt upgrade'
 # misc
 alias regrub='sudo update-grub'
 alias dusort='du -sch .[!.]* * | sort -h'
-alias disk='df -h | grep -v "snap"'
+alias disk='df -h | grep -E "Use|/$|/home"'
+alias swap='swapon --show'
 alias psa='ps aux'
 alias ram='sudo dmidecode --type memory'
 alias wayland='echo "system is running $XDG_SESSION_TYPE"'
-alias ai='ollama run qwen3:14b'
 alias grepi='grep -i'
 port () { lsof -i :"$1"; }
 
+ai () {
+  local log="/tmp/ai.log"
+  local sysprompt="System Prompt: you are invoked from Ubuntu 24 terminal. avoid superfluous newlines."
+  local think=false
+  local model="qwen3.5:9b"
+
+  [[ "$*" == "clear" ]] && > "$log" && return
+  [[ "$*" == "log" ]] && cat "$log" && return
+  [[ "$1" == "think" ]] && think=true && sysprompt= && shift
+
+  local prompt="$*"
+  local context="$(cat "$log" 2>/dev/null)"
+  local str="$sysprompt Conversation so far: $context User Prompt: $prompt"
+  printf 'USER: %s\nAI: ' "$prompt" >> "$log"
+  ollama run "$model" --think="$think" --nowordwrap -- "$str" | tee -a "$log"
+}
+
 # ip
-alias myip='curl ifconfig.io -4 >> ~/ips && echo "" >> ~/ips && cat ~/ips'
+alias myip='curl ifconfig.io -4 >> ~/.ips && echo "" >> ~/.ips && cat ~/.ips'
 alias localip="hostname -I | awk '{print \$1}'"
 port () { lsof -i :"$1"; }
 
@@ -106,7 +123,8 @@ alias firefox-css="mkdir -p $FIREFOX_PROFILE/chrome && touch $FIREFOX_CSS && vim
 # nix
 export NIX_HOME="$HOME/.config/nix";
 alias nixhome='vim $NIX_HOME/flake.nix'
-alias renix='nix profile add $NIX_HOME && nix flake update --flake $NIX_HOME && nix profile upgrade --all'
+# alias renix='nix profile add $NIX_HOME && nix flake update --flake $NIX_HOME && nix profile upgrade --all'
+alias renix='nix profile add "path:$NIX_HOME" && nix flake update --flake "path:$NIX_HOME" && nix profile upgrade --all'
 alias unnix="nix profile rollback"
 alias denix="nix profile wipe-history --older-than 7d && nix store gc"
 # export NIX_HOME="$HOME/.config/home-manager/home.nix";
