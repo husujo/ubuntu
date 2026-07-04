@@ -184,7 +184,7 @@ alias krrd='kubectl rollout restart deployment'
 alias kwp='watch -n 3 kubectl get pods'
 alias ktp="kubectl top pods"
 alias ktn="kubectl top nodes"
-pima() { kubectl describe pod "$1" | grep Image: }
+pima() { kubectl describe pod "$1" | grep Image:; }
 alias kpf="kubectl port-forward"
 alias knc="kubens -c"
 ksh () { kubectl exec -it $1 -- sh; }
