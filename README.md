@@ -40,6 +40,7 @@ mkdir -p ~/.claude ~/.codex ~/.cursor/rules
 touch ~/.ssh/config
 ```
 ```
+mkdir -p ~/.config/autostart
 # mkdir -p ~/.local/share/themes
 # mkdir -p ~/.theme
 mkdir -p ~/Games
@@ -96,6 +97,9 @@ gsettings set org.gnome.desktop.search-providers sort-order "$search_order"
 
 # remove imagemagick from search results
 echo "NoDisplay=true" | sudo tee -a /usr/share/applications/display-im6.q16.desktop
+
+# startup applications:
+cp /var/lib/snapd/desktop/applications/firefox_firefox.desktop ~/.config/autostart/
 ```
 
 ## gnome extensions
