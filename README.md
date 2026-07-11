@@ -111,6 +111,8 @@ EXT_LIST=(just-perfection-desktop@just-perfection extension-list@tu.berry blur-m
 
 # https://www.gnome-look.org/p/1316887
 # download theme, unzip, move to .theme/, open tweaks
+
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/clipboard-indicator@tudmotu.com/schemas/ set org.gnome.shell.extensions.clipboard-indicator toggle-menu "['<Super>c']"
 ```
 
 ## dotfiles and misc settings
