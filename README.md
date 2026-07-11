@@ -182,14 +182,15 @@ flatpak install -y flathub com.github.tchx84.Flatseal
 flatpak install -y flathub com.mattjakeman.ExtensionManager
 flatpak install -y flathub net.nokyan.Resources
 flatpak install -y flathub com.system76.Popsicle
-#
+```
+```
+flatpak install -y flathub net.ankiweb.Anki
 flatpak install -y flathub com.usebottles.bottles
 flatpak install -y flathub com.freerdp.FreeRDP # for winboat
 flatpak install -y flathub net.lutris.Lutris
 flatpak install -y flathub com.jeffser.Alpaca
 flatpak install -y flathub org.torproject.torbrowser-launcher
 flatpak install -y flathub org.freedesktop.Piper
-flatpak install -y flathub net.ankiweb.Anki
 flatpak install -y flathub org.gnome.baobab # disk usage analyzer
 flatpak install -y flathub io.github.swordpuffin.rewaita # gnome color customizer
 flatpak install -y flathub org.qbittorrent.qBittorrent
@@ -202,12 +203,11 @@ sudo snap install slack
 sudo snap install code --classic
 sudo snap install dbeaver-ce
 sudo snap install vlc
-#
 sudo snap install discord
 sudo snap install steam # issues
 sudo snap install todoist
-sudo snap install nordvpn # new, try it
-
+```
+```
 sudo snap install rclone
 sudo snap install yt-dlp
 sudo snap install gimp
