@@ -113,6 +113,7 @@ EXT_LIST=(just-perfection-desktop@just-perfection extension-list@tu.berry blur-m
 # download theme, unzip, move to .theme/, open tweaks
 
 gsettings --schemadir ~/.local/share/gnome-shell/extensions/clipboard-indicator@tudmotu.com/schemas/ set org.gnome.shell.extensions.clipboard-indicator toggle-menu "['<Super>c']"
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/Vitals@CoreCoding.com/schemas/ set org.gnome.shell.extensions.vitals hot-sensors "['_memory_usage_', '_processor_usage_', '_processor_frequency_', '_network_public_ip_', '__temperature_max__', '__network-rx_max__']"
 ```
 
 ## dotfiles and misc settings
