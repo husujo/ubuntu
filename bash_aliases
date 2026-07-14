@@ -29,6 +29,7 @@ alias psa='ps aux'
 alias ram='sudo dmidecode --type memory'
 alias wayland='echo "system is running $XDG_SESSION_TYPE"'
 alias grepi='grep -i'
+alias crash='journalctl -k -b -1 > ~/kernel.log'
 port () { lsof -i :"$1"; }
 
 ai () {
