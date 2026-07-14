@@ -101,6 +101,8 @@ echo "NoDisplay=true" | sudo tee -a /usr/share/applications/display-im6.q16.desk
 
 # startup applications:
 cp /var/lib/snapd/desktop/applications/firefox_firefox.desktop ~/.config/autostart/
+
+command -v system76-power &> /dev/null && system76-power profile performance
 ```
 
 ## gnome extensions
