@@ -84,7 +84,7 @@ gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/k
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy '<Primary>c'
 # (!!) for INTERRUPT signal, use ctrl+alt+c
 ```
-
+-
 ```
 # put settings at the top of the search list
 search_order=$(gsettings get org.gnome.desktop.search-providers sort-order)
