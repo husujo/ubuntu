@@ -55,6 +55,7 @@ chmod 600 ~/.ssh/id_ed25519
 
 ## user gnome settings
 ```
+bash << 'EOF'
 # might get super+q confused with ctrl+tab, ctrl+`, super+tab
 gsettings set org.gnome.desktop.wm.keybindings close "['<Shift><Super>C', '<Shift><Super>Q']"
 gsettings set org.gnome.desktop.wm.preferences resize-with-right-button "true"
@@ -96,6 +97,7 @@ echo "NoDisplay=true" | sudo tee -a /usr/share/applications/display-im6.q16.desk
 cp /var/lib/snapd/desktop/applications/firefox_firefox.desktop ~/.config/autostart/
 
 command -v system76-power &> /dev/null && system76-power profile performance
+EOF
 ```
 
 ## gnome extensions
