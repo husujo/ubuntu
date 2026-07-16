@@ -71,25 +71,17 @@ gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.input-sources xkb-options "['shift:both_capslock', 'caps:backspace']"
 gsettings set org.gnome.desktop.session idle-delay 600 # screen dim
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1200 # suspend on battery
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'firefox_firefox.desktop', 'org.gnome.Settings.desktop', 'snap-store_snap-store.desktop']"
 
+GTERM_PROFILE_ID=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'")
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GTERM_PROFILE_ID/ default-size-columns 100
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GTERM_PROFILE_ID/ default-size-rows 30
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab '<Control>w'
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab '<Control>t'
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-window '<Control>n'
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste '<Primary>v'
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy '<Primary>c'
 # (!!) for INTERRUPT signal, use ctrl+alt+c
-
-# gnome-terminal default profile configuration
-GTERM_PROFILE_ID=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'")
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GTERM_PROFILE_ID/ default-size-columns 100
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GTERM_PROFILE_ID/ default-size-rows 30
-
-# org.gnome.Nautilus.desktop or nemo.desktop
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'firefox_firefox.desktop', 'org.gnome.Settings.desktop', 'snap-store_snap-store.desktop']"
-
-# set default file manager
-# xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
-# xdg-mime default org.gnome.Nautilus.desktop inode/directory application/x-gnome-saved-search
 
 # put settings at the top of the search list
 search_order=$(gsettings get org.gnome.desktop.search-providers sort-order)
