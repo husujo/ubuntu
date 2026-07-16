@@ -30,6 +30,8 @@ gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/k
 search_order=$(gsettings get org.gnome.desktop.search-providers sort-order)
 search_order=$(echo $search_order | sed "s/'org\.gnome\.Nautilus\.desktop',*//g" | sed "s/\[/['org.gnome.Nautilus.desktop', /")
 search_order=$(echo $search_order | sed "s/'org\.gnome\.Settings\.desktop',*//g" | sed "s/\[/['org.gnome.Settings.desktop', /")
+echo "search order:"
+echo "$search_order"
 gsettings set org.gnome.desktop.search-providers sort-order "$search_order"
 
 # remove imagemagick from search results
