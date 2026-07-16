@@ -34,7 +34,7 @@ search_order=$(echo $search_order | sed "s/, \]/]/")
 echo "search order: $search_order"
 gsettings set org.gnome.desktop.search-providers sort-order "$search_order"
 
-# remove imagemagick from search results
+echo "(sudo) remove imagemagick from search results:"
 echo "NoDisplay=true" | sudo tee -a /usr/share/applications/display-im6.q16.desktop
 
 command -v system76-power &> /dev/null && system76-power profile performance
