@@ -56,7 +56,7 @@ chmod 600 ~/.ssh/id_ed25519
 
 ## user gnome settings
 ```
-curl -sL https://raw.githubusercontent.com/husujo/ubuntu/main/gnome-settings.sh | bash
+curl -sL "https://raw.githubusercontent.com/husujo/ubuntu/main/gnome-settings.sh?v=1" | bash
 ```
 
 ## gnome extensions
