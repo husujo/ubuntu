@@ -118,6 +118,11 @@ This PC is Ubuntu 24
 EOF
 ```
 
+## Bash Aliases
+```
+curl -sLo ~/.bash_aliases "https://raw.githubusercontent.com/husujo/ubuntu/main/bash_aliases?v=1"
+```
+
 
 # Apps
 
