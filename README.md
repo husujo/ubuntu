@@ -41,6 +41,7 @@ touch ~/.ssh/config
 ```
 ```
 mkdir -p ~/.config/autostart
+cp /var/lib/snapd/desktop/applications/firefox_firefox.desktop ~/.config/autostart/
 # mkdir -p ~/.local/share/themes
 # mkdir -p ~/.theme
 mkdir -p ~/Games
@@ -55,7 +56,6 @@ chmod 600 ~/.ssh/id_ed25519
 
 ## user gnome settings
 ```
-bash << 'EOF'
 # might get super+q confused with ctrl+tab, ctrl+`, super+tab
 gsettings set org.gnome.desktop.wm.keybindings close "['<Shift><Super>C', '<Shift><Super>Q']"
 gsettings set org.gnome.desktop.wm.preferences resize-with-right-button "true"
@@ -83,7 +83,9 @@ gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/k
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste '<Primary>v'
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy '<Primary>c'
 # (!!) for INTERRUPT signal, use ctrl+alt+c
+```
 
+```
 # put settings at the top of the search list
 search_order=$(gsettings get org.gnome.desktop.search-providers sort-order)
 search_order=$(echo $search_order | sed "s/'org\.gnome\.Nautilus\.desktop',*//g" | sed "s/\[/['org.gnome.Nautilus.desktop', /")
@@ -93,11 +95,7 @@ gsettings set org.gnome.desktop.search-providers sort-order "$search_order"
 # remove imagemagick from search results
 echo "NoDisplay=true" | sudo tee -a /usr/share/applications/display-im6.q16.desktop
 
-# startup applications:
-cp /var/lib/snapd/desktop/applications/firefox_firefox.desktop ~/.config/autostart/
-
 command -v system76-power &> /dev/null && system76-power profile performance
-EOF
 ```
 
 ## gnome extensions
