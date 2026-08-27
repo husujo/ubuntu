@@ -91,12 +91,6 @@ cp ~/.agents/AGENTS.md ~/.codex/AGENTS.md
 curl -sLo ~/.bash_aliases "https://raw.githubusercontent.com/husujo/ubuntu/main/bash_aliases?v=1"
 ```
 
-## Bash Aliases
-```
-curl -sLo ~/.bash_aliases "https://raw.githubusercontent.com/husujo/ubuntu/main/bash_aliases?v=1"
-```
-
-
 # Apps
 
 ## 1password
