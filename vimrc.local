@@ -1,1 +1,13 @@
+inoremap <C-H> <C-W>
+inoremap <C-BS> <C-W>
 
+set number
+
+command! NN set nonumber
+command! MM set mouse=a
+command! CC w !xclip -selection clipboard -in
+
+" Jump to last cursor position when opening files
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
