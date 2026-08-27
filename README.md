@@ -62,26 +62,14 @@ curl -sL "https://raw.githubusercontent.com/husujo/ubuntu/main/gnome-settings.sh
 
 ## global dotfiles
 ```
-# global dotfiles
-echo '"\C-H":"\C-W"' | sudo tee -a /etc/inputrc # ctrl+backspace will delete word
-echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc # case insensitive tab completion
+# global inputrc
+grep -qF '"\C-H":"\C-W"' /etc/inputrc || echo '"\C-H":"\C-W"' | sudo tee -a /etc/inputrc # ctrl+backspace will delete word
+grep -qF 'set completion-ignore-case On' /etc/inputrc || echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc # case insensitive tab completion
 
-echo 'inoremap <C-H> <C-W>' | sudo tee -a /etc/vim/vimrc.local
-echo 'inoremap <C-BS> <C-W>' | sudo tee -a /etc/vim/vimrc.local
-echo 'set number' | sudo tee -a /etc/vim/vimrc.local
-echo 'set mouse=a' | sudo tee -a /etc/vim/vimrc.local
-echo 'command! NN set nonumber' | sudo tee -a /etc/vim/vimrc.local
-echo 'command! MM set mouse=a' | sudo tee -a /etc/vim/vimrc.local
-echo 'command! CC w !xclip -selection clipboard -in' | sudo tee -a /etc/vim/vimrc.local
+# vim global settings
+sudo curl -sLo /etc/vim/vimrc.local "https://raw.githubusercontent.com/husujo/ubuntu/main/vimrc.local?v=1"
 
-sudo tee -a /etc/vim/vimrc.local << 'EOF'
-
-" Jump to last cursor position when opening files
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-endif
-EOF
-
+# git system wide settings
 sudo git config --system push.autoSetupRemote true
 sudo git config --system core.editor "vim"
 sudo git config --system pretty.custom '%C(auto)%h%d %s %Cgreen%ar %Cblue%an'
@@ -89,9 +77,6 @@ sudo git config --system pretty.custom '%C(auto)%h%d %s %Cgreen%ar %Cblue%an'
 
 ## local dotfiles
 ```
-#echo "inoremap <C-H> <C-W>" >> ~/.vimrc
-#echo "inoremap <C-BS> <C-W>" >> ~/.vimrc
-
 grep -qF 'eval "$(direnv hook bash)"' ~/.bashrc || echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 
 # vscodium keybindings
