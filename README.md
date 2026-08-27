@@ -36,7 +36,7 @@ sudo apt install -y libfuse2 fzf timeshift openjdk-8-jdk gnome-tweaks gnome-sush
 ```
 mkdir -p ~/.local/bin
 mkdir -p ~/code
-mkdir -p ~/.claude ~/.codex ~/.cursor/rules
+mkdir -p ~/.agents ~/.claude ~/.codex ~/.cursor/rules
 touch ~/.ssh/config
 ```
 ```
@@ -60,12 +60,14 @@ chmod 600 ~/.ssh/id_ed25519
 curl -sL "https://raw.githubusercontent.com/husujo/ubuntu/main/gnome-settings.sh?v=1" | bash
 ```
 
-## dotfiles and misc settings
+## global dotfiles
 ```
 # global dotfiles
 echo '"\C-H":"\C-W"' | sudo tee -a /etc/inputrc # ctrl+backspace will delete word
 echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc # case insensitive tab completion
 
+echo 'inoremap <C-H> <C-W>' | sudo tee -a /etc/vim/vimrc.local
+echo 'inoremap <C-BS> <C-W>' | sudo tee -a /etc/vim/vimrc.local
 echo 'set number' | sudo tee -a /etc/vim/vimrc.local
 echo 'set mouse=a' | sudo tee -a /etc/vim/vimrc.local
 echo 'command! NN set nonumber' | sudo tee -a /etc/vim/vimrc.local
@@ -80,33 +82,28 @@ if has("autocmd")
 endif
 EOF
 
-# local dotfiles
-echo "inoremap <C-H> <C-W>" >> ~/.vimrc
-echo "inoremap <C-BS> <C-W>" >> ~/.vimrc
+sudo git config --system push.autoSetupRemote true
+sudo git config --system core.editor "vim"
+sudo git config --system pretty.custom '%C(auto)%h%d %s %Cgreen%ar %Cblue%an'
+```
 
-git config --global push.autoSetupRemote true
-git config --global core.editor "vim"
-git config --global pretty.custom '%C(auto)%h%d %s %Cgreen%ar %Cblue%an'
+## local dotfiles
+```
+#echo "inoremap <C-H> <C-W>" >> ~/.vimrc
+#echo "inoremap <C-BS> <C-W>" >> ~/.vimrc
 
 grep -qF 'eval "$(direnv hook bash)"' ~/.bashrc || echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 
 # vscodium keybindings
 curl -sLo ~/.config/VSCodium/User/keybindings.json "https://raw.githubusercontent.com/husujo/ubuntu/main/vscodium-keybindings.json?v=1"
-```
 
-## AI
-```
-tee ~/.claude/CLAUDE.md ~/.codex/AGENTS.md << 'EOF'
-This PC is Ubuntu 24
-EOF
+# AI
+curl -sLo ~/.agents/AGENTS.md "https://raw.githubusercontent.com/husujo/ubuntu/main/AGENTS.md?v=1"
+cp ~/.agents/AGENTS.md ~/.claude/CLAUDE.md
+cp ~/.agents/AGENTS.md ~/.codex/AGENTS.md
 
-cat > ~/.cursor/rules/global-context.mdc << 'EOF'
----
-alwaysApply: true
----
-
-This PC is Ubuntu 24
-EOF
+# Bash Aliases
+curl -sLo ~/.bash_aliases "https://raw.githubusercontent.com/husujo/ubuntu/main/bash_aliases?v=1"
 ```
 
 ## Bash Aliases
