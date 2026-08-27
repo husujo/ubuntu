@@ -30,6 +30,21 @@ sudo apt install -y libfuse2 fzf timeshift openjdk-8-jdk gnome-tweaks gnome-sush
 # sudo apt install -y nemo # apt lacking nemo-preview package
 ```
 
+## global dotfiles
+```
+# global inputrc
+grep -qF '"\C-H":"\C-W"' /etc/inputrc || echo '"\C-H":"\C-W"' | sudo tee -a /etc/inputrc # ctrl+backspace will delete word
+grep -qF 'set completion-ignore-case On' /etc/inputrc || echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc # case insensitive tab completion
+
+# vim global settings
+sudo curl -sLo /etc/vim/vimrc.local "https://raw.githubusercontent.com/husujo/ubuntu/main/vimrc.local?v=1"
+
+# git system wide settings
+sudo git config --system push.autoSetupRemote true
+sudo git config --system core.editor "vim"
+sudo git config --system pretty.custom '%C(auto)%h%d %s %Cgreen%ar %Cblue%an'
+```
+
 # User configuration
 
 ## home directory setup
@@ -58,21 +73,6 @@ chmod 600 ~/.ssh/id_ed25519
 ## user gnome settings and extensions
 ```
 curl -sL "https://raw.githubusercontent.com/husujo/ubuntu/main/gnome-settings.sh?v=1" | bash
-```
-
-## global dotfiles
-```
-# global inputrc
-grep -qF '"\C-H":"\C-W"' /etc/inputrc || echo '"\C-H":"\C-W"' | sudo tee -a /etc/inputrc # ctrl+backspace will delete word
-grep -qF 'set completion-ignore-case On' /etc/inputrc || echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc # case insensitive tab completion
-
-# vim global settings
-sudo curl -sLo /etc/vim/vimrc.local "https://raw.githubusercontent.com/husujo/ubuntu/main/vimrc.local?v=1"
-
-# git system wide settings
-sudo git config --system push.autoSetupRemote true
-sudo git config --system core.editor "vim"
-sudo git config --system pretty.custom '%C(auto)%h%d %s %Cgreen%ar %Cblue%an'
 ```
 
 ## local dotfiles
