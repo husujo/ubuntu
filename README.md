@@ -89,6 +89,9 @@ git config --global core.editor "vim"
 git config --global pretty.custom '%C(auto)%h%d %s %Cgreen%ar %Cblue%an'
 
 grep -qF 'eval "$(direnv hook bash)"' ~/.bashrc || echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
+
+# vscodium keybindings
+curl -sLo ~/.config/VSCodium/User/keybindings.json "https://raw.githubusercontent.com/husujo/ubuntu/main/vscodium-keybindings.json?v=1"
 ```
 
 ## AI
