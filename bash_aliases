@@ -32,6 +32,7 @@ alias grepi='grep -i'
 alias crash='journalctl -k -b -1 > ~/kernel.log'
 port () { lsof -i :"$1"; }
 
+# can use ctrl x ctrl e for multi-line input
 ai () {
   local log="/tmp/ai.log"
   local sysprompt="System Prompt: you are invoked from Ubuntu 24 terminal. avoid superfluous newlines."
