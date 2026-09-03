@@ -32,7 +32,7 @@ alias grepi='grep -i'
 alias crash='journalctl -k -b -1 > ~/kernel.log'
 port () { lsof -i :"$1"; }
 
-# use double quotes for pasting in multi line, and ctrl x ctrl e for huge input text
+# use single or double quotes for pasting in multi line, and ctrl x ctrl e for huge input text
 ai () {
   local log="/tmp/ai.log"
   local sysprompt="System Prompt: you are invoked from Ubuntu 24 terminal. avoid superfluous newlines."
