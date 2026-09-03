@@ -59,6 +59,7 @@ mkdir -p ~/.config/autostart
 cp /var/lib/snapd/desktop/applications/firefox_firefox.desktop ~/.config/autostart/
 cp /usr/share/applications/org.gnome.Terminal.desktop ~/.config/autostart/
 mkdir -p ~/.config/fontconfig
+touch ~/.config/fontconfig/fonts.conf
 # mkdir -p ~/.local/share/themes
 # mkdir -p ~/.theme
 mkdir -p ~/Games
