@@ -129,6 +129,7 @@ flatpak install -y flathub org.gnome.baobab # disk usage analyzer
 flatpak install -y flathub io.github.swordpuffin.rewaita # gnome color customizer
 flatpak install -y flathub org.qbittorrent.qBittorrent
 flatpak install -y flathub org.prismlauncher.PrismLauncher
+flatpak install -y flathub io.github.quodlibet.QuodLibet
 ```
 
 ## snaps
