@@ -23,7 +23,7 @@ sudo ubuntu-drivers install
 ```
 sudo mkdir --parents --mode=0755 /etc/apt/keyrings
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y vim curl git neofetch direnv xclip
+sudo apt install -y vim curl git ripgrep neofetch direnv xclip
 ```
 ```
 sudo apt install -y libfuse2 fzf timeshift openjdk-8-jdk gnome-tweaks gnome-sushi alacarte dconf-editor synaptic flatpak flameshot
