@@ -6,9 +6,7 @@ commands for setting up a new ubuntu installation with settings, apps and packag
 ## swapfile
 ```
 ls /swap.img
-sudo swapoff -a
-sudo dd if=/dev/zero of=/swap.img bs=1G count=16 # 16GB
-# Set up a Linux swap area and turn it on
+sudo swapoff -a && sudo dd if=/dev/zero of=/swap.img bs=1G count=16 # 16GB
 sudo chmod 0600 /swap.img && sudo mkswap /swap.img && sudo swapon /swap.img
 echo 'vm.swappiness = 20' | sudo tee -a /etc/sysctl.conf
 # https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
@@ -212,7 +210,7 @@ sudo usermod -aG docker $USER
 ```
 
 ## postgres
-(local db dev should be spun up with a nix flake and sidecar process, not system-installed constantly running psq cluster.)
+(local db dev should be spun up with a nix flake and sidecar process or docker, not system-installed constantly running psq cluster.)
 ```
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
