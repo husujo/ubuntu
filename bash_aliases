@@ -108,6 +108,12 @@ git-backup-branch() (
     git push origin "refs/remotes/origin/${current_branch}:refs/heads/${new_branch}"
 )
 
+gpgtar() {
+    local name="${1%/}"          # Remove trailing slash if present
+    tar cf - "$name" | gpg --symmetric --cipher-algo AES256 -o "${name}.tar.gpg"
+}
+gpguntar() { gpg --decrypt "$1" | tar xf -; }
+
 # firefox (use built in vertical tabs now)
 #FIREFOX_HOME=$HOME/snap/firefox/common/.mozilla/firefox
 #FIREFOX_PROFILE=$FIREFOX_HOME/$(cat $FIREFOX_HOME/profiles.ini | sed -n -e 's/^.*Path=//p' | head -n 1)
