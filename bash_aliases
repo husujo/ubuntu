@@ -74,6 +74,7 @@ alias l='ls'
 alias la='ls -a'
 alias ll='ls -lF'
 alias lal='ls -la'
+alias lla='lal'
 
 # git
 alias gs='git status'
