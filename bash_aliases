@@ -239,6 +239,9 @@ if command -v docker >/dev/null 2>&1; then
         elif [[ "$1" == "c" ]]; then
             shift
             command docker container "$@"
+        elif [[ "$1" == "ls" ]]; then
+            command docker container ls -a
+            command docker image ls
         else
             command docker "$@"
         fi
