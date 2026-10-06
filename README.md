@@ -162,7 +162,7 @@ sudo snap install google-cloud-cli --classic
 # this doesnt work for winboat
 sudo snap install docker # instructions - https://snapcraft.io/docker
 # sudo addgroup --system docker
-# sudo adduser $USER docker
+# sudo adduser $USER docker (insecure)
 # newgrp docker
 
 # sudo snap install 0ad
@@ -203,13 +203,13 @@ sudo apt install gnupg lsb-release
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-sudo usermod -aG docker $USER
+# sudo usermod -aG docker $USER (insecure)
 
 # to stop docker from requiring network at boot
 # sudo systemctl disable NetworkManager-wait-online.service
 ```
 
-## postgres
+## postgres (deprecated)
 (local db dev should be spun up with a nix flake and sidecar process or docker, not system-installed constantly running psq cluster.)
 ```
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
