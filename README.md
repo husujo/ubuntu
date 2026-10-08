@@ -49,7 +49,7 @@ sudo git config --system pretty.custom '%C(auto)%h%d %s %Cgreen%ar %Cblue%an'
 ```
 mkdir -p ~/.local/bin
 mkdir -p ~/code
-mkdir -p ~/.agents ~/.claude ~/.codex ~/.cursor/rules
+mkdir -p ~/.agents ~/.claude ~/.codex ~/.cursor/rules ~/.pi/agent
 touch ~/.ssh/config
 ```
 ```
@@ -227,6 +227,7 @@ curl --proto '=https' --tlsv1.2 -fsSL https://ollama.com/install.sh | sh
 curl --proto '=https' --tlsv1.2 -fsSL https://claude.ai/install.sh | bash
 curl --proto '=https' --tlsv1.2 -fsSL https://microclaw.ai/install.sh | bash
 curl --proto '=https' --tlsv1.2 -fsSL https://chatgpt.com/codex/install.sh | sh
+curl --proto '=https' --tlsv1.2 -fsSL https://pi.dev/install.sh | sh
 ```
 
 ## cursor
