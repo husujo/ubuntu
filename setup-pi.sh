@@ -1,12 +1,26 @@
 #!/bin/bash
 
+# usage 
+# curl -fsSL "https://raw.githubusercontent.com/husujo/ubuntu/main/setup-pi.sh?v=1" | bash
+
+if ! command -v jq >/dev/null 2>&1; then
+    echo "Error: jq not found" >&2
+    exit 1
+fi
+
 mkdir -p ~/.pi/agent
 
-curl -sLo ~/.pi/agent/AGENTS.md "https://raw.githubusercontent.com/husujo/ubuntu/main/AGENTS.md?v=1"
+if [[ ! -f ~/.pi/agent/AGENTS.md ]]; then
+    curl -fsSLo ~/.pi/agent/AGENTS.md "https://raw.githubusercontent.com/husujo/ubuntu/main/AGENTS.md?v=1"
+fi
 
-echo '{
+if [[ ! -f ~/.pi/agent/settings.json ]]; then
+    cat > ~/.pi/agent/settings.json <<'JSON'
+{
   "defaultTools": ["read", "grep", "find", "ls"]
-}' > ~/.pi/agent/settings.json
+}
+JSON
+fi
 
 # Create models.json with provider stubs if it doesn't exist.
 if [[ ! -f ~/.pi/agent/models.json ]]; then
@@ -64,19 +78,26 @@ JSON
 fi
 
 # Discover installed Ollama models and update only the Ollama model list.
-# TODO only do this if ollama command exists on system
-models="$(
-    ollama ls |
-    awk 'NR > 1 {print $1}' |
-    jq -Rn '[inputs | {id: ., contextWindow: 65536}]'
-)"
+if command -v ollama >/dev/null 2>&1; then
+    models="$(
+        ollama ls |
+        awk 'NR > 1 {print $1}' |
+        jq -Rn '[inputs | {id: ., contextWindow: 65536}]'
+    )"
 
-jq --argjson models "$models" \
-    '.providers.ollama.models = $models' \
-    ~/.pi/agent/models.json > /tmp/models.json &&
-mv /tmp/models.json ~/.pi/agent/models.json
+    if jq -e 'length > 0' <<< "$models" >/dev/null; then
+        jq --argjson models "$models" \
+            '.providers.ollama.models = $models' \
+            ~/.pi/agent/models.json > /tmp/models.json &&
+        mv /tmp/models.json ~/.pi/agent/models.json
+    fi
+fi
+
+# download pi
+if ! command -v pi >/dev/null 2>&1; then
+    curl --proto '=https' --tlsv1.2 -fsSL https://pi.dev/install.sh | sh
+fi
 
 
 
 
-curl --proto '=https' --tlsv1.2 -fsSL https://pi.dev/install.sh | sh
