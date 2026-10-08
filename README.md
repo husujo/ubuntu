@@ -86,6 +86,11 @@ curl -sLo ~/.config/VSCodium/User/keybindings.json "https://raw.githubuserconten
 curl -sLo ~/.agents/AGENTS.md "https://raw.githubusercontent.com/husujo/ubuntu/main/AGENTS.md?v=1"
 cp ~/.agents/AGENTS.md ~/.claude/CLAUDE.md
 cp ~/.agents/AGENTS.md ~/.codex/AGENTS.md
+cp ~/.agents/AGENTS.md ~/.pi/agent/AGENTS.md
+
+echo '{
+  "defaultTools": ["read", "grep", "find", "ls"]
+}' > ~/.pi/agent/settings.json
 
 # Bash Aliases
 curl -sLo ~/.bash_aliases "https://raw.githubusercontent.com/husujo/ubuntu/main/bash_aliases?v=1"
