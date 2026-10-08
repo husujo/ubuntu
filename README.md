@@ -21,7 +21,7 @@ sudo ubuntu-drivers install
 ```
 sudo mkdir --parents --mode=0755 /etc/apt/keyrings
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y vim curl git ripgrep neofetch direnv xclip
+sudo apt install -y vim curl git ripgrep jq neofetch direnv xclip
 ```
 ```
 sudo apt install -y libfuse2 fzf timeshift openjdk-8-jdk gnome-tweaks gnome-sushi alacarte dconf-editor synaptic flatpak flameshot
@@ -47,9 +47,7 @@ sudo git config --system pretty.custom '%C(auto)%h%d %s %Cgreen%ar %Cblue%an'
 
 ## home directory setup
 ```
-mkdir -p ~/.local/bin
-mkdir -p ~/code
-mkdir -p ~/.agents ~/.claude ~/.codex ~/.cursor/rules ~/.pi/agent
+mkdir -p ~/.local/bin ~/code
 touch ~/.ssh/config
 ```
 ```
@@ -80,20 +78,16 @@ curl -sL "https://raw.githubusercontent.com/husujo/ubuntu/main/gnome-settings.sh
 grep -qF 'eval "$(direnv hook bash)"' ~/.bashrc || echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 
 # vscodium keybindings
-curl -sLo ~/.config/VSCodium/User/keybindings.json "https://raw.githubusercontent.com/husujo/ubuntu/main/vscodium-keybindings.json?v=1"
-
-# AI
-curl -sLo ~/.agents/AGENTS.md "https://raw.githubusercontent.com/husujo/ubuntu/main/AGENTS.md?v=1"
-cp ~/.agents/AGENTS.md ~/.claude/CLAUDE.md
-cp ~/.agents/AGENTS.md ~/.codex/AGENTS.md
-cp ~/.agents/AGENTS.md ~/.pi/agent/AGENTS.md
-
-echo '{
-  "defaultTools": ["read", "grep", "find", "ls"]
-}' > ~/.pi/agent/settings.json
+curl -fsSLo ~/.config/VSCodium/User/keybindings.json "https://raw.githubusercontent.com/husujo/ubuntu/main/vscodium-keybindings.json?v=1"
 
 # Bash Aliases
 curl -sLo ~/.bash_aliases "https://raw.githubusercontent.com/husujo/ubuntu/main/bash_aliases?v=1"
+```
+
+# AI
+```
+sudo adduser --disabled-password --gecos "" aiagent
+sudo -iu aiagent bash -lc 'curl -fsSL "https://raw.githubusercontent.com/husujo/ubuntu/main/setup-pi.sh?v=1" | bash'
 ```
 
 # Apps
@@ -229,10 +223,10 @@ curl --proto '=https' --tlsv1.2 -fsSL https://bun.com/install | bash
 curl --proto '=https' --tlsv1.2 -fsSL https://fly.io/install.sh | sh
 curl --proto '=https' --tlsv1.2 -fsSL https://tailscale.com/install.sh | sh
 curl --proto '=https' --tlsv1.2 -fsSL https://ollama.com/install.sh | sh
-curl --proto '=https' --tlsv1.2 -fsSL https://claude.ai/install.sh | bash
-curl --proto '=https' --tlsv1.2 -fsSL https://microclaw.ai/install.sh | bash
-curl --proto '=https' --tlsv1.2 -fsSL https://chatgpt.com/codex/install.sh | sh
 curl --proto '=https' --tlsv1.2 -fsSL https://pi.dev/install.sh | sh
+curl --proto '=https' --tlsv1.2 -fsSL https://microclaw.ai/install.sh | bash
+curl --proto '=https' --tlsv1.2 -fsSL https://claude.ai/install.sh | bash
+curl --proto '=https' --tlsv1.2 -fsSL https://chatgpt.com/codex/install.sh | sh
 ```
 
 ## cursor
