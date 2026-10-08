@@ -50,6 +50,8 @@ ai () {
   ollama run "$model" --think="$think" --nowordwrap -- "$str" | tee -a "$log"
 }
 
+alias aiagent='sudo -iu aiagent .pi/agent/bin/pi'
+
 # ip
 alias myip='curl ifconfig.io -4 >> ~/.ips && echo "" >> ~/.ips && cat ~/.ips'
 alias localip="hostname -I | awk '{print \$1}'"
