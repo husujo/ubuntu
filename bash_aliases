@@ -259,12 +259,34 @@ if command -v virsh >/dev/null 2>&1; then
         if [[ "$1" == "ls" ]]; then
             shift
             command virsh list --all "$@"
+        elif [[ "$1" == "on" ]]; then
+            shift
+            command virsh start "$@"
+        elif [[ "$1" == "off" ]]; then
+            shift
+            command virsh shutdown "$@"
+        elif [[ "$1" == "state" || "$1" == "status" ]]; then
+            shift
+            command virsh domstate "$@"
+        elif [[ "$1" == "addr" ]]; then
+            shift
+            command virsh domifaddr "$@"
+        elif [[ "$1" == "ssh" ]]; then
+            local name="$2"
+            local state=$(vm state "$name")
+            [[ "$state" == "shut off" ]] && echo 'vm is off' && return 1
+            local info=$(vm addr "$name")
+            local ip=$(echo "$info" | awk '/ipv4/ {split($4, a, "/"); print a[1]}')
+            [[ -z "$ip" ]] && echo "Could not get IP for $name" && return 1
+            ssh "$name"@"$ip"
+            # removed -X for security
         else
             command virsh "$@"
         fi
-    }
+    }   
+    # how to know when need -c qemu:///system?
     # complete -o default -F _virsh vm
-    # complete -o default -o bashdefault vm
+    #complete -o default -o bashdefault vm
 fi
 
 
