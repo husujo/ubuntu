@@ -18,7 +18,7 @@ alias sai='sudo apt install'
 alias saup='sudo apt update'
 alias saupg='sudo apt upgrade'
 alias sauu='sudo apt update && sudo apt upgrade'
-alias reapt='sudo apt update && sudo apt upgrade'
+alias reapt='sudo apt update && sudo apt upgrade && sudo apt autoremove'
 
 # misc
 alias regrub='sudo update-grub'
@@ -28,9 +28,9 @@ alias swap='swapon --show'
 alias psa='ps aux'
 alias ram='sudo dmidecode --type memory'
 alias wayland='echo "system is running $XDG_SESSION_TYPE"'
+alias kernel='uname -r'
 alias grepi='grep -i'
 alias crash='journalctl -k -b -1 > ~/kernel.log'
-port () { lsof -i :"$1"; }
 
 # use single or double quotes for pasting in multi line, and ctrl x ctrl e for huge input text
 ai () {
@@ -50,11 +50,12 @@ ai () {
   ollama run "$model" --think="$think" --nowordwrap -- "$str" | tee -a "$log"
 }
 
-alias aiagent='sudo -iu aiagent .pi/agent/bin/pi'
+alias aiagent="sudo -iu aiagent bash -ic 'pi'"
 
 # ip
 alias myip='curl ifconfig.io -4 >> ~/.ips && echo "" >> ~/.ips && cat ~/.ips'
 alias localip="hostname -I | awk '{print \$1}'"
+alias hostip="ip route | awk '/default/ {print \$3}'"
 port () { lsof -i :"$1"; }
 
 # bash
