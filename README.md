@@ -208,6 +208,14 @@ sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io doc
 # sudo systemctl disable NetworkManager-wait-online.service
 ```
 
+## nginx
+```
+# install and disable until you are ready
+sudo apt install nginx
+sudo systemctl disable --now nginx
+sudo rm /etc/nginx/sites-enabled/*
+```
+
 ## postgres (deprecated)
 (local db dev should be spun up with a nix flake and sidecar process or docker, not system-installed constantly running psq cluster.)
 ```
