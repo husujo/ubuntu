@@ -53,7 +53,7 @@ ai () {
 alias aiagent="sudo -iu aiagent bash -ic 'pi'"
 
 # ip
-alias myip='curl ifconfig.io -4 >> ~/.ips && echo "" >> ~/.ips && cat ~/.ips'
+alias myip='curl -fsS ifconfig.io -4 >> ~/.ips && echo "" >> ~/.ips && cat ~/.ips'
 alias localip="hostname -I | awk '{print \$1}'"
 alias hostip="ip route | awk '/default/ {print \$3}'"
 port () { lsof -i :"$1"; }
