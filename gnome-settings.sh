@@ -40,8 +40,8 @@ echo "NoDisplay=true" | sudo tee -a /usr/share/applications/display-im6.q16.desk
 command -v system76-power &> /dev/null && system76-power profile performance
 
 # extension list found with `gnome-extensions list --enabled`
-# removed: rounded-window-corners@fxgn user-theme@gnome-shell-extensions.gcampax.github.com auto-move-windows@gnome-shell-extensions.gcampax.github.com
-EXT_LIST=(just-perfection-desktop@just-perfection extension-list@tu.berry blur-my-shell@aunetx Vitals@CoreCoding.com clipboard-indicator@tudmotu.com scroll-workspaces@gfxmonk.net); for i in "${EXT_LIST[@]}"; do busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${i}; done
+# removed: user-theme@gnome-shell-extensions.gcampax.github.com auto-move-windows@gnome-shell-extensions.gcampax.github.com
+EXT_LIST=(just-perfection-desktop@just-perfection extension-list@tu.berry blur-my-shell@aunetx Vitals@CoreCoding.com clipboard-indicator@tudmotu.com scroll-workspaces@gfxmonk.net grand-theft-focus@zalckos.github.com); for i in "${EXT_LIST[@]}"; do busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${i}; done
 
 # https://www.gnome-look.org/p/1316887
 # download theme, unzip, move to .theme/, open tweaks
