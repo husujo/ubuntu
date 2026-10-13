@@ -9,6 +9,7 @@ if ! command -v jq >/dev/null 2>&1; then
 fi
 
 mkdir -p ~/.pi/agent
+mkdir -p ~/.pi/agent/prompts
 
 if [[ ! -f ~/.pi/agent/AGENTS.md ]]; then
     curl -fsSLo ~/.pi/agent/AGENTS.md "https://raw.githubusercontent.com/husujo/ubuntu/main/AGENTS.md?v=1"
