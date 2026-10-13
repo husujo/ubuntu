@@ -26,7 +26,9 @@ fi
 if [[ ! -f ~/.pi/agent/keybindings.json ]]; then
     cat > ~/.pi/agent/keybindings.json <<'JSON'
 {
-  "tui.editor.deleteWordBackward": ["ctrl+w", "alt+backspace", "ctrl+backspace", "ctrl+h"]
+  "tui.editor.deleteWordBackward": ["ctrl+w", "alt+backspace", "ctrl+backspace", "ctrl+h"],
+  "tui.input.newLine": ["shift+enter", "ctrl+j", "alt+enter"],
+  "app.message.followUp": ["ctrl+alt+enter"]
 }
 JSON
 fi
