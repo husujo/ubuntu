@@ -23,6 +23,14 @@ if [[ ! -f ~/.pi/agent/settings.json ]]; then
 JSON
 fi
 
+if [[ ! -f ~/.pi/agent/keybindings.json ]]; then
+    cat > ~/.pi/agent/keybindings.json <<'JSON'
+{
+  "tui.editor.deleteWordBackward": ["ctrl+w", "alt+backspace", "ctrl+backspace"]
+}
+JSON
+fi
+
 # Create models.json with provider stubs if it doesn't exist.
 if [[ ! -f ~/.pi/agent/models.json ]]; then
     cat > ~/.pi/agent/models.json <<'JSON'
