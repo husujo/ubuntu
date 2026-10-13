@@ -26,6 +26,14 @@ gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/k
 gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy '<Primary>c'
 # (!!) for INTERRUPT signal, use ctrl+alt+c
 
+# fix ubuntu-dock shortcuts not activating gnome-terminal and nautilus (TODO test more)
+cp /usr/share/applications/org.gnome.Nautilus.desktop ~/.local/share/applications/
+cp /usr/share/applications/org.gnome.Terminal.desktop ~/.local/share/applications/
+sed -i 's/DBusActivatable=true/DBusActivatable=false/' ~/.local/share/applications/org.gnome.Nautilus.desktop
+sed -i 's/DBusActivatable=true/DBusActivatable=false/' ~/.local/share/applications/org.gnome.Terminal.desktop
+update-desktop-database ~/.local/share/applications/
+# will apply next login
+
 # put settings at the top of the search list
 search_order=$(gsettings get org.gnome.desktop.search-providers sort-order)
 search_order=$(echo $search_order | sed "s/'org\.gnome\.Nautilus\.desktop',*//g" | sed "s/\[/['org.gnome.Nautilus.desktop', /")
