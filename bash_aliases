@@ -2,7 +2,7 @@
 [[ "$XDG_SESSION_TYPE" == "x11" ]] && xset r 66
 
 export EDITOR="vim";
-export KUBE_EDITOR="cursor --wait";
+export KUBE_EDITOR="vim --wait";
 export CURSOR_FLAGS="--no-sandbox";
 export CURSOR_DISABLE_UPDATES=1;
 
@@ -17,7 +17,6 @@ alias sa='sudo apt'
 alias sai='sudo apt install'
 alias saup='sudo apt update'
 alias saupg='sudo apt upgrade'
-alias sauu='sudo apt update && sudo apt upgrade'
 alias reapt='sudo apt update && sudo apt upgrade && sudo apt autoremove'
 
 # misc
@@ -31,6 +30,7 @@ alias wayland='echo "system is running $XDG_SESSION_TYPE"'
 alias kernel='uname -r'
 alias grepi='grep -i'
 alias crash='journalctl -k -b -1 > ~/kernel.log'
+alias fzf='fzf --preview="cat {}"'
 
 # use single or double quotes for pasting in multi line, and ctrl x ctrl e for huge input text
 ai () {
@@ -322,10 +322,8 @@ fi
 # dev
 alias denva="direnv allow ."
 alias st="bun start"
-alias t='bun test'
 alias tf='terraform'
 alias nodemodules='find . -name "node_modules" -type d -prune'
-alias fzf='fzf --preview="cat {}"'
 
 64d () { echo $1 | base64 -d && echo ""; }
 64e () { printf $1 | base64 -w 0 && echo ""; }
