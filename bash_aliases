@@ -3,8 +3,6 @@
 
 export EDITOR="vim";
 export KUBE_EDITOR="vim --wait";
-export CURSOR_FLAGS="--no-sandbox";
-export CURSOR_DISABLE_UPDATES=1;
 
 # laptop
 alias kboff="sudo meestic -m Disabled"
@@ -13,7 +11,7 @@ alias battery="acpitool"
 alias gputop="radeontop -b 03:00.0"
 
 # apt
-alias sa='sudo apt'
+alias sapt='sudo apt'
 alias sai='sudo apt install'
 alias saup='sudo apt update'
 alias saupg='sudo apt upgrade'
@@ -31,6 +29,10 @@ alias kernel='uname -r'
 alias grepi='grep -i'
 alias crash='journalctl -k -b -1 > ~/kernel.log'
 alias fzf='fzf --preview="cat {}"'
+alias sudo='sudo '
+alias v='vim'
+alias svim='sudo vim'
+alias sys='systemctl'
 
 # use single or double quotes for pasting in multi line, and ctrl x ctrl e for huge input text
 ai () {
@@ -78,6 +80,40 @@ alias la='ls -a'
 alias ll='ls -lF'
 alias lal='ls -la'
 alias lla='lal'
+
+# tmux (remember ctrl+b d)
+alias t='tmux'
+alias tka='tmux kill-server'
+mytmux() { tmux display-message -p '#S' 2>/dev/null; }
+tls() { tmux ls -F '#S' 2>/dev/null; }
+tmuxfzf() { fzf --exit-0 --preview 'tmux capture-pane -t ={}: -p -e' --preview-window '80%' "$@"; }
+tk() {
+  local n names=$(printf '%s\n' "$@")
+  [ -z "$names" ] && names=$(tls | tmuxfzf --multi --bind 'space:toggle')
+  for n in $names; do tmux kill-session -t "=$n"; done
+}
+tat() {
+  local name="${1:-$(tls | tmuxfzf --select-1)}"
+  [ -z "$name" ] && return
+  [ -z "$TMUX" ] && { tmux new -As "$name"; return; }
+  tmux new -ds "$name" 2>/dev/null
+  tmux switch-client -t "=$name"
+}
+tmux_session_list() {
+  local me=$(mytmux) name
+  for name in $(tls); do
+    [[ "$name" != "$me" ]] && printf '[%-8.8s] ' "$name" && continue
+    printf '#[bold][%-8.8s]#[nobold] ' "$name"
+  done
+}
+tmux_click_session() {
+  local x=$1
+  local index=$((x / 11 + 1))
+  local name=$(tls | sed -n "${index}p")
+  [[ -z "$name" ]] && return
+  tmux switch-client -t "=$name"
+  tmux refresh-client -S
+}
 
 # git
 alias gs='git status'
