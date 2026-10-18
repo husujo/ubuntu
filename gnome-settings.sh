@@ -29,8 +29,10 @@ gsettings set org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/k
 # fix ubuntu-dock shortcuts not activating gnome-terminal and nautilus (TODO test more)
 cp /usr/share/applications/org.gnome.Nautilus.desktop ~/.local/share/applications/
 cp /usr/share/applications/org.gnome.Terminal.desktop ~/.local/share/applications/
-sed -i 's/DBusActivatable=true/DBusActivatable=false/' ~/.local/share/applications/org.gnome.Nautilus.desktop
-sed -i 's/DBusActivatable=true/DBusActivatable=false/' ~/.local/share/applications/org.gnome.Terminal.desktop
+sed -i '/^DBusActivatable=/d' ~/.local/share/applications/org.gnome.Nautilus.desktop
+sed -i '/^DBusActivatable=/d' ~/.local/share/applications/org.gnome.Terminal.desktop
+sed -i '/^\[Desktop Entry\]/a DBusActivatable=false' ~/.local/share/applications/org.gnome.Nautilus.desktop
+sed -i '/^\[Desktop Entry\]/a DBusActivatable=false' ~/.local/share/applications/org.gnome.Terminal.desktop
 update-desktop-database ~/.local/share/applications/
 # will apply next login
 
