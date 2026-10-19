@@ -32,7 +32,7 @@ alias fzf='fzf --preview="cat {}"'
 alias sudo='sudo '
 alias v='vim'
 alias svim='sudo vim'
-alias sys='systemctl'
+
 
 # use single or double quotes for pasting in multi line, and ctrl x ctrl e for huge input text
 ai () {
@@ -266,6 +266,23 @@ ksec () {
 # helm
 alias hru="helm repo update"
 alias hgv="helm get values"
+
+# systemctl shim
+alias sys='systemctl'
+sysu() { systemctl "$@" --user; }
+systemctl() {
+    local readopt='^(status|show|cat|help|list-|is-|get-)'
+    if [[ $1 == ls ]]; then
+        shift
+        command systemctl list-units --type=service "$@"
+    elif [[ -z $1 || $1 =~ $readopt || " $* " == *" --user "* ]]; then
+        command systemctl "$@"
+    else
+        sudo systemctl "$@"
+    fi
+}
+source /usr/share/bash-completion/completions/systemctl
+complete -F _systemctl sys sysu
 
 # docker shim
 if command -v docker >/dev/null 2>&1; then
