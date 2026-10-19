@@ -12,11 +12,6 @@ echo 'vm.swappiness = 20' | sudo tee -a /etc/sysctl.conf
 # https://askubuntu.com/questions/103915/how-do-i-configure-swappiness
 ```
 
-## drivers setup
-```
-sudo ubuntu-drivers install
-```
-
 ## apt
 ```
 sudo mkdir --parents --mode=0755 /etc/apt/keyrings
@@ -26,6 +21,8 @@ sudo apt install -y vim curl git ripgrep jq neofetch direnv xclip fzf
 ```
 sudo apt install -y libfuse2 timeshift openjdk-8-jdk gnome-tweaks gnome-sushi alacarte dconf-editor synaptic flatpak flameshot
 # sudo apt install -y nemo # apt lacking nemo-preview package
+# proprietary drivers
+sudo ubuntu-drivers install
 ```
 
 ## global dotfiles
