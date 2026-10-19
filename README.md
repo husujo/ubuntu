@@ -34,10 +34,10 @@ sudo apt install -y libfuse2 timeshift openjdk-8-jdk gnome-tweaks gnome-sushi al
 grep -qF '"\C-H":"\C-W"' /etc/inputrc || echo '"\C-H":"\C-W"' | sudo tee -a /etc/inputrc # ctrl+backspace will delete word
 grep -qF 'set completion-ignore-case On' /etc/inputrc || echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc # case insensitive tab completion
 
-# vim global settings
-sudo curl -sLo /etc/vim/vimrc.local "https://raw.githubusercontent.com/husujo/ubuntu/main/vimrc.local?v=1"
+URL="https://raw.githubusercontent.com/husujo/ubuntu/main"
+sudo curl -fsSLo /etc/vim/vimrc.local "$URL/vimrc.local"
+sudo curl -fsSLo /etc/tmux.conf "$URL/tmux.conf"
 
-# git system wide settings
 sudo git config --system push.autoSetupRemote true
 sudo git config --system core.editor "vim"
 sudo git config --system pretty.custom '%C(auto)%h%d %s %Cgreen%ar %Cblue%an'
