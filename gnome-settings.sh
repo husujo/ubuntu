@@ -1,5 +1,6 @@
 # might get super+q confused with ctrl+tab, ctrl+`, super+tab
-gsettings set org.gnome.desktop.wm.keybindings close "['<Shift><Super>C', '<Shift><Super>Q']"
+gsettings set org.gnome.desktop.wm.keybindings close "['<Shift><Super>Q']"
+gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
 gsettings set org.gnome.desktop.wm.preferences resize-with-right-button "true"
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position "BOTTOM"
 gsettings set org.gnome.shell.extensions.dash-to-dock show-trash false
