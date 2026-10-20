@@ -94,6 +94,14 @@ curl -sLo ~/.bash_aliases "https://raw.githubusercontent.com/husujo/ubuntu/main/
 # AI
 ```
 sudo adduser --disabled-password --gecos "" aiagent
+
+# setup ssh access (ssh localhost -> localhost, so tmux can linger in aiagent if you want)
+sudo -iu aiagent sh -c 'umask 077; mkdir -p ~/.ssh; touch ~/.ssh/authorized_keys'
+
+# add your pub key. run from any user who wants ssh access to aiagent
+[ -f ~/.ssh/id_ed25519.pub ] && sudo tee -a /home/aiagent/.ssh/authorized_keys < ~/.ssh/id_ed25519.pub >/dev/null
+
+# install pi
 sudo -iu aiagent bash -lc 'curl -fsSL "https://raw.githubusercontent.com/husujo/ubuntu/main/setup-pi.sh?v=1" | bash'
 ```
 
