@@ -88,20 +88,23 @@ if [[ ! -f ~/.pi/agent/models.json ]]; then
 JSON
 fi
 
-# Discover installed Ollama models and update only the Ollama model list.
+# Discover installed Ollama models and update only the Ollama provider.
 if command -v ollama >/dev/null 2>&1; then
-    models="$(
-        ollama ls |
-        awk 'NR > 1 {print $1}' |
-        jq -Rn '[inputs | {id: ., contextWindow: 65536}]'
-    )"
+  file=~/.pi/agent/models.json
+  host="${OLLAMA_HOST:-127.0.0.1:11434}"
+  [[ $host != http* ]] && host="http://$host"
 
-    if jq -e 'length > 0' <<< "$models" >/dev/null; then
-        jq --argjson models "$models" \
-            '.providers.ollama.models = $models' \
-            ~/.pi/agent/models.json > /tmp/models.json &&
-        mv /tmp/models.json ~/.pi/agent/models.json
-    fi
+  models="$(
+    for id in $(ollama ls | awk 'NR > 1 {print $1}'); do
+      ollama show "$id" </dev/null 2>/dev/null |
+        jq -Rn --arg id "$id" '{id: $id, contextWindow: 65536, reasoning: any(inputs; test("^\\s+thinking\\s*$"))}'
+    done | jq -s .
+  )"
+
+  if [[ $models != '[]' ]]; then
+    jq --argjson models "$models" --arg url "${host%/}/v1" \
+      '.providers.ollama |= (.baseUrl = $url | .models = $models)' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+  fi
 fi
 
 # download pi
