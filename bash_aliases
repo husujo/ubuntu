@@ -53,6 +53,23 @@ ai () {
 }
 
 alias aiagent="sudo -iu aiagent bash -ic 'pi'"
+airead() {
+  local user=u:aiagent target dir acl
+  target=$(realpath -- "$1") || return
+  [[ $target != "$HOME"/* ]] && echo "target must be in $HOME" >&2 && return 1
+
+  # x on every parent up to and including $HOME
+  dir=$target
+  while [[ $dir != "$HOME" ]]; do
+    dir=$(dirname "$dir")
+    setfacl -m $user:x "$dir" || return
+  done
+
+  # read access, plus a default ACL if it's a directory
+  acl=$user:rX
+  [[ -d $target ]] && acl+=,d:$acl
+  setfacl -R -m "$acl" "$target"
+}
 
 # ip
 alias myip='curl -fsS ifconfig.io -4 >> ~/.ips && echo "" >> ~/.ips && cat ~/.ips'
