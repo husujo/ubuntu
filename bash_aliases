@@ -59,6 +59,9 @@ alias myip='curl -fsS ifconfig.io -4 >> ~/.ips && echo "" >> ~/.ips && cat ~/.ip
 alias localip="hostname -I | awk '{print \$1}'"
 alias hostip="ip route | awk '/default/ {print \$3}'"
 port () { lsof -i :"$1"; }
+localsubnet() {
+  ipcalc "$(localip)/24" | awk '/^Network/ {print $2}'
+}
 
 # bash
 alias rebash='source ~/.profile'
@@ -266,6 +269,14 @@ ksec () {
 # helm
 alias hru="helm repo update"
 alias hgv="helm get values"
+
+# ufw shim
+ufw() {
+  case "$1" in
+    ls) shift; command sudo ufw status numbered "$@" ;;
+    *)  command sudo ufw "$@" ;;
+  esac
+}
 
 # systemctl shim
 alias sys='systemctl'
