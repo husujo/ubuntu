@@ -25,6 +25,16 @@ sudo apt install -y libfuse2 timeshift openjdk-8-jdk gnome-tweaks gnome-sushi al
 sudo ubuntu-drivers install
 ```
 
+## ufw
+```
+sudo ufw limit from 192.168.1.0/24 to any port 22 proto tcp comment 'ssh from home LAN only (rate-limited)'
+sudo ufw allow from 192.168.1.0/24 to any port 80,443 proto tcp comment 'web from home LAN only'
+sudo ufw allow from 192.168.1.0/24 to any port 25565 proto tcp comment 'minecraft java, LAN only'
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw enable
+```
+
 ## global dotfiles
 ```
 # global inputrc
@@ -261,6 +271,15 @@ cat ~/.bashrc
 sudo apt install -y qemu-kvm libvirt-daemon-system virtinst virt-manager bridge-utils
 sudo usermod -aG libvirt,kvm $USER
 newgrp libvirt
+
+# TODO VM creation?
+
+# vm auto shutdown
+# sudo sed -i 's/^#ON_SHUTDOWN=shutdown/ON_SHUTDOWN=shutdown/' /etc/default/libvirt-guests
+
+sudo ufw allow in on virbr0 comment 'trust VM bridge (DHCP, DNS, nginx->ollama)'
+sudo ufw route allow in on virbr0 comment 'VM -> internet forwarding'
+sudo ufw route allow out on virbr0 comment 'VM -> internet forwarding (return path)'
 ```
 
 # Optional
