@@ -284,6 +284,11 @@ sudo ufw route allow out on virbr0 comment 'VM -> internet forwarding (return pa
 
 # Optional
 
+## SSH
+```
+sudo apt install openssh-server
+```
+
 ## MSI keyboard backlight
 ```
 sudo apt install -y git build-essential libudev-dev acpitool
