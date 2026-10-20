@@ -286,7 +286,7 @@ sudo ufw route allow out on virbr0 comment 'VM -> internet forwarding (return pa
 
 ## SSH
 ```
-sudo apt install openssh-server
+sudo apt install -y openssh-server
 ```
 
 ## MSI keyboard backlight
