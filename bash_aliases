@@ -168,6 +168,14 @@ git-backup-branch() (
     git push origin "refs/remotes/origin/${current_branch}:refs/heads/${new_branch}"
 )
 
+ghlatest-appimg() { ghlatest "$1" | grep -i .AppImage; }
+ghlatest-deb() { ghlatest "$1" | grep -i $(dpkg --print-architecture).deb; }
+ghlatest() {
+  local repo=${1#https://github.com/}
+  local url="https://api.github.com/repos/$repo/releases/latest"
+  curl -fsSL "$url" | jq -r '.assets[].browser_download_url'
+}
+
 gpgtar() {
     local name="${1%/}"          # Remove trailing slash if present
     tar cf - "$name" | gpg --symmetric --cipher-algo AES256 -o "${name}.tar.gpg"
@@ -297,6 +305,8 @@ ufw() {
 
 # systemctl shim
 alias sys='systemctl'
+alias syslog='journalctl -e -u'
+alias resys='sudo systemctl daemon-reload'
 sysu() { systemctl "$@" --user; }
 systemctl() {
     local readopt='^(status|show|cat|help|list-|is-|get-)'
