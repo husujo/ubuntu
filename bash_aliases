@@ -51,7 +51,7 @@ ai () {
   printf 'USER: %s\nAI: ' "$prompt" >> "$log"
   ollama run "$model" --think="$think" --nowordwrap -- "$str" | tee -a "$log"
 }
-
+alias pils='pi -r'
 alias aiagent="sudo -iu aiagent bash -ic 'pi'"
 airead() {
   local user=u:aiagent target dir acl
