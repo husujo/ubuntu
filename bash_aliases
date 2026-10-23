@@ -52,7 +52,9 @@ ai () {
   ollama run "$model" --think="$think" --nowordwrap -- "$str" | tee -a "$log"
 }
 alias pils='pi -r'
+alias repi='pi update && pi update --extensions'
 alias aiagent="sudo -iu aiagent bash -ic 'pi'"
+alias fullpi='pi --tools read,bash,edit,write,grep,find,ls'
 airead() {
   local user=u:aiagent target dir acl
   target=$(realpath -- "$1") || return
