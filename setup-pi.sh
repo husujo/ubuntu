@@ -66,12 +66,13 @@ if [[ ! -f ~/.pi/agent/models.json ]]; then
           }
         },
         {
-          "id": "deepseek-v4-flash",
-          "name": "DeepSeek V4 Flash",
+          "id": "deepseek-flash",
+          "name": "DeepSeek V4.1 Flash",
           "contextWindow": 1000000,
           "maxTokens": 384000,
           "input": [
-            "text"
+            "text",
+            "image"
           ],
           "reasoning": true,
           "cost": {
