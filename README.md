@@ -243,9 +243,12 @@ sudo apt update && sudo apt install -y postgresql postgresql-contrib postgresql-
 ```
 curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | sh
 curl --proto '=https' --tlsv1.2 -fsSL https://bun.com/install | bash
+curl --proto '=https' --tlsv1.2 -fsSL https://astral.sh/uv/install.sh | sh
+
 curl --proto '=https' --tlsv1.2 -fsSL https://fly.io/install.sh | sh
 curl --proto '=https' --tlsv1.2 -fsSL https://tailscale.com/install.sh | sh
 curl --proto '=https' --tlsv1.2 -fsSL https://ollama.com/install.sh | sh
+
 curl --proto '=https' --tlsv1.2 -fsSL https://pi.dev/install.sh | sh
 curl --proto '=https' --tlsv1.2 -fsSL https://microclaw.ai/install.sh | bash
 curl --proto '=https' --tlsv1.2 -fsSL https://claude.ai/install.sh | bash
