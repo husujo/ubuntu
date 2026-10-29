@@ -32,6 +32,7 @@ alias fzf='fzf --preview="cat {}"'
 alias sudo='sudo '
 alias v='vim'
 alias svim='sudo vim'
+alias sshls='ssh-add -l'
 
 
 # use single or double quotes for pasting in multi line, and ctrl x ctrl e for huge input text
