@@ -308,7 +308,7 @@ ufw() {
 # systemctl shim
 alias sys='systemctl'
 alias syslog='journalctl -e -u'
-alias resys='sudo systemctl daemon-reload'
+alias resys='sudo systemctl daemon-reload && systemctl --user daemon-reload'
 sysu() { systemctl "$@" --user; }
 systemctl() {
     local readopt='^(status|show|cat|help|list-|is-|get-)'
