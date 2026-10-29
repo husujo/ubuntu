@@ -229,8 +229,8 @@ device_id () { devices | grep -i $1 | sed -E 's/.*\s([0-9]+)\..*/\1/'; }
 sink_id () { sinks | grep -i $1 | sed -E 's/.*\s([0-9]+)\..*/\1/'; }
 set_sink () { wpctl set-default "$(sink_id $1)" && sinks | grep -i $1; }
 set_profile () { wpctl set-profile "$(device_id $1)" $2; } # wip
-speakers () { set_sink EDIFIER; }
-headphones () { bt_connect xm4 && set_sink xm4; }
+speakers () { set_sink ${1-EDIFIER}; }
+headphones () { bt_connect ${1-xm4} && set_sink ${1-xm4} && set_profile ${1-xm4} 6; }
 
 alias s="speakers"
 alias h="headphones"
