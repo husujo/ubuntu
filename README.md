@@ -48,6 +48,7 @@ sudo curl -fsSLo /etc/tmux.conf "$URL/tmux.conf"
 sudo git config --system push.autoSetupRemote true
 sudo git config --system core.editor "vim"
 sudo git config --system pretty.custom '%C(auto)%h%d %s %Cgreen%ar %Cblue%an'
+sudo git config --system url."git@github.com:".insteadOf "https://github.com/"
 ```
 
 # User configuration
