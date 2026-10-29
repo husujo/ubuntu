@@ -9,11 +9,6 @@ if ! command -v jq >/dev/null 2>&1; then
 fi
 
 mkdir -p ~/.pi/agent
-mkdir -p ~/.pi/agent/prompts
-
-if [[ ! -f ~/.pi/agent/AGENTS.md ]]; then
-    curl -fsSLo ~/.pi/agent/AGENTS.md "https://raw.githubusercontent.com/husujo/ubuntu/main/AGENTS.md?v=1"
-fi
 
 if [[ ! -f ~/.pi/agent/settings.json ]]; then
     cat > ~/.pi/agent/settings.json <<'JSON'
@@ -35,6 +30,7 @@ if [[ ! -f ~/.pi/agent/keybindings.json ]]; then
 JSON
 fi
 
+# TODO handle OLLAMA_HOST env for baseurl
 # Create models.json with provider stubs if it doesn't exist.
 if [[ ! -f ~/.pi/agent/models.json ]]; then
     cat > ~/.pi/agent/models.json <<'JSON'
