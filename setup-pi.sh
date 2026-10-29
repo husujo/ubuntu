@@ -18,7 +18,9 @@ fi
 if [[ ! -f ~/.pi/agent/settings.json ]]; then
     cat > ~/.pi/agent/settings.json <<'JSON'
 {
-  "defaultTools": ["read", "grep", "find", "ls"]
+  "defaultTools": ["read", "grep", "find", "ls"],
+  "prompts": ["~/.agents/prompts"],
+  "skills": ["!skills/synced/**"]
 }
 JSON
 fi
