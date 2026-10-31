@@ -315,7 +315,7 @@ systemctl() {
     local readopt='^(status|show|cat|help|list-|is-|get-)'
     if [[ $1 == ls ]]; then
         shift
-        command systemctl list-units --type=service "$@"
+        command systemctl list-units --type=service --all "$@"
     elif [[ -z $1 || $1 =~ $readopt || " $* " == *" --user "* ]]; then
         command systemctl "$@"
     else
