@@ -27,9 +27,9 @@ sudo ubuntu-drivers install
 
 ## ufw
 ```
-sudo ufw limit from 192.168.1.0/24 to any port 22 proto tcp comment 'ssh from home LAN only (rate-limited)'
-sudo ufw allow from 192.168.1.0/24 to any port 80,443 proto tcp comment 'web from home LAN only'
-sudo ufw allow from 192.168.1.0/24 to any port 25565 proto tcp comment 'minecraft java, LAN only'
+# sudo ufw limit from 192.168.1.0/24 to any port 22 proto tcp comment 'ssh from home LAN only (rate-limited)'
+# sudo ufw allow from 192.168.1.0/24 to any port 80,443 proto tcp comment 'web from home LAN only'
+# sudo ufw allow from 192.168.1.0/24 to any port 25565 proto tcp comment 'minecraft java, LAN only'
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw enable
