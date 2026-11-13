@@ -28,15 +28,15 @@
         # gemini-cli
         rclone
         gh
+        gitleaks
         ngrok
         rustup
         bun
-	    # deno
         # nodejs_24
         # expect
         # yamllint
         # yq
-        # ripgrep
+        ripgrep
         # ollama-cuda (doesn't work)
         # <other>.packages.${system}.<name>
       ];
