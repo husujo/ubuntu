@@ -217,11 +217,17 @@ sudo apt update && sudo apt install -y openvpn3
 sudo apt install gnupg lsb-release
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-# sudo usermod -aG docker $USER (insecure)
+sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin uidmap docker-ce-rootless-extras
+# sudo usermod -aG docker $USER (insecure!)
 
 # to stop docker from requiring network at boot
 # sudo systemctl disable NetworkManager-wait-online.service
+
+# don't add the user to the docker group, use rootless mode instead!
+# setup rootless mode as well:
+# dockerd-rootless-setuptool.sh install
+# you can run both root and rootless docker at the same time. root docker has better network performance, so i think winboat is better off there. but rootless docker is better for local dev. shouldn't need to 
+# sudo docker is root docker, docker is rootless docker. you can see with docker context ls
 ```
 
 ## nginx
