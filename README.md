@@ -50,6 +50,12 @@ sudo git config --system core.editor "vim"
 sudo git config --system pretty.custom '%C(auto)%h%d %s %Cgreen%ar %Cblue%an'
 # maybe just for AI VMs
 #sudo git config --system url."git@github.com:".insteadOf "https://github.com/"
+
+# Custom executable commands
+files=$(curl -fsSL "https://api.github.com/repos/husujo/ubuntu/contents/bin?ref=main")
+urls=$(jq -r '.[].download_url' <<< "$files")
+for url in $urls; do sudo curl -fsSL -O --output-dir /usr/local/bin "$url"; done
+sudo chmod +x /usr/local/bin/*
 ```
 
 # User configuration
