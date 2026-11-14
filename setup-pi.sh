@@ -14,6 +14,8 @@ if [[ ! -f ~/.pi/agent/settings.json ]]; then
     cat > ~/.pi/agent/settings.json <<'JSON'
 {
   "defaultTools": ["read", "grep", "find", "ls"],
+  "markdown": { "codeBlockIndent": "" },
+  "outputPad": 0,
   "prompts": ["~/.agents/prompts"],
   "skills": ["!skills/synced/**"]
 }
