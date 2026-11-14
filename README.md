@@ -275,13 +275,16 @@ sudo apt update && sudo apt install -y cursor
 # prep nix config
 mkdir -p ~/.config/nix
 echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+
+# Copy flake.nix into ~/.config/nix/flake.nix (untested)
 touch ~/.config/nix/flake.nix
-# Copy flake.nix into ~/.config/nix/flake.nix
+URL="https://raw.githubusercontent.com/husujo/ubuntu/main"
+sudo curl -fsSLo ~/.config/nix/flake.nix "$URL/flake.nix"
 ```
 ```
 # install nix package manager
 sh <(curl -L https://nixos.org/nix/install) --daemon
-# check that the direnv hook is at the end of the bashrc
+# check that the direnv hook is at the end of the bashrc (can I paste this whole code block?)
 cat ~/.bashrc
 ```
 
