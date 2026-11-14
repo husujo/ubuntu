@@ -28,5 +28,10 @@
         "key": "ctrl+c",
         "command": "workbench.action.terminal.copySelection",
         "when": "terminalFocus"
-    }
+    },
+    {
+		// ctrl+~ already toggles the panel. ctrl+j is needed for sending shift enter to some processes.
+		"key": "ctrl+j",
+		"command": "-workbench.action.togglePanel"
+	}
 ]
