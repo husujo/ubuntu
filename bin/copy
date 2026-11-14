@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
 # copy src dst — merge the contents of dir src into dir dst (never dst/src)
 if [[ $# -ne 2 ]]; then
   echo "usage: copy src dst" >&2
@@ -9,5 +11,5 @@ if [[ ! -d $src ]]; then
   echo "copy: not a directory: $src" >&2
   exit 1
 fi
-mkdir -p "$dst" || exit
+mkdir -p "$dst"
 cp -a "$src/." "$dst/"
