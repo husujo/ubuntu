@@ -41,7 +41,7 @@ llm () {
   local log="/tmp/ai.log"
   local sysprompt="System Prompt: you are invoked from Ubuntu 24 terminal. avoid superfluous newlines."
   local think=false
-  local model="qwen3.5:9b"
+  local model="qwen3.5:9b" # 6.6GB
 
   [[ "$*" == "clear" ]] && > "$log" && return
   [[ "$*" == "log" ]] && cat "$log" && return
