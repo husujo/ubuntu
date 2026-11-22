@@ -101,6 +101,17 @@ curl -sLo ~/.bash_aliases "https://raw.githubusercontent.com/husujo/ubuntu/main/
 
 # AI
 ```
+# adjust ollama defaults
+sudo tee /etc/systemd/system/ollama.service.d/override.conf >/dev/null <<'EOF'
+[Service]
+Environment="OLLAMA_CONTEXT_LENGTH=65536"
+#prevent downloading additional models
+#ReadOnlyPaths=/usr/share/ollama/.ollama/models
+EOF
+
+# nginx proxy ollama readonly api
+# touch /etc/nginx/conf.d/ollama.conf
+
 sudo apt install -y bubblewrap socat
 
 sudo adduser --disabled-password --gecos "" aiagent
