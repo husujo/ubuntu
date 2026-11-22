@@ -101,6 +101,8 @@ curl -sLo ~/.bash_aliases "https://raw.githubusercontent.com/husujo/ubuntu/main/
 
 # AI
 ```
+sudo apt install -y bubblewrap socat
+
 sudo adduser --disabled-password --gecos "" aiagent
 
 # setup ssh access (ssh localhost -> localhost, so tmux can linger in aiagent if you want)
