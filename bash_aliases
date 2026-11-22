@@ -33,10 +33,11 @@ alias sudo='sudo '
 alias v='vim'
 alias svim='sudo vim'
 alias sshls='ssh-add -l'
+repeat() { local n=$1; shift; for ((i=1; i<=n; i++)); do "$@"; done; }
 
 
 # use single or double quotes for pasting in multi line, and ctrl x ctrl e for huge input text
-ai () {
+llm () {
   local log="/tmp/ai.log"
   local sysprompt="System Prompt: you are invoked from Ubuntu 24 terminal. avoid superfluous newlines."
   local think=false
@@ -52,6 +53,9 @@ ai () {
   printf 'USER: %s\nAI: ' "$prompt" >> "$log"
   ollama run "$model" --think="$think" --nowordwrap -- "$str" | tee -a "$log"
 }
+
+alias rellama="sys restart ollama"
+
 alias pils='pi -r'
 alias repi='pi update && pi update --extensions'
 alias aiagent="sudo -iu aiagent bash -ic 'pi'"
@@ -100,9 +104,9 @@ alias cdc='cd ~/code'
 alias ls='ls --color=auto'
 alias l='ls'
 alias la='ls -a'
-alias ll='ls -lF'
-alias lal='ls -la'
-alias lla='lal'
+alias ll='ls -lhF'
+alias lla='ls -lah'
+alias lal='ls -lah'
 
 # tmux (remember ctrl+b d)
 alias t='tmux'
