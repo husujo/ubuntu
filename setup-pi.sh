@@ -42,6 +42,7 @@ if [[ ! -f ~/.pi/agent/models.json ]]; then
       "baseUrl": "http://localhost:11434/v1",
       "api": "openai-completions",
       "apiKey": "ollama",
+      "compat": { "supportsDeveloperRole": false },
       "models": []
     },
     "deepseek": {
