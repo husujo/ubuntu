@@ -126,6 +126,18 @@ sudo -iu aiagent sh -c 'umask 077; mkdir -p ~/.ssh; touch ~/.ssh/authorized_keys
 sudo -iu aiagent bash -lc 'curl -fsSL "https://raw.githubusercontent.com/husujo/ubuntu/main/setup-pi.sh?v=1" | bash'
 ```
 
+# Syncthing
+```
+sudo mkdir -p /etc/apt/keyrings
+sudo curl -L -o /etc/apt/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
+echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable-v2" | sudo tee /etc/apt/sources.list.d/syncthing.list
+printf "Package: *\nPin: origin apt.syncthing.net\nPin-Priority: 990\n" | sudo tee /etc/apt/preferences.d/syncthing.pref
+sudo apt update && sudo apt install -y syncthing
+systemctl --user enable syncthing.service
+systemctl --user restart syncthing.service
+sudo ufw allow syncthing
+```
+
 # Apps
 
 ## 1password
