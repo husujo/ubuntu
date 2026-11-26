@@ -360,7 +360,8 @@ if command -v virsh >/dev/null 2>&1; then
             command virsh list --all "$@"
         elif [[ "$1" == "on" ]]; then
             shift
-            command virsh start "$@"
+            command virsh start "$@" || return
+            retry 3 3 virsh running "$1"
         elif [[ "$1" == "off" ]]; then
             shift
             command virsh shutdown "$@"
@@ -370,15 +371,15 @@ if command -v virsh >/dev/null 2>&1; then
         elif [[ "$1" == "addr" ]]; then
             shift
             command virsh domifaddr "$@"
+        elif [[ "$1" == "running" ]]; then
+            [[ $(command virsh domstate "$2") == running ]]
+        elif [[ "$1" == "ip" ]]; then
+            command virsh domifaddr "$2" | awk '/ipv4/ {split($4, a, "/"); print a[1]; f=1} END {exit !f}'
         elif [[ "$1" == "ssh" ]]; then
             local name="$2"
-            local state=$(vm state "$name")
-            [[ "$state" == "shut off" ]] && echo 'vm is off' && return 1
-            local info=$(vm addr "$name")
-            local ip=$(echo "$info" | awk '/ipv4/ {split($4, a, "/"); print a[1]}')
-            [[ -z "$ip" ]] && echo "Could not get IP for $name" && return 1
+            retry 3 3 virsh running "$name" || { echo "$name not running" >&2; return 1; }
+            ip=$(retry 3 3 virsh ip "$name") || { echo "$name could not get IP" >&2; return 1; }
             ssh "$name"@"$ip"
-            # removed -X for security
         else
             command virsh "$@"
         fi
